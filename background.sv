@@ -8,14 +8,10 @@ module background(){
 }; 
 
 // set the RBG color values for the game 
-parameter GREEN = 12'
-parameter BLUE = 12'
-parameter YELLOW = 12'
-parameter RED = 12'
-parameter BLACK = 12'
-parameter BROWN = 12'
-parameter BLUE = 12'
-parameter WHITE = 12'
+parameter GREEN = 12'0F0
+parameter BLACK = 12'h00
+parameter BLUE = 12'00F
+parameter WHITE = 12'h11
 
 // pixel locations 
 wire road; 
