@@ -6,7 +6,7 @@ module pattern_gen (
     output logic [5:0] color
 );
 
-    logic [10:0] offset = 10'b0;
+    logic [10:0] offset = 11'b0;
 
     always_ff @(posedge clk) begin
         offset <= offset + 4;
