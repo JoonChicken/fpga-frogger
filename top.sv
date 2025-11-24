@@ -5,12 +5,6 @@ module top (
     output logic HSYNC,
     output logic VSYNC,
     output logic [5:0] color,
-
-    output logic clk_good,
-    output logic hsync_duration_good,
-    output logic h_front_porch_good,
-    output logic h_blanking_good,
-    output logic vsync_duration_good
 );
 
     mypll mypll_inst(
