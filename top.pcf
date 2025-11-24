@@ -1,0 +1,19 @@
+set_io clk_good 28
+set_io hsync_duration_good 38
+set_io h_front_porch_good 42
+set_io h_blanking_good 36
+set_io vsync_duration_good 43
+
+
+set_io osc_12M 20
+set_io osc_25_1M 10
+
+set_io HSYNC 46
+set_io VSYNC 2
+
+set_io color[5] 44
+set_io color[4] 4
+set_io color[3] 3
+set_io color[2] 48
+set_io color[1] 45
+set_io color[0] 47
