@@ -7,7 +7,7 @@ output logic jumpSoundOut
 );
 
 	logic prevEnable;
-	logic [16:0] curCount;
+	logic [16:0] freqCount;
 	logic [23:0] timer;
 
 //validate each enable so only called once per input/call
@@ -26,11 +26,11 @@ end
 always_ff @(posedge clk) begin
 	if (timer < 8'd12500000 & timer != 0) begin
 		timer <= timer + 1;
-		if (curCount == 10) begin
-			curCount <= 16'b0;
+		if (freqCount == 28523) begin
+			freqCount <= 16'b0;
 			jumpSoundOut <= 1;
 		end else begin
-			curCount <=curCount + 1;
+			freqCount <=curCount + 1;
 			jumpSoundOut <= 0;
 		end
 	end else
