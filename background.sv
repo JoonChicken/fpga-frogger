@@ -8,9 +8,9 @@ module background(){
 }; 
 
 // set the RBG color values for the game 
-parameter GREEN = 12'0F0
+parameter GREEN = 12'h0F0
 parameter BLACK = 12'h00
-parameter BLUE = 12'00F
+parameter BLUE = 12'h00F
 parameter WHITE = 12'h11
 
 // pixel locations 
