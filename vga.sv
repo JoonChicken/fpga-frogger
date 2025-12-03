@@ -6,6 +6,11 @@ module vga (
     output logic [9:0] rowPos
 );
 
+    initial begin
+        colPos = 10'b0;
+        rowPos = 10'b0;
+    end
+
     always_ff @(posedge clk) begin
         if (colPos == 799) begin
             colPos <= 0;
@@ -24,7 +29,7 @@ module vga (
         end else begin
             HSYNC = 1'b1;
         end
-        if (rowPos >= 495 && rowPos < 492) begin
+        if (rowPos >= 490 && rowPos < 492) begin
             VSYNC = 1'b0;
         end else begin
             VSYNC = 1'b1;
