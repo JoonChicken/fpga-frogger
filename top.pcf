@@ -1,5 +1,4 @@
 set_io osc_12M 20
-set_io clk 10
 
 set_io jumpForwardIn    28
 set_io jumpBackwardIn   36
@@ -8,8 +7,8 @@ set_io jumpLeftIn       31
 
 set_io audioOut         11
 
-set_io HSYNC 46
-set_io VSYNC 2
+set_io HSYNC   46
+set_io VSYNC   2
 
 set_io color[5] 44
 set_io color[4] 4
