@@ -1,12 +1,15 @@
 module topAudio (
 	input logic clk;
-input logic jump_forwards,
-input logic jump_backwards,
-input logic jump_right,
-input logic jump_left,
-input logic win;
-input logic lose,
-output logic sound,
+	
+	input logic jumpForward,
+	input logic jumpBackward,
+	input logic jumpRight,
+	input logic jumpLeft,
+	
+	input logic win;
+	input logic lose,
+	
+	output logic sound
 );
 
 logic jumpSoundIn, winSoundIn, loseSoundIn;
@@ -18,7 +21,7 @@ loseAudio myLose (.clk(clk), .loseSoundOut(loseSoundIn));
 
 always_comb begin
 
-if (jump_forwards | jump_backwards | jump_right | jump_left) begin
+	if (jumpForward | jumpBackward | jumpRight | jumpLeft) begin
 		
 		sound = jumpSoundIn;
 
