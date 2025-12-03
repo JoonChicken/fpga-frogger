@@ -1,6 +1,4 @@
 module frog (
-    parameter blocksize = 32;
-    parameter endarea = 15; // y coord where ending area starts
     input logic clk,
     input logic [1:0] state,
     input logic [3:0] dpad_input,  // ordered Up Down Left Right
@@ -8,11 +6,15 @@ module frog (
     input logic reset,
     input logic [9:0] x,
     input logic [9:0] y,
-    output logic direction[1:0],
+    output logic [1:0] direction,
     output logic reached_end,
     output logic [9:0] x_new,
-    output logic [9:0] y_new
+    output logic [9:0] y_new,
+    
 );
+    parameter blocksize = 32;
+    parameter endarea = 15; // y coord where ending area starts);
+
     enum logic [1:0] {MENU, PLAYING, DEAD, WIN} statetype;
     enum logic [1:0] {UP, DOWN, LEFT, RIGHT} directiontype;
 

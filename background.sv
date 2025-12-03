@@ -20,23 +20,24 @@ wire grass;
 
 
 // drivers 
-  assign road = ((x <= 10) && (y <=6) && (y > 2) && (y =1);
+  assign road = ((x <= 10) && (y <=6) && (y > 2) && (y==1));
   assign river = ((x <= 10) && (y <=9) && (y > 6));
-  assign grass = ((x <= 10) && (y = 1) && (y = 10);  
+  assign grass = ((x <= 10) && (y == 1) && (y == 10));  
 
 // setting RGB value signals 
 always_comb begin 
-  if (~on) begin
+    if (~on) begin
     rgb = BLACK; 
- end else begin  
-    if (road) begin  
-      rgb = BLACK 
-    end else if (river) begin 
-      rgb = BLUE 
-    end else if (grass) begin 
-      rgb = GREEN 
     end 
-  end
+    else begin  
+        if (road) begin
+            rgb = BLACK;
+        end else if (river) begin 
+            rgb = BLUE;
+        end else if (grass) begin 
+            rgb = GREEN;
+        end 
+    end
 end 
 
 endmodule 

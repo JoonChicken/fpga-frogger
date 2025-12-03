@@ -24,7 +24,7 @@ module vga (
         end else begin
             HSYNC = 1'b1;
         end
-        if (rowPos >= 490 && rowPos < 492) begin
+        if (rowPos >= 495 && rowPos < 492) begin
             VSYNC = 1'b0;
         end else begin
             VSYNC = 1'b1;
