@@ -2,7 +2,6 @@ module top (
     input logic osc_12M,
     output logic osc_25_1M,
     
-    // Button inputs
     input logic button_up,
     input logic button_down,
     input logic button_left,
@@ -30,55 +29,88 @@ module top (
         .rowPos(rowPos)
     );
 
-    // Game state and control signals
-    logic [1:0] state = 2'b01;  // Initialize to PLAYING state (1)
+    logic [1:0] state = 2'b01;
     logic [3:0] dpad_input;
     logic collision;
     logic reset;
-    logic [1:0] direction;
     logic reached_end;
     
-    // Connect buttons to dpad_input: [left[0], down[1], up[2], right[3]]
     assign dpad_input = {button_right, button_up, button_down, button_left};
     
-    // Initialize reset (can be connected to a button if needed)
     assign reset = 1'b0;
-    assign collision = 1'b0;  // TODO: implement collision detection
+    assign collision = 1'b0;
     
-    // Frog positioning parameters
-    parameter SQUARE_SIZE = 32;
-    parameter INIT_X = 300;
-    parameter INIT_Y = 400;
+    // frog positioning parameters
+    parameter init_x = 320;
+    parameter init_y = 384;
+    parameter frog_size = 32;
     
-    // Frog position outputs
     logic [9:0] next_x;
     logic [9:0] next_y;
     
-    frog frog_inst (
+    frog frog (
         .clk(osc_25_1M),
         .state(state),
-        .INIT_X(INIT_X),
-        .INIT_Y(INIT_Y),
-        .SQUARE_SIZE(SQUARE_SIZE),
+        .init_x(init_x),
+        .init_y(init_y),
+        .frog_size(frog_size),
         .dpad_input(dpad_input),
         .collision(collision),
         .reset(reset),
-        .direction(direction),
         .reached_end(reached_end),
         .next_x(next_x),
         .next_y(next_y)
     );
-    logic display_enable;
 
-    pattern_gen pattern (
+    logic display_enable;
+    logic [5:0] frogcolor;  
+    frog_gen frog_gen (
         .clk(osc_25_1M),
         .colPos(colPos),
         .rowPos(rowPos),
-        .square_x(next_x),
-        .square_y(next_y),
-        .square_size(SQUARE_SIZE),
+        .frog_x(next_x),
+        .frog_y(next_y),
+        .frog_size(frog_size),
         .display_enable(display_enable),
-        .color(color)
+        .color(frogcolor)
+    );
+    // grid/window color
+    logic [5:0] gridcolor;
+    window window (
+        .clk(osc_25_1M),
+        .colPos(colPos),
+        .rowPos(rowPos),
+        .display_enable(display_enable),
+        .color(gridcolor)
     );
 
+    // Background color
+    logic [5:0] bgcolor;
+    background bg (
+        .on(display_enable),
+        .colPos(colPos),
+        .rowPos(rowPos),
+        .color(bgcolor)
+    );
+
+    // color priority: frog > grid > background
+    always_comb begin
+        if (frogcolor != 6'b000000) begin
+            color = frogcolor;
+        end else if (gridcolor != 6'b000000) begin
+            color = gridcolor;
+        end else begin
+            color = bgcolor;
+        end
+    end
+    topAudio audio (
+        .clk(clk),
+        .jumpForward(button_up),
+        .jumpBackward(button_down),
+        .jumpRight(button_right),
+        .jumpLeft(button_left),
+        .win(1'b0),
+        .lose(1'b0),
+        .sound(audioOut)
+    );
 endmodule

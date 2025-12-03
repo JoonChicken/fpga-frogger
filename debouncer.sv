@@ -2,8 +2,10 @@ module debounce(
     input wire clk,
     input wire reset,
     input wire btn_in,      
-    output reg db_level,     // Debounced steady signal
-    output wire db_tick      // Single pulse when button is pressed
+    // stable input
+    output reg db_level,
+    // single pulse
+    output wire db_tick
     );
 
     localparam N = 20; 

@@ -1,10 +1,10 @@
-module pattern_gen (
+module frog_gen (
     input logic clk,
     input logic [9:0] colPos,
     input logic [9:0] rowPos,
-    input logic [9:0] square_x,
-    input logic [9:0] square_y,
-    input logic [9:0] square_size,
+    input logic [9:0] frog_x,
+    input logic [9:0] frog_y,
+    input logic [9:0] frog_size,
     output logic display_enable,
     output logic [5:0] color
 );
@@ -16,20 +16,19 @@ module pattern_gen (
     end
 
     logic lum;
-    logic in_square;
+    logic in_frog;
 
     always_comb begin
-        // Check if current pixel is within the green square
-        in_square = (colPos >= square_x && colPos < square_x + square_size &&
-                     rowPos >= square_y && rowPos < square_y + square_size);
+        // check if current pixel is within the frog
+        in_frog = (colPos >= frog_x && colPos < frog_x + frog_size &&
+                     rowPos >= frog_y && rowPos < frog_y + frog_size);
 
-        // Always assign lum to avoid latch inference
         lum = (colPos % 32 == 0) | (rowPos % 32 == 0);
 
         if (colPos >= 96 && colPos <= 544) begin
-            if (in_square) begin
-                // Draw green square (green = 0b001100 in 6-bit RGB format [RRGGBB])
-                color = 6'b001100;
+            if (in_frog) begin
+                // draw frog (green = 0b001100 in 6-bit RGB format [RRGGBB])
+                color = 6'b111111;
                 display_enable = 1'b1;
             end else begin
                 color = (lum << 4) | (lum << 2) | lum;
