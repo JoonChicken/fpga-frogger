@@ -30,7 +30,7 @@ always_ff @(posedge clk) begin
 			freqCount <= 16'b0;
 			jumpSoundOut <= 1;
 		end else begin
-			freqCount <=curCount + 1;
+			freqCount <= freqCount + 1;
 			jumpSoundOut <= 0;
 		end
 	end else
