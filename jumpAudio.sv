@@ -38,5 +38,9 @@ always_ff @(posedge clk) begin
 end
 
 
+<<<<<<< HEAD
 endmodule 
 
+=======
+endmodule 
+>>>>>>> 5966c5a (added winAudio.sv)
