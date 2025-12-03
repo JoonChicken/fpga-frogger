@@ -12,11 +12,15 @@ module pattern_gen (
         offset <= offset + 4;
     end
 
+    logic lum;
+
     always_comb begin
-        if (colPos < 640) begin
-            color = ((6'(colPos) + offset[10:5]) ^ (6'(rowPos))) & 6'b01000;
+        if (colPos >= 96 && colPos <= 544) begin
+            lum = (colPos % 32 == 0) | (rowPos % 32 == 0);
+            color = (lum << 4) | (lum << 2) | lum;
             display_enable = 1'b1;
         end else begin
+            lum = 0;
             color = 6'b000000;
             display_enable = 1'b0;
         end
