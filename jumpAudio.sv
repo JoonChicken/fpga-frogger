@@ -14,7 +14,7 @@ end
 
 
 always_comb
-	if (curCount == 54545)
+	if (curCount == 10)
 		jumpSoundOut = 1’b1;
 		curCount = 0;
 	end else
