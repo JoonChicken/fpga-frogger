@@ -18,9 +18,9 @@ always_comb begin
 end
 
 //start timer loop below if enabled
-	always_ff @(posedge clk) begin
-		prevEnable <= enable;
-	end
+always_ff @(posedge clk) begin
+	prevEnable <= enable;
+end
 
 //play sound at certain frequency until timer reaches desired duration
 always_ff @(posedge clk) begin
