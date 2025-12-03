@@ -17,7 +17,7 @@ module topAudio (
 
 	jumpAudio myJump (.clk(clk), .enable(enableJumpSound), .jumpSoundOut(jumpSoundIn));
 	winAudio myWin (.clk(clk), .enable(enableWinSound), .winSoundOut(winSoundIn));
-	loseAudio myLose (.clk(clk), enable(enableLoseSound), .loseSoundOut(loseSoundIn));
+	loseAudio myLose (.clk(clk), .enable(enableLoseSound), .loseSoundOut(loseSoundIn));
 
 	always_comb begin
 
