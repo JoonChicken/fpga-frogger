@@ -1,6 +1,6 @@
 module top (
     input logic osc_12M,
-    output logic osc_25_1M,
+    output logic clk, // 25.1 MHz
 
     output logic HSYNC,
     output logic VSYNC,
@@ -16,14 +16,14 @@ module top (
     mypll mypll_inst(
         .ref_clk_i(osc_12M),
         .rst_n_i(1'b1),
-        .outglobal_o(osc_25_1M)
+        .outglobal_o(clk)
     );
 
     logic [9:0] colPos;
     logic [9:0] rowPos;
 
     vga vga (
-        .clk(osc_25_1M),
+        .clk(clk),
         .HSYNC(HSYNC),
         .VSYNC(VSYNC),
         .colPos(colPos),
@@ -33,7 +33,7 @@ module top (
     logic display_enable;
 
     pattern_gen pattern (
-        .clk(osc_25_1M),
+        .clk(clk),
         .colPos(colPos),
         .rowPos(rowPos),
         .display_enable(display_enable),

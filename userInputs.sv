@@ -22,17 +22,17 @@ always_ff @(posedge clk) begin
 end
 
 
-
+	logic reset = 1'b0;
 
 
 //debounce inputs (calling debouncer module)
 logic debForward, debBackward, debRight, debLeft;
 logic forwardLvl, backwardLvl, rightLvl, leftLvl;
 
-debouncer myForwardDeb (.clk(clk), .reset(1’b0), .btn_in(forward1), db_level(forwardLvl), db_tick(debForward));
-debouncer myBackwardDeb (.clk(clk), .reset(1’b0), .btn_in(backward1), db_level(backwardLvl), db_tick(debBackward));
-debouncer myRightDeb (.clk(clk), .reset(1’b0), .btn_in(right1), db_level(rightLvl), db_tick(debForward));
-debouncer myLeftDeb (.clk(clk), .reset(1’b0), .btn_in(left1), db_level(leftLvl), db_tick(debLeft));
+debouncer myForwardDeb (.clk(clk), .reset(reset), .btn_in(forward1), .db_level(forwardLvl), .db_tick(debForward));
+debouncer myBackwardDeb (.clk(clk), .reset(reset), .btn_in(backward1), .db_level(backwardLvl), .db_tick(debBackward));
+debouncer myRightDeb (.clk(clk), .reset(reset), .btn_in(right1), .db_level(rightLvl), .db_tick(debForward));
+debouncer myLeftDeb (.clk(clk), .reset(reset), .btn_in(left1), .db_level(leftLvl), .db_tick(debLeft));
 
 
 

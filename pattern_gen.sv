@@ -16,9 +16,12 @@ module pattern_gen (
 
     always_comb begin
         if (colPos >= 96 && colPos <= 544) begin
-            lum = (colPos % 32 == 0) | (rowPos % 32 == 0);
+            lum = (colPos % 32 == 0) | ((rowPos + 1) % 32 == 0);
             color = (lum << 4) | (lum << 2) | lum;
             display_enable = 1'b1;
+            if (rowPos <= 15) begin
+                color = 6'b001100;
+            end
         end else begin
             lum = 0;
             color = 6'b000000;

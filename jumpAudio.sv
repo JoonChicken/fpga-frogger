@@ -9,16 +9,20 @@ logic [16:0] curCount;
 
 
 always_ff @(posedge clk) begin
-	curCount <=curCount + 1;
+	if (curCount == 10) begin
+		curCount <= 16'b0;
+	end else begin
+		curCount <=curCount + 1;
+	end
 end
 
 
-always_comb
-	if (curCount == 10)
-		jumpSoundOut = 1’b1;
-		curCount = 0;
-	end else
-		jumpSoundOut = 1’b0;
+always_comb begin
+	if (curCount == 10) begin
+		jumpSoundOut = 1'b1;
+	end else begin
+		jumpSoundOut = 1'b0;
+	end
 end
 
 endmodule 

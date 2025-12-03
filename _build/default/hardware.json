@@ -23,7 +23,7 @@
         }
       },
       "cells": {
-        "$specify$1299": {
+        "$specify$1618": {
           "hide_name": 1,
           "type": "$specify2",
           "parameters": {
@@ -360,7 +360,7 @@
         }
       },
       "cells": {
-        "$specify$1299": {
+        "$specify$1618": {
           "hide_name": 1,
           "type": "$specify2",
           "parameters": {
@@ -432,7 +432,7 @@
         }
       },
       "cells": {
-        "$specify$1299": {
+        "$specify$1618": {
           "hide_name": 1,
           "type": "$specify2",
           "parameters": {
@@ -10203,18 +10203,53 @@
         }
       }
     },
+    "loseAudio": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "hdlname": "loseAudio",
+        "src": "loseAudio.sv:8.1-23.10"
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "loseSoundOut": {
+          "direction": "output",
+          "bits": [ 3 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "loseAudio.sv:9.13-9.16"
+          }
+        },
+        "loseSoundOut": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "loseAudio.sv:10.14-10.26"
+          }
+        }
+      }
+    },
     "top": {
       "attributes": {
         "hdlname": "top",
         "top": "00000000000000000000000000000001",
-        "src": "top.sv:1.1-37.10"
+        "src": "top.sv:1.1-54.10"
       },
       "ports": {
         "osc_12M": {
           "direction": "input",
           "bits": [ 2 ]
         },
-        "osc_25_1M": {
+        "clk": {
           "direction": "output",
           "bits": [ 3 ]
         },
@@ -10228,7 +10263,27 @@
         },
         "color": {
           "direction": "output",
-          "bits": [ 6, "0", 6, "0", 6, "0" ]
+          "bits": [ 6, "0", 7, 8, 6, "0" ]
+        },
+        "audioOut": {
+          "direction": "output",
+          "bits": [ 9 ]
+        },
+        "jumpForwardIn": {
+          "direction": "input",
+          "bits": [ 10 ]
+        },
+        "jumpBackwardIn": {
+          "direction": "input",
+          "bits": [ 11 ]
+        },
+        "jumpRightIn": {
+          "direction": "input",
+          "bits": [ 12 ]
+        },
+        "jumpLeftIn": {
+          "direction": "input",
+          "bits": [ 13 ]
         }
       },
       "cells": {
@@ -10252,8 +10307,8 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 7 ],
-            "I3": [ 8 ],
+            "I2": [ 14 ],
+            "I3": [ 15 ],
             "O": [ 4 ]
           }
         },
@@ -10272,9 +10327,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 9 ],
-            "CO": [ 7 ],
-            "I0": [ 10 ],
+            "CI": [ 16 ],
+            "CO": [ 14 ],
+            "I0": [ 17 ],
             "I1": [ "0" ]
           }
         },
@@ -10293,9 +10348,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 11 ],
-            "CO": [ 9 ],
-            "I0": [ 12 ],
+            "CI": [ 18 ],
+            "CO": [ 16 ],
+            "I0": [ 19 ],
             "I1": [ "1" ]
           }
         },
@@ -10314,9 +10369,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 13 ],
-            "CO": [ 11 ],
-            "I0": [ 14 ],
+            "CI": [ 20 ],
+            "CO": [ 18 ],
+            "I0": [ 21 ],
             "I1": [ "0" ]
           }
         },
@@ -10335,9 +10390,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 15 ],
-            "CO": [ 13 ],
-            "I0": [ 16 ],
+            "CI": [ 22 ],
+            "CO": [ 20 ],
+            "I0": [ 23 ],
             "I1": [ "1" ]
           }
         },
@@ -10356,9 +10411,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 17 ],
-            "CO": [ 15 ],
-            "I0": [ 18 ],
+            "CI": [ 24 ],
+            "CO": [ 22 ],
+            "I0": [ 25 ],
             "I1": [ "1" ]
           }
         },
@@ -10377,9 +10432,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 19 ],
-            "CO": [ 8 ],
-            "I0": [ 10 ],
+            "CI": [ 26 ],
+            "CO": [ 15 ],
+            "I0": [ 17 ],
             "I1": [ "0" ]
           }
         },
@@ -10398,9 +10453,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 20 ],
-            "CO": [ 19 ],
-            "I0": [ 12 ],
+            "CI": [ 27 ],
+            "CO": [ 26 ],
+            "I0": [ 19 ],
             "I1": [ "1" ]
           }
         },
@@ -10419,9 +10474,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 21 ],
-            "CO": [ 20 ],
-            "I0": [ 14 ],
+            "CI": [ 28 ],
+            "CO": [ 27 ],
+            "I0": [ 21 ],
             "I1": [ "0" ]
           }
         },
@@ -10440,9 +10495,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 22 ],
-            "CO": [ 21 ],
-            "I0": [ 16 ],
+            "CI": [ 29 ],
+            "CO": [ 28 ],
+            "I0": [ 23 ],
             "I1": [ "0" ]
           }
         },
@@ -10461,9 +10516,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 17 ],
-            "CO": [ 22 ],
-            "I0": [ 18 ],
+            "CI": [ 24 ],
+            "CO": [ 29 ],
+            "I0": [ 25 ],
             "I1": [ "0" ]
           }
         },
@@ -10487,8 +10542,8 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 23 ],
-            "I3": [ 24 ],
+            "I2": [ 30 ],
+            "I3": [ 31 ],
             "O": [ 5 ]
           }
         },
@@ -10507,9 +10562,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 25 ],
-            "CO": [ 23 ],
-            "I0": [ 26 ],
+            "CI": [ 32 ],
+            "CO": [ 30 ],
+            "I0": [ 33 ],
             "I1": [ "1" ]
           }
         },
@@ -10528,9 +10583,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 27 ],
-            "CO": [ 25 ],
-            "I0": [ 28 ],
+            "CI": [ 34 ],
+            "CO": [ 32 ],
+            "I0": [ 35 ],
             "I1": [ "0" ]
           }
         },
@@ -10549,9 +10604,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 29 ],
-            "CO": [ 27 ],
-            "I0": [ 30 ],
+            "CI": [ 36 ],
+            "CO": [ 34 ],
+            "I0": [ 37 ],
             "I1": [ "0" ]
           }
         },
@@ -10570,9 +10625,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 31 ],
-            "CO": [ 29 ],
-            "I0": [ 32 ],
+            "CI": [ 38 ],
+            "CO": [ 36 ],
+            "I0": [ 39 ],
             "I1": [ "0" ]
           }
         },
@@ -10591,9 +10646,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 33 ],
-            "CO": [ 31 ],
-            "I0": [ 34 ],
+            "CI": [ 40 ],
+            "CO": [ 38 ],
+            "I0": [ 41 ],
             "I1": [ "0" ]
           }
         },
@@ -10612,9 +10667,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 35 ],
-            "CO": [ 33 ],
-            "I0": [ 36 ],
+            "CI": [ 42 ],
+            "CO": [ 40 ],
+            "I0": [ 43 ],
             "I1": [ "1" ]
           }
         },
@@ -10633,9 +10688,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 37 ],
-            "CO": [ 35 ],
-            "I0": [ 38 ],
+            "CI": [ 44 ],
+            "CO": [ 42 ],
+            "I0": [ 45 ],
             "I1": [ "0" ]
           }
         },
@@ -10654,9 +10709,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 39 ],
-            "CO": [ 24 ],
-            "I0": [ 26 ],
+            "CI": [ 46 ],
+            "CO": [ 31 ],
+            "I0": [ 33 ],
             "I1": [ "1" ]
           }
         },
@@ -10675,9 +10730,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 40 ],
-            "CO": [ 39 ],
-            "I0": [ 28 ],
+            "CI": [ 47 ],
+            "CO": [ 46 ],
+            "I0": [ 35 ],
             "I1": [ "0" ]
           }
         },
@@ -10696,9 +10751,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 41 ],
-            "CO": [ 40 ],
-            "I0": [ 30 ],
+            "CI": [ 48 ],
+            "CO": [ 47 ],
+            "I0": [ 37 ],
             "I1": [ "0" ]
           }
         },
@@ -10717,9 +10772,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 42 ],
-            "CO": [ 41 ],
-            "I0": [ 32 ],
+            "CI": [ 49 ],
+            "CO": [ 48 ],
+            "I0": [ 39 ],
             "I1": [ "0" ]
           }
         },
@@ -10738,9 +10793,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 43 ],
-            "CO": [ 42 ],
-            "I0": [ 34 ],
+            "CI": [ 50 ],
+            "CO": [ 49 ],
+            "I0": [ 41 ],
             "I1": [ "0" ]
           }
         },
@@ -10759,9 +10814,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 44 ],
-            "CO": [ 43 ],
-            "I0": [ 36 ],
+            "CI": [ 51 ],
+            "CO": [ 50 ],
+            "I0": [ 43 ],
             "I1": [ "1" ]
           }
         },
@@ -10780,9 +10835,9 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 45 ],
-            "CO": [ 44 ],
-            "I0": [ 38 ],
+            "CI": [ 52 ],
+            "CO": [ 51 ],
+            "I0": [ 45 ],
             "I1": [ "0" ]
           }
         },
@@ -10801,21 +10856,127 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 46 ],
-            "CO": [ 45 ],
-            "I0": [ 37 ],
+            "CI": [ 53 ],
+            "CO": [ 52 ],
+            "I0": [ 44 ],
             "I1": [ "1" ]
           }
         },
-        "color_SB_LUT4_O": {
+        "audio": {
+          "hide_name": 0,
+          "type": "$scopeinfo",
+          "parameters": {
+            "TYPE": "module"
+          },
+          "attributes": {
+            "cell_module_not_derived": "00000000000000000000000000000001",
+            "cell_src": "top.sv:43.14-52.6",
+            "module": "topAudio",
+            "module_hdlname": "topAudio",
+            "module_src": "topAudio.sv:1.1-34.10"
+          },
+          "port_directions": {
+          },
+          "connections": {
+          }
+        },
+        "audio.myJump": {
+          "hide_name": 0,
+          "type": "$scopeinfo",
+          "parameters": {
+            "TYPE": "module"
+          },
+          "attributes": {
+            "cell_module_not_derived": "00000000000000000000000000000001",
+            "cell_src": "topAudio.sv:18.12-18.58",
+            "hdlname": "audio myJump",
+            "module": "jumpAudio",
+            "module_hdlname": "jumpAudio",
+            "module_src": "jumpAudio.sv:3.1-28.10"
+          },
+          "port_directions": {
+          },
+          "connections": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 54 ],
+            "Q": [ 55 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_1": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 57 ],
+            "Q": [ 58 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_10": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 59 ],
+            "Q": [ 60 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_10_D_SB_LUT4_O": {
           "hide_name": 0,
           "type": "SB_LUT4",
           "parameters": {
-            "LUT_INIT": "0000101000001000"
+            "LUT_INIT": "0110100110010110"
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
           },
           "port_directions": {
             "I0": "input",
@@ -10825,20 +10986,20 @@
             "O": "output"
           },
           "connections": {
-            "I0": [ 47 ],
-            "I1": [ 48 ],
-            "I2": [ 49 ],
-            "I3": [ 50 ],
-            "O": [ 6 ]
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 60 ],
+            "I3": [ 61 ],
+            "O": [ 59 ]
           }
         },
-        "color_SB_LUT4_O_I0_SB_CARRY_CO": {
+        "audio.myJump.curCount_SB_DFFSR_Q_10_D_SB_LUT4_O_I3_SB_CARRY_CO": {
           "hide_name": 0,
           "type": "SB_CARRY",
           "parameters": {
           },
           "attributes": {
-            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
           },
           "port_directions": {
             "CI": "input",
@@ -10847,19 +11008,67 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 51 ],
-            "CO": [ 47 ],
-            "I0": [ 10 ],
-            "I1": [ "1" ]
+            "CI": [ 62 ],
+            "CO": [ 61 ],
+            "I0": [ "0" ],
+            "I1": [ 63 ]
           }
         },
-        "color_SB_LUT4_O_I0_SB_CARRY_CO_CI_SB_CARRY_CO": {
+        "audio.myJump.curCount_SB_DFFSR_Q_11": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 64 ],
+            "Q": [ 63 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_11_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 63 ],
+            "I3": [ 62 ],
+            "O": [ 64 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_11_D_SB_LUT4_O_I3_SB_CARRY_CO": {
           "hide_name": 0,
           "type": "SB_CARRY",
           "parameters": {
           },
           "attributes": {
-            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
           },
           "port_directions": {
             "CI": "input",
@@ -10868,19 +11077,67 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 52 ],
-            "CO": [ 51 ],
-            "I0": [ 12 ],
-            "I1": [ "1" ]
+            "CI": [ 65 ],
+            "CO": [ 62 ],
+            "I0": [ "0" ],
+            "I1": [ 66 ]
           }
         },
-        "color_SB_LUT4_O_I0_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO": {
+        "audio.myJump.curCount_SB_DFFSR_Q_12": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 67 ],
+            "Q": [ 66 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_12_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 66 ],
+            "I3": [ 65 ],
+            "O": [ 67 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_12_D_SB_LUT4_O_I3_SB_CARRY_CO": {
           "hide_name": 0,
           "type": "SB_CARRY",
           "parameters": {
           },
           "attributes": {
-            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
           },
           "port_directions": {
             "CI": "input",
@@ -10889,19 +11146,67 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 53 ],
-            "CO": [ 52 ],
-            "I0": [ 14 ],
-            "I1": [ "1" ]
+            "CI": [ 68 ],
+            "CO": [ 65 ],
+            "I0": [ "0" ],
+            "I1": [ 69 ]
           }
         },
-        "color_SB_LUT4_O_I0_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO": {
+        "audio.myJump.curCount_SB_DFFSR_Q_13": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 70 ],
+            "Q": [ 69 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_13_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 69 ],
+            "I3": [ 68 ],
+            "O": [ 70 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_13_D_SB_LUT4_O_I3_SB_CARRY_CO": {
           "hide_name": 0,
           "type": "SB_CARRY",
           "parameters": {
           },
           "attributes": {
-            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
           },
           "port_directions": {
             "CI": "input",
@@ -10910,13 +11215,897 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 18 ],
-            "CO": [ 53 ],
-            "I0": [ 16 ],
-            "I1": [ "0" ]
+            "CI": [ 71 ],
+            "CO": [ 68 ],
+            "I0": [ "0" ],
+            "I1": [ 72 ]
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O": {
+        "audio.myJump.curCount_SB_DFFSR_Q_14": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 73 ],
+            "Q": [ 72 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_14_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 72 ],
+            "I3": [ 71 ],
+            "O": [ 73 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_14_D_SB_LUT4_O_I3_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 74 ],
+            "CO": [ 71 ],
+            "I0": [ "0" ],
+            "I1": [ 75 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_15": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 76 ],
+            "Q": [ 75 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_15_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 75 ],
+            "I3": [ 74 ],
+            "O": [ 76 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_16": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 77 ],
+            "Q": [ 74 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_16_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0000000011111111"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:12.34-13.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ "0" ],
+            "I3": [ 74 ],
+            "O": [ 77 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_1_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 58 ],
+            "I3": [ 78 ],
+            "O": [ 57 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_1_D_SB_LUT4_O_I3_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 79 ],
+            "CO": [ 78 ],
+            "I0": [ "0" ],
+            "I1": [ 80 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_2": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 81 ],
+            "Q": [ 80 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_2_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 80 ],
+            "I3": [ 79 ],
+            "O": [ 81 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_2_D_SB_LUT4_O_I3_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 82 ],
+            "CO": [ 79 ],
+            "I0": [ "0" ],
+            "I1": [ 83 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_3": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 84 ],
+            "Q": [ 83 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_3_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 83 ],
+            "I3": [ 82 ],
+            "O": [ 84 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_3_D_SB_LUT4_O_I3_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 85 ],
+            "CO": [ 82 ],
+            "I0": [ "0" ],
+            "I1": [ 86 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_4": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 87 ],
+            "Q": [ 86 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_4_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 86 ],
+            "I3": [ 85 ],
+            "O": [ 87 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_4_D_SB_LUT4_O_I3_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 88 ],
+            "CO": [ 85 ],
+            "I0": [ "0" ],
+            "I1": [ 89 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_5": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 90 ],
+            "Q": [ 89 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_5_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 89 ],
+            "I3": [ 88 ],
+            "O": [ 90 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_5_D_SB_LUT4_O_I3_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 91 ],
+            "CO": [ 88 ],
+            "I0": [ "0" ],
+            "I1": [ 92 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_6": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 93 ],
+            "Q": [ 92 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_6_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 92 ],
+            "I3": [ 91 ],
+            "O": [ 93 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_6_D_SB_LUT4_O_I3_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 94 ],
+            "CO": [ 91 ],
+            "I0": [ "0" ],
+            "I1": [ 95 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_7": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 96 ],
+            "Q": [ 95 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_7_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 95 ],
+            "I3": [ 94 ],
+            "O": [ 96 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_7_D_SB_LUT4_O_I3_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 97 ],
+            "CO": [ 94 ],
+            "I0": [ "0" ],
+            "I1": [ 98 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_8": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 99 ],
+            "Q": [ 98 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_8_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 98 ],
+            "I3": [ 97 ],
+            "O": [ 99 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_8_D_SB_LUT4_O_I3_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 100 ],
+            "CO": [ 97 ],
+            "I0": [ "0" ],
+            "I1": [ 101 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_9": {
+          "hide_name": 0,
+          "type": "SB_DFFSR",
+          "parameters": {
+          },
+          "attributes": {
+            "always_ff": "00000000000000000000000000000001",
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:11.1-17.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/ff_map.v:19.59-19.105"
+          },
+          "port_directions": {
+            "C": "input",
+            "D": "input",
+            "Q": "output",
+            "R": "input"
+          },
+          "connections": {
+            "C": [ 3 ],
+            "D": [ 102 ],
+            "Q": [ 101 ],
+            "R": [ 56 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_9_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 101 ],
+            "I3": [ 100 ],
+            "O": [ 102 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_9_D_SB_LUT4_O_I3_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 61 ],
+            "CO": [ 100 ],
+            "I0": [ "0" ],
+            "I1": [ 60 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_D_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0110100110010110"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 55 ],
+            "I3": [ 103 ],
+            "O": [ 54 ]
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_D_SB_LUT4_O_I3_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 78 ],
+            "CO": [ 103 ],
+            "I0": [ "0" ],
+            "I1": [ 58 ]
+          }
+        },
+        "audioOut_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0011000000000000"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:22.34-23.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ 104 ],
+            "I2": [ 105 ],
+            "I3": [ 106 ],
+            "O": [ 9 ]
+          }
+        },
+        "color_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "1111000000000000"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:17.34-18.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ "0" ],
+            "I2": [ 107 ],
+            "I3": [ 108 ],
+            "O": [ 8 ]
+          }
+        },
+        "color_SB_LUT4_O_1": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "1100111100000000"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:22.34-23.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ 107 ],
+            "I2": [ 109 ],
+            "I3": [ 108 ],
+            "O": [ 7 ]
+          }
+        },
+        "color_SB_LUT4_O_2": {
           "hide_name": 0,
           "type": "SB_LUT4",
           "parameters": {
@@ -10935,17 +12124,67 @@
           },
           "connections": {
             "I0": [ "0" ],
-            "I1": [ 54 ],
-            "I2": [ 55 ],
-            "I3": [ 56 ],
-            "O": [ 48 ]
+            "I1": [ 107 ],
+            "I2": [ 109 ],
+            "I3": [ 108 ],
+            "O": [ 6 ]
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_1": {
+        "color_SB_LUT4_O_2_I2_SB_LUT4_O": {
           "hide_name": 0,
           "type": "SB_LUT4",
           "parameters": {
-            "LUT_INIT": "1100000011110000"
+            "LUT_INIT": "1100111101000101"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 43 ],
+            "I1": [ 24 ],
+            "I2": [ 110 ],
+            "I3": [ 111 ],
+            "O": [ 109 ]
+          }
+        },
+        "color_SB_LUT4_O_2_I2_SB_LUT4_O_I2_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0000000000000001"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 112 ],
+            "I1": [ 113 ],
+            "I2": [ 114 ],
+            "I3": [ 115 ],
+            "O": [ 110 ]
+          }
+        },
+        "color_SB_LUT4_O_2_I2_SB_LUT4_O_I2_SB_LUT4_O_1": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0000001100000000"
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
@@ -10960,13 +12199,88 @@
           },
           "connections": {
             "I0": [ "0" ],
-            "I1": [ 12 ],
-            "I2": [ 57 ],
-            "I3": [ 58 ],
-            "O": [ 49 ]
+            "I1": [ 19 ],
+            "I2": [ 24 ],
+            "I3": [ 116 ],
+            "O": [ 117 ]
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_1_I3_SB_LUT4_O": {
+        "color_SB_LUT4_O_2_I2_SB_LUT4_O_I2_SB_LUT4_O_1_I3_SB_LUT4_I1": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "1100000000000000"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:22.34-23.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ "0" ],
+            "I1": [ 116 ],
+            "I2": [ 118 ],
+            "I3": [ 119 ],
+            "O": [ 120 ]
+          }
+        },
+        "color_SB_LUT4_O_2_I2_SB_LUT4_O_I2_SB_LUT4_O_1_I3_SB_LUT4_I1_I2_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0000100000000000"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 17 ],
+            "I1": [ 19 ],
+            "I2": [ 25 ],
+            "I3": [ 24 ],
+            "O": [ 119 ]
+          }
+        },
+        "color_SB_LUT4_O_2_I2_SB_LUT4_O_I2_SB_LUT4_O_1_I3_SB_LUT4_I1_I2_SB_LUT4_O_1": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "1000000000000000"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 112 ],
+            "I1": [ 113 ],
+            "I2": [ 114 ],
+            "I3": [ 115 ],
+            "O": [ 118 ]
+          }
+        },
+        "color_SB_LUT4_O_2_I2_SB_LUT4_O_I2_SB_LUT4_O_1_I3_SB_LUT4_O": {
           "hide_name": 0,
           "type": "SB_LUT4",
           "parameters": {
@@ -10986,45 +12300,20 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 14 ],
-            "I3": [ 16 ],
-            "O": [ 58 ]
+            "I2": [ 21 ],
+            "I3": [ 23 ],
+            "O": [ 116 ]
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2": {
+        "color_SB_LUT4_O_I2_SB_LUT4_O": {
           "hide_name": 0,
           "type": "SB_LUT4",
           "parameters": {
-            "LUT_INIT": "0000000001000000"
+            "LUT_INIT": "0000001100000000"
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
-          },
-          "port_directions": {
-            "I0": "input",
-            "I1": "input",
-            "I2": "input",
-            "I3": "input",
-            "O": "output"
-          },
-          "connections": {
-            "I0": [ 36 ],
-            "I1": [ 59 ],
-            "I2": [ 60 ],
-            "I3": [ 57 ],
-            "O": [ 50 ]
-          }
-        },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I1_SB_LUT4_O": {
-          "hide_name": 0,
-          "type": "SB_LUT4",
-          "parameters": {
-            "LUT_INIT": "0000000000001111"
-          },
-          "attributes": {
-            "module_not_derived": "00000000000000000000000000000001",
-            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:17.34-18.52"
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:22.34-23.52"
           },
           "port_directions": {
             "I0": "input",
@@ -11035,17 +12324,17 @@
           },
           "connections": {
             "I0": [ "0" ],
-            "I1": [ "0" ],
-            "I2": [ 38 ],
-            "I3": [ 37 ],
-            "O": [ 59 ]
+            "I1": [ 33 ],
+            "I2": [ 35 ],
+            "I3": [ 121 ],
+            "O": [ 107 ]
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I2_SB_LUT4_O": {
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1": {
           "hide_name": 0,
           "type": "SB_LUT4",
           "parameters": {
-            "LUT_INIT": "0001000000000000"
+            "LUT_INIT": "1010001000100010"
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
@@ -11059,14 +12348,207 @@
             "O": "output"
           },
           "connections": {
-            "I0": [ 34 ],
-            "I1": [ 36 ],
-            "I2": [ 38 ],
-            "I3": [ 37 ],
-            "O": [ 61 ]
+            "I0": [ 122 ],
+            "I1": [ 123 ],
+            "I2": [ 110 ],
+            "I3": [ 117 ],
+            "O": [ 108 ]
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I2_SB_LUT4_O_1": {
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I0_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 124 ],
+            "CO": [ 122 ],
+            "I0": [ 17 ],
+            "I1": [ "1" ]
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I0_SB_CARRY_CO_CI_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 125 ],
+            "CO": [ 124 ],
+            "I0": [ 19 ],
+            "I1": [ "1" ]
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I0_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 126 ],
+            "CO": [ 125 ],
+            "I0": [ 21 ],
+            "I1": [ "1" ]
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I0_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 25 ],
+            "CO": [ 126 ],
+            "I0": [ 23 ],
+            "I1": [ "0" ]
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I1_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 127 ],
+            "CO": [ 123 ],
+            "I0": [ 17 ],
+            "I1": [ "0" ]
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I1_SB_CARRY_CO_CI_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 128 ],
+            "CO": [ 127 ],
+            "I0": [ 19 ],
+            "I1": [ "1" ]
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I1_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 129 ],
+            "CO": [ 128 ],
+            "I0": [ 21 ],
+            "I1": [ "1" ]
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I1_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 25 ],
+            "CO": [ 129 ],
+            "I0": [ 23 ],
+            "I1": [ "1" ]
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_I3_SB_LUT4_I2": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "1000000000000000"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 45 ],
+            "I1": [ 44 ],
+            "I2": [ 130 ],
+            "I3": [ 121 ],
+            "O": [ 131 ]
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_I3_SB_LUT4_O": {
           "hide_name": 0,
           "type": "SB_LUT4",
           "parameters": {
@@ -11084,18 +12566,68 @@
             "O": "output"
           },
           "connections": {
-            "I0": [ 26 ],
-            "I1": [ 28 ],
-            "I2": [ 30 ],
-            "I3": [ 32 ],
-            "O": [ 62 ]
+            "I0": [ 33 ],
+            "I1": [ 35 ],
+            "I2": [ 53 ],
+            "I3": [ 132 ],
+            "O": [ 130 ]
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I2_SB_LUT4_O_2": {
+        "color_SB_LUT4_O_I2_SB_LUT4_O_I3_SB_LUT4_O_1": {
           "hide_name": 0,
           "type": "SB_LUT4",
           "parameters": {
-            "LUT_INIT": "0000000000001111"
+            "LUT_INIT": "0000000000000001"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 37 ],
+            "I1": [ 39 ],
+            "I2": [ 41 ],
+            "I3": [ 43 ],
+            "O": [ 121 ]
+          }
+        },
+        "jumpLeftIn_SB_LUT4_I0": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0000000000000001"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 13 ],
+            "I1": [ 12 ],
+            "I2": [ 11 ],
+            "I3": [ 10 ],
+            "O": [ 104 ]
+          }
+        },
+        "jumpLeftIn_SB_LUT4_I0_O_SB_LUT4_I2": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "1111000000000000"
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
@@ -11111,96 +12643,62 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 46 ],
-            "I3": [ 63 ],
-            "O": [ 60 ]
+            "I2": [ 105 ],
+            "I3": [ 106 ],
+            "O": [ 56 ]
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I3_SB_CARRY_CO": {
+        "jumpLeftIn_SB_LUT4_I0_O_SB_LUT4_O": {
           "hide_name": 0,
-          "type": "SB_CARRY",
+          "type": "SB_LUT4",
           "parameters": {
+            "LUT_INIT": "0000110000000000"
           },
           "attributes": {
-            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:22.34-23.52"
           },
           "port_directions": {
-            "CI": "input",
-            "CO": "output",
             "I0": "input",
-            "I1": "input"
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
           },
           "connections": {
-            "CI": [ 64 ],
-            "CO": [ 57 ],
-            "I0": [ 10 ],
-            "I1": [ "0" ]
+            "I0": [ "0" ],
+            "I1": [ 75 ],
+            "I2": [ 74 ],
+            "I3": [ 133 ],
+            "O": [ 105 ]
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I3_SB_CARRY_CO_CI_SB_CARRY_CO": {
+        "jumpLeftIn_SB_LUT4_I0_O_SB_LUT4_O_1": {
           "hide_name": 0,
-          "type": "SB_CARRY",
+          "type": "SB_LUT4",
           "parameters": {
+            "LUT_INIT": "1100000000000000"
           },
           "attributes": {
-            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:22.34-23.52"
           },
           "port_directions": {
-            "CI": "input",
-            "CO": "output",
             "I0": "input",
-            "I1": "input"
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
           },
           "connections": {
-            "CI": [ 65 ],
-            "CO": [ 64 ],
-            "I0": [ 12 ],
-            "I1": [ "1" ]
+            "I0": [ "0" ],
+            "I1": [ 134 ],
+            "I2": [ 135 ],
+            "I3": [ 136 ],
+            "O": [ 106 ]
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I3_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO": {
-          "hide_name": 0,
-          "type": "SB_CARRY",
-          "parameters": {
-          },
-          "attributes": {
-            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
-          },
-          "port_directions": {
-            "CI": "input",
-            "CO": "output",
-            "I0": "input",
-            "I1": "input"
-          },
-          "connections": {
-            "CI": [ 66 ],
-            "CO": [ 65 ],
-            "I0": [ 14 ],
-            "I1": [ "1" ]
-          }
-        },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I3_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO": {
-          "hide_name": 0,
-          "type": "SB_CARRY",
-          "parameters": {
-          },
-          "attributes": {
-            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
-          },
-          "port_directions": {
-            "CI": "input",
-            "CO": "output",
-            "I0": "input",
-            "I1": "input"
-          },
-          "connections": {
-            "CI": [ 18 ],
-            "CO": [ 66 ],
-            "I0": [ 16 ],
-            "I1": [ "1" ]
-          }
-        },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_I3_SB_LUT4_O": {
+        "jumpLeftIn_SB_LUT4_I0_O_SB_LUT4_O_1_I1_SB_LUT4_O": {
           "hide_name": 0,
           "type": "SB_LUT4",
           "parameters": {
@@ -11219,10 +12717,85 @@
           },
           "connections": {
             "I0": [ "0" ],
-            "I1": [ 17 ],
-            "I2": [ 67 ],
-            "I3": [ 68 ],
-            "O": [ 56 ]
+            "I1": [ 55 ],
+            "I2": [ 58 ],
+            "I3": [ 80 ],
+            "O": [ 134 ]
+          }
+        },
+        "jumpLeftIn_SB_LUT4_I0_O_SB_LUT4_O_1_I1_SB_LUT4_O_1": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0000000000000001"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 95 ],
+            "I1": [ 98 ],
+            "I2": [ 101 ],
+            "I3": [ 60 ],
+            "O": [ 135 ]
+          }
+        },
+        "jumpLeftIn_SB_LUT4_I0_O_SB_LUT4_O_1_I1_SB_LUT4_O_2": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0000000000000001"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 83 ],
+            "I1": [ 86 ],
+            "I2": [ 89 ],
+            "I3": [ 92 ],
+            "O": [ 136 ]
+          }
+        },
+        "jumpLeftIn_SB_LUT4_I0_O_SB_LUT4_O_I3_SB_LUT4_O": {
+          "hide_name": 0,
+          "type": "SB_LUT4",
+          "parameters": {
+            "LUT_INIT": "0000000000010000"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+          },
+          "port_directions": {
+            "I0": "input",
+            "I1": "input",
+            "I2": "input",
+            "I3": "input",
+            "O": "output"
+          },
+          "connections": {
+            "I0": [ 63 ],
+            "I1": [ 66 ],
+            "I2": [ 69 ],
+            "I3": [ 72 ],
+            "O": [ 133 ]
           }
         },
         "mypll_inst": {
@@ -11233,7 +12806,7 @@
           },
           "attributes": {
             "cell_module_not_derived": "00000000000000000000000000000001",
-            "cell_src": "top.sv:10.11-14.6",
+            "cell_src": "top.sv:16.11-20.6",
             "module": "mypll",
             "module_hdlname": "mypll",
             "module_src": "mypll.sv:35.1-59.10"
@@ -11268,8 +12841,8 @@
           },
           "connections": {
             "BYPASS": [ "0" ],
-            "LOCK": [ 69 ],
-            "PLLOUTCORE": [ 70 ],
+            "LOCK": [ 137 ],
+            "PLLOUTCORE": [ 138 ],
             "PLLOUTGLOBAL": [ 3 ],
             "REFERENCECLK": [ 2 ],
             "RESETB": [ "1" ]
@@ -11283,10 +12856,10 @@
           },
           "attributes": {
             "cell_module_not_derived": "00000000000000000000000000000001",
-            "cell_src": "top.sv:29.17-35.6",
+            "cell_src": "top.sv:35.17-41.6",
             "module": "pattern_gen",
             "module_hdlname": "pattern_gen",
-            "module_src": "pattern_gen.sv:1.1-29.10"
+            "module_src": "pattern_gen.sv:1.1-32.10"
           },
           "port_directions": {
           },
@@ -11301,7 +12874,7 @@
           },
           "attributes": {
             "cell_module_not_derived": "00000000000000000000000000000001",
-            "cell_src": "top.sv:19.9-25.6",
+            "cell_src": "top.sv:25.9-31.6",
             "module": "vga",
             "module_hdlname": "vga",
             "module_src": "vga.sv:1.1-34.10"
@@ -11329,9 +12902,9 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 71 ],
-            "Q": [ 10 ],
-            "R": [ 72 ]
+            "D": [ 139 ],
+            "Q": [ 17 ],
+            "R": [ 120 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_1": {
@@ -11352,9 +12925,9 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 73 ],
-            "Q": [ 12 ],
-            "R": [ 72 ]
+            "D": [ 140 ],
+            "Q": [ 19 ],
+            "R": [ 120 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_1_D_SB_LUT4_O": {
@@ -11377,9 +12950,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 12 ],
-            "I3": [ 74 ],
-            "O": [ 73 ]
+            "I2": [ 19 ],
+            "I3": [ 141 ],
+            "O": [ 140 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_1_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -11397,10 +12970,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 75 ],
-            "CO": [ 74 ],
+            "CI": [ 142 ],
+            "CO": [ 141 ],
             "I0": [ "0" ],
-            "I1": [ 14 ]
+            "I1": [ 21 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_2": {
@@ -11421,9 +12994,9 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 76 ],
-            "Q": [ 14 ],
-            "R": [ 72 ]
+            "D": [ 143 ],
+            "Q": [ 21 ],
+            "R": [ 120 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_2_D_SB_LUT4_O": {
@@ -11446,9 +13019,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 14 ],
-            "I3": [ 75 ],
-            "O": [ 76 ]
+            "I2": [ 21 ],
+            "I3": [ 142 ],
+            "O": [ 143 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_2_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -11466,10 +13039,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 77 ],
-            "CO": [ 75 ],
+            "CI": [ 144 ],
+            "CO": [ 142 ],
             "I0": [ "0" ],
-            "I1": [ 16 ]
+            "I1": [ 23 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_3": {
@@ -11490,9 +13063,9 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 78 ],
-            "Q": [ 16 ],
-            "R": [ 72 ]
+            "D": [ 145 ],
+            "Q": [ 23 ],
+            "R": [ 120 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_3_D_SB_LUT4_O": {
@@ -11515,9 +13088,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 16 ],
-            "I3": [ 77 ],
-            "O": [ 78 ]
+            "I2": [ 23 ],
+            "I3": [ 144 ],
+            "O": [ 145 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_3_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -11535,10 +13108,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 79 ],
-            "CO": [ 77 ],
+            "CI": [ 146 ],
+            "CO": [ 144 ],
             "I0": [ "0" ],
-            "I1": [ 18 ]
+            "I1": [ 25 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_4": {
@@ -11559,9 +13132,9 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 80 ],
-            "Q": [ 18 ],
-            "R": [ 72 ]
+            "D": [ 147 ],
+            "Q": [ 25 ],
+            "R": [ 120 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_4_D_SB_LUT4_O": {
@@ -11584,9 +13157,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 18 ],
-            "I3": [ 79 ],
-            "O": [ 80 ]
+            "I2": [ 25 ],
+            "I3": [ 146 ],
+            "O": [ 147 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_4_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -11604,10 +13177,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 81 ],
-            "CO": [ 79 ],
+            "CI": [ 148 ],
+            "CO": [ 146 ],
             "I0": [ "0" ],
-            "I1": [ 17 ]
+            "I1": [ 24 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_5": {
@@ -11628,9 +13201,9 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 82 ],
-            "Q": [ 17 ],
-            "R": [ 72 ]
+            "D": [ 149 ],
+            "Q": [ 24 ],
+            "R": [ 120 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_5_D_SB_LUT4_O": {
@@ -11653,9 +13226,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 17 ],
-            "I3": [ 81 ],
-            "O": [ 82 ]
+            "I2": [ 24 ],
+            "I3": [ 148 ],
+            "O": [ 149 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_5_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -11673,10 +13246,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 83 ],
-            "CO": [ 81 ],
+            "CI": [ 150 ],
+            "CO": [ 148 ],
             "I0": [ "0" ],
-            "I1": [ 67 ]
+            "I1": [ 112 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_6": {
@@ -11697,9 +13270,9 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 84 ],
-            "Q": [ 67 ],
-            "R": [ 72 ]
+            "D": [ 151 ],
+            "Q": [ 112 ],
+            "R": [ 120 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_6_D_SB_LUT4_O": {
@@ -11722,9 +13295,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 67 ],
-            "I3": [ 83 ],
-            "O": [ 84 ]
+            "I2": [ 112 ],
+            "I3": [ 150 ],
+            "O": [ 151 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_6_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -11742,10 +13315,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 85 ],
-            "CO": [ 83 ],
+            "CI": [ 152 ],
+            "CO": [ 150 ],
             "I0": [ "0" ],
-            "I1": [ 68 ]
+            "I1": [ 113 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_7": {
@@ -11766,9 +13339,9 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 86 ],
-            "Q": [ 68 ],
-            "R": [ 72 ]
+            "D": [ 153 ],
+            "Q": [ 113 ],
+            "R": [ 120 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_7_D_SB_LUT4_O": {
@@ -11791,9 +13364,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 68 ],
-            "I3": [ 85 ],
-            "O": [ 86 ]
+            "I2": [ 113 ],
+            "I3": [ 152 ],
+            "O": [ 153 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_7_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -11811,10 +13384,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 55 ],
-            "CO": [ 85 ],
+            "CI": [ 115 ],
+            "CO": [ 152 ],
             "I0": [ "0" ],
-            "I1": [ 54 ]
+            "I1": [ 114 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_8": {
@@ -11835,9 +13408,9 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 87 ],
-            "Q": [ 54 ],
-            "R": [ 72 ]
+            "D": [ 154 ],
+            "Q": [ 114 ],
+            "R": [ 120 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_8_D_SB_LUT4_O": {
@@ -11860,9 +13433,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 54 ],
-            "I3": [ 55 ],
-            "O": [ 87 ]
+            "I2": [ 114 ],
+            "I3": [ 115 ],
+            "O": [ 154 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_9": {
@@ -11883,9 +13456,9 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 88 ],
-            "Q": [ 55 ],
-            "R": [ 72 ]
+            "D": [ 155 ],
+            "Q": [ 115 ],
+            "R": [ 120 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_9_D_SB_LUT4_O": {
@@ -11909,8 +13482,8 @@
             "I0": [ "0" ],
             "I1": [ "0" ],
             "I2": [ "0" ],
-            "I3": [ 55 ],
-            "O": [ 88 ]
+            "I3": [ 115 ],
+            "O": [ 155 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_D_SB_LUT4_O": {
@@ -11933,9 +13506,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 10 ],
-            "I3": [ 89 ],
-            "O": [ 71 ]
+            "I2": [ 17 ],
+            "I3": [ 156 ],
+            "O": [ 139 ]
           }
         },
         "vga.colPos_SB_DFFSR_Q_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -11953,85 +13526,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 74 ],
-            "CO": [ 89 ],
+            "CI": [ 141 ],
+            "CO": [ 156 ],
             "I0": [ "0" ],
-            "I1": [ 12 ]
-          }
-        },
-        "vga.colPos_SB_DFFSR_Q_R_SB_LUT4_O": {
-          "hide_name": 0,
-          "type": "SB_LUT4",
-          "parameters": {
-            "LUT_INIT": "0001000000000000"
-          },
-          "attributes": {
-            "module_not_derived": "00000000000000000000000000000001",
-            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
-          },
-          "port_directions": {
-            "I0": "input",
-            "I1": "input",
-            "I2": "input",
-            "I3": "input",
-            "O": "output"
-          },
-          "connections": {
-            "I0": [ 14 ],
-            "I1": [ 16 ],
-            "I2": [ 90 ],
-            "I3": [ 91 ],
-            "O": [ 72 ]
-          }
-        },
-        "vga.colPos_SB_DFFSR_Q_R_SB_LUT4_O_I2_SB_LUT4_O": {
-          "hide_name": 0,
-          "type": "SB_LUT4",
-          "parameters": {
-            "LUT_INIT": "0000100000000000"
-          },
-          "attributes": {
-            "module_not_derived": "00000000000000000000000000000001",
-            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
-          },
-          "port_directions": {
-            "I0": "input",
-            "I1": "input",
-            "I2": "input",
-            "I3": "input",
-            "O": "output"
-          },
-          "connections": {
-            "I0": [ 10 ],
-            "I1": [ 12 ],
-            "I2": [ 18 ],
-            "I3": [ 17 ],
-            "O": [ 91 ]
-          }
-        },
-        "vga.colPos_SB_DFFSR_Q_R_SB_LUT4_O_I2_SB_LUT4_O_1": {
-          "hide_name": 0,
-          "type": "SB_LUT4",
-          "parameters": {
-            "LUT_INIT": "1000000000000000"
-          },
-          "attributes": {
-            "module_not_derived": "00000000000000000000000000000001",
-            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
-          },
-          "port_directions": {
-            "I0": "input",
-            "I1": "input",
-            "I2": "input",
-            "I3": "input",
-            "O": "output"
-          },
-          "connections": {
-            "I0": [ 67 ],
-            "I1": [ 68 ],
-            "I2": [ 54 ],
-            "I3": [ 55 ],
-            "O": [ 90 ]
+            "I1": [ 19 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q": {
@@ -12053,10 +13551,10 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 92 ],
-            "E": [ 72 ],
-            "Q": [ 26 ],
-            "R": [ 93 ]
+            "D": [ 157 ],
+            "E": [ 120 ],
+            "Q": [ 33 ],
+            "R": [ 131 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_1": {
@@ -12078,10 +13576,10 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 94 ],
-            "E": [ 72 ],
-            "Q": [ 28 ],
-            "R": [ 93 ]
+            "D": [ 158 ],
+            "E": [ 120 ],
+            "Q": [ 35 ],
+            "R": [ 131 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_1_D_SB_LUT4_O": {
@@ -12092,7 +13590,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
           },
           "port_directions": {
             "I0": "input",
@@ -12104,9 +13602,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 28 ],
-            "I3": [ 95 ],
-            "O": [ 94 ]
+            "I2": [ 35 ],
+            "I3": [ 159 ],
+            "O": [ 158 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_1_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -12115,7 +13613,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
           },
           "port_directions": {
             "CI": "input",
@@ -12124,10 +13622,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 96 ],
-            "CO": [ 95 ],
+            "CI": [ 160 ],
+            "CO": [ 159 ],
             "I0": [ "0" ],
-            "I1": [ 30 ]
+            "I1": [ 37 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_2": {
@@ -12149,10 +13647,10 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 97 ],
-            "E": [ 72 ],
-            "Q": [ 30 ],
-            "R": [ 93 ]
+            "D": [ 161 ],
+            "E": [ 120 ],
+            "Q": [ 37 ],
+            "R": [ 131 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_2_D_SB_LUT4_O": {
@@ -12163,7 +13661,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
           },
           "port_directions": {
             "I0": "input",
@@ -12175,9 +13673,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 30 ],
-            "I3": [ 96 ],
-            "O": [ 97 ]
+            "I2": [ 37 ],
+            "I3": [ 160 ],
+            "O": [ 161 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_2_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -12186,7 +13684,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
           },
           "port_directions": {
             "CI": "input",
@@ -12195,10 +13693,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 98 ],
-            "CO": [ 96 ],
+            "CI": [ 162 ],
+            "CO": [ 160 ],
             "I0": [ "0" ],
-            "I1": [ 32 ]
+            "I1": [ 39 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_3": {
@@ -12220,10 +13718,10 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 99 ],
-            "E": [ 72 ],
-            "Q": [ 32 ],
-            "R": [ 93 ]
+            "D": [ 163 ],
+            "E": [ 120 ],
+            "Q": [ 39 ],
+            "R": [ 131 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_3_D_SB_LUT4_O": {
@@ -12234,7 +13732,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
           },
           "port_directions": {
             "I0": "input",
@@ -12246,9 +13744,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 32 ],
-            "I3": [ 98 ],
-            "O": [ 99 ]
+            "I2": [ 39 ],
+            "I3": [ 162 ],
+            "O": [ 163 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_3_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -12257,7 +13755,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
           },
           "port_directions": {
             "CI": "input",
@@ -12266,10 +13764,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 100 ],
-            "CO": [ 98 ],
+            "CI": [ 164 ],
+            "CO": [ 162 ],
             "I0": [ "0" ],
-            "I1": [ 34 ]
+            "I1": [ 41 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_4": {
@@ -12291,10 +13789,10 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 101 ],
-            "E": [ 72 ],
-            "Q": [ 34 ],
-            "R": [ 93 ]
+            "D": [ 165 ],
+            "E": [ 120 ],
+            "Q": [ 41 ],
+            "R": [ 131 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_4_D_SB_LUT4_O": {
@@ -12305,7 +13803,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
           },
           "port_directions": {
             "I0": "input",
@@ -12317,9 +13815,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 34 ],
-            "I3": [ 100 ],
-            "O": [ 101 ]
+            "I2": [ 41 ],
+            "I3": [ 164 ],
+            "O": [ 165 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_4_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -12328,7 +13826,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
           },
           "port_directions": {
             "CI": "input",
@@ -12337,10 +13835,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 102 ],
-            "CO": [ 100 ],
+            "CI": [ 166 ],
+            "CO": [ 164 ],
             "I0": [ "0" ],
-            "I1": [ 36 ]
+            "I1": [ 43 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_5": {
@@ -12362,10 +13860,10 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 103 ],
-            "E": [ 72 ],
-            "Q": [ 36 ],
-            "R": [ 93 ]
+            "D": [ 111 ],
+            "E": [ 120 ],
+            "Q": [ 43 ],
+            "R": [ 131 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_5_D_SB_LUT4_O": {
@@ -12376,7 +13874,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
           },
           "port_directions": {
             "I0": "input",
@@ -12388,30 +13886,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 36 ],
-            "I3": [ 102 ],
-            "O": [ 103 ]
-          }
-        },
-        "vga.rowPos_SB_DFFESR_Q_5_D_SB_LUT4_O_I3_SB_CARRY_CO": {
-          "hide_name": 0,
-          "type": "SB_CARRY",
-          "parameters": {
-          },
-          "attributes": {
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
-          },
-          "port_directions": {
-            "CI": "input",
-            "CO": "output",
-            "I0": "input",
-            "I1": "input"
-          },
-          "connections": {
-            "CI": [ 104 ],
-            "CO": [ 102 ],
-            "I0": [ "0" ],
-            "I1": [ 38 ]
+            "I2": [ 43 ],
+            "I3": [ 166 ],
+            "O": [ 111 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_6": {
@@ -12433,10 +13910,10 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 105 ],
-            "E": [ 72 ],
-            "Q": [ 38 ],
-            "R": [ 93 ]
+            "D": [ 167 ],
+            "E": [ 120 ],
+            "Q": [ 45 ],
+            "R": [ 131 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_6_D_SB_LUT4_O": {
@@ -12447,7 +13924,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
           },
           "port_directions": {
             "I0": "input",
@@ -12459,18 +13936,18 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 38 ],
-            "I3": [ 104 ],
-            "O": [ 105 ]
+            "I2": [ 45 ],
+            "I3": [ 168 ],
+            "O": [ 167 ]
           }
         },
-        "vga.rowPos_SB_DFFESR_Q_6_D_SB_LUT4_O_I3_SB_CARRY_CO": {
+        "vga.rowPos_SB_DFFESR_Q_6_D_SB_LUT4_O_I3_SB_CARRY_CI": {
           "hide_name": 0,
           "type": "SB_CARRY",
           "parameters": {
           },
           "attributes": {
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
           },
           "port_directions": {
             "CI": "input",
@@ -12479,10 +13956,31 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 106 ],
-            "CO": [ 104 ],
+            "CI": [ 168 ],
+            "CO": [ 166 ],
             "I0": [ "0" ],
-            "I1": [ 37 ]
+            "I1": [ 45 ]
+          }
+        },
+        "vga.rowPos_SB_DFFESR_Q_6_D_SB_LUT4_O_I3_SB_CARRY_CO": {
+          "hide_name": 0,
+          "type": "SB_CARRY",
+          "parameters": {
+          },
+          "attributes": {
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+          },
+          "port_directions": {
+            "CI": "input",
+            "CO": "output",
+            "I0": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "CI": [ 169 ],
+            "CO": [ 168 ],
+            "I0": [ "0" ],
+            "I1": [ 44 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_7": {
@@ -12504,10 +14002,10 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 107 ],
-            "E": [ 72 ],
-            "Q": [ 37 ],
-            "R": [ 93 ]
+            "D": [ 170 ],
+            "E": [ 120 ],
+            "Q": [ 44 ],
+            "R": [ 131 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_7_D_SB_LUT4_O": {
@@ -12518,7 +14016,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
           },
           "port_directions": {
             "I0": "input",
@@ -12530,9 +14028,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 37 ],
-            "I3": [ 106 ],
-            "O": [ 107 ]
+            "I2": [ 44 ],
+            "I3": [ 169 ],
+            "O": [ 170 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_7_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -12541,7 +14039,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
           },
           "port_directions": {
             "CI": "input",
@@ -12550,10 +14048,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 63 ],
-            "CO": [ 106 ],
+            "CI": [ 132 ],
+            "CO": [ 169 ],
             "I0": [ "0" ],
-            "I1": [ 46 ]
+            "I1": [ 53 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_8": {
@@ -12575,10 +14073,10 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 108 ],
-            "E": [ 72 ],
-            "Q": [ 46 ],
-            "R": [ 93 ]
+            "D": [ 171 ],
+            "E": [ 120 ],
+            "Q": [ 53 ],
+            "R": [ 131 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_8_D_SB_LUT4_O": {
@@ -12589,7 +14087,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
           },
           "port_directions": {
             "I0": "input",
@@ -12601,9 +14099,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 46 ],
-            "I3": [ 63 ],
-            "O": [ 108 ]
+            "I2": [ 53 ],
+            "I3": [ 132 ],
+            "O": [ 171 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_9": {
@@ -12625,10 +14123,10 @@
           },
           "connections": {
             "C": [ 3 ],
-            "D": [ 109 ],
-            "E": [ 72 ],
-            "Q": [ 63 ],
-            "R": [ 93 ]
+            "D": [ 172 ],
+            "E": [ 120 ],
+            "Q": [ 132 ],
+            "R": [ 131 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_9_D_SB_LUT4_O": {
@@ -12652,8 +14150,8 @@
             "I0": [ "0" ],
             "I1": [ "0" ],
             "I2": [ "0" ],
-            "I3": [ 63 ],
-            "O": [ 109 ]
+            "I3": [ 132 ],
+            "O": [ 172 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_D_SB_LUT4_O": {
@@ -12664,7 +14162,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:26.33-27.52"
           },
           "port_directions": {
             "I0": "input",
@@ -12676,9 +14174,9 @@
           "connections": {
             "I0": [ "0" ],
             "I1": [ "0" ],
-            "I2": [ 26 ],
-            "I3": [ 110 ],
-            "O": [ 92 ]
+            "I2": [ 33 ],
+            "I3": [ 173 ],
+            "O": [ 157 ]
           }
         },
         "vga.rowPos_SB_DFFESR_Q_D_SB_LUT4_O_I3_SB_CARRY_CO": {
@@ -12687,7 +14185,7 @@
           "parameters": {
           },
           "attributes": {
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4"
           },
           "port_directions": {
             "CI": "input",
@@ -12696,35 +14194,10 @@
             "I1": "input"
           },
           "connections": {
-            "CI": [ 95 ],
-            "CO": [ 110 ],
+            "CI": [ 159 ],
+            "CO": [ 173 ],
             "I0": [ "0" ],
-            "I1": [ 28 ]
-          }
-        },
-        "vga.rowPos_SB_DFFESR_Q_R_SB_LUT4_O": {
-          "hide_name": 0,
-          "type": "SB_LUT4",
-          "parameters": {
-            "LUT_INIT": "1100000000000000"
-          },
-          "attributes": {
-            "module_not_derived": "00000000000000000000000000000001",
-            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:22.34-23.52"
-          },
-          "port_directions": {
-            "I0": "input",
-            "I1": "input",
-            "I2": "input",
-            "I3": "input",
-            "O": "output"
-          },
-          "connections": {
-            "I0": [ "0" ],
-            "I1": [ 60 ],
-            "I2": [ 61 ],
-            "I3": [ 62 ],
-            "O": [ 93 ]
+            "I1": [ 35 ]
           }
         }
       },
@@ -12738,7 +14211,7 @@
         },
         "HSYNC_SB_LUT4_O_I2": {
           "hide_name": 0,
-          "bits": [ 7 ],
+          "bits": [ 14 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:22.13-22.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12746,7 +14219,7 @@
         },
         "HSYNC_SB_LUT4_O_I2_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 9 ],
+          "bits": [ 16 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:22.13-22.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12754,7 +14227,7 @@
         },
         "HSYNC_SB_LUT4_O_I2_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 11 ],
+          "bits": [ 18 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:22.13-22.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12762,7 +14235,7 @@
         },
         "HSYNC_SB_LUT4_O_I2_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 13 ],
+          "bits": [ 20 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:22.13-22.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12770,7 +14243,7 @@
         },
         "HSYNC_SB_LUT4_O_I2_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 15 ],
+          "bits": [ 22 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:22.13-22.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12778,7 +14251,7 @@
         },
         "HSYNC_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 8 ],
+          "bits": [ 15 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:22.30-22.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12786,7 +14259,7 @@
         },
         "HSYNC_SB_LUT4_O_I3_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 19 ],
+          "bits": [ 26 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:22.30-22.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12794,7 +14267,7 @@
         },
         "HSYNC_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 20 ],
+          "bits": [ 27 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:22.30-22.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12802,7 +14275,7 @@
         },
         "HSYNC_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 21 ],
+          "bits": [ 28 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:22.30-22.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12810,7 +14283,7 @@
         },
         "HSYNC_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 22 ],
+          "bits": [ 29 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:22.30-22.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12825,7 +14298,7 @@
         },
         "VSYNC_SB_LUT4_O_I2": {
           "hide_name": 0,
-          "bits": [ 23 ],
+          "bits": [ 30 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.30-27.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12833,7 +14306,7 @@
         },
         "VSYNC_SB_LUT4_O_I2_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 25 ],
+          "bits": [ 32 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.30-27.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12841,7 +14314,7 @@
         },
         "VSYNC_SB_LUT4_O_I2_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 27 ],
+          "bits": [ 34 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.30-27.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12849,7 +14322,7 @@
         },
         "VSYNC_SB_LUT4_O_I2_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 29 ],
+          "bits": [ 36 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.30-27.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12857,7 +14330,7 @@
         },
         "VSYNC_SB_LUT4_O_I2_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 31 ],
+          "bits": [ 38 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.30-27.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12865,7 +14338,7 @@
         },
         "VSYNC_SB_LUT4_O_I2_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 33 ],
+          "bits": [ 40 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.30-27.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12873,7 +14346,7 @@
         },
         "VSYNC_SB_LUT4_O_I2_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 35 ],
+          "bits": [ 42 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.30-27.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12881,7 +14354,7 @@
         },
         "VSYNC_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 24 ],
+          "bits": [ 31 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.13-27.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12889,7 +14362,7 @@
         },
         "VSYNC_SB_LUT4_O_I3_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 39 ],
+          "bits": [ 46 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.13-27.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12897,7 +14370,7 @@
         },
         "VSYNC_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 40 ],
+          "bits": [ 47 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.13-27.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12905,7 +14378,7 @@
         },
         "VSYNC_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 41 ],
+          "bits": [ 48 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.13-27.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12913,7 +14386,7 @@
         },
         "VSYNC_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 42 ],
+          "bits": [ 49 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.13-27.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12921,7 +14394,7 @@
         },
         "VSYNC_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 43 ],
+          "bits": [ 50 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.13-27.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12929,7 +14402,7 @@
         },
         "VSYNC_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 44 ],
+          "bits": [ 51 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.13-27.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -12937,133 +14410,527 @@
         },
         "VSYNC_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
           "hide_name": 0,
-          "bits": [ 45 ],
+          "bits": [ 52 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:27.13-27.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
           }
         },
-        "colPos": {
+        "audio.clk": {
           "hide_name": 0,
-          "bits": [ 55, 54, 68, 67, 17, 18, 16, 14, 12, 10 ],
+          "bits": [ 3 ],
           "attributes": {
-            "src": "top.sv:16.17-16.23"
+            "hdlname": "audio clk",
+            "src": "topAudio.sv:2.14-2.17"
           }
         },
-        "color": {
+        "audio.jumpBackward": {
           "hide_name": 0,
-          "bits": [ 6, "0", 6, "0", 6, "0" ],
+          "bits": [ 11 ],
           "attributes": {
-            "src": "top.sv:7.24-7.29"
+            "hdlname": "audio jumpBackward",
+            "src": "topAudio.sv:5.14-5.26"
           }
         },
-        "color_SB_LUT4_O_I0": {
+        "audio.jumpForward": {
           "hide_name": 0,
-          "bits": [ 47 ],
+          "bits": [ 10 ],
           "attributes": {
-            "abc9_carry": "00000000000000000000000000000001",
-            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "hdlname": "audio jumpForward",
+            "src": "topAudio.sv:4.14-4.25"
           }
         },
-        "color_SB_LUT4_O_I0_SB_CARRY_CO_CI": {
+        "audio.jumpLeft": {
           "hide_name": 0,
-          "bits": [ 51 ],
+          "bits": [ 13 ],
           "attributes": {
-            "abc9_carry": "00000000000000000000000000000001",
-            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "hdlname": "audio jumpLeft",
+            "src": "topAudio.sv:7.14-7.22"
           }
         },
-        "color_SB_LUT4_O_I0_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
+        "audio.jumpRight": {
           "hide_name": 0,
-          "bits": [ 52 ],
+          "bits": [ 12 ],
           "attributes": {
-            "abc9_carry": "00000000000000000000000000000001",
-            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "hdlname": "audio jumpRight",
+            "src": "topAudio.sv:6.14-6.23"
           }
         },
-        "color_SB_LUT4_O_I0_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
+        "audio.lose": {
           "hide_name": 0,
-          "bits": [ 53 ],
+          "bits": [ "0" ],
           "attributes": {
-            "abc9_carry": "00000000000000000000000000000001",
-            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "hdlname": "audio lose",
+            "src": "topAudio.sv:10.14-10.18"
           }
         },
-        "color_SB_LUT4_O_I1": {
+        "audio.myJump.clk": {
           "hide_name": 0,
-          "bits": [ 47, 48, 49, 50 ],
+          "bits": [ 3 ],
           "attributes": {
-            "force_downto": "00000000000000000000000000000001",
-            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
+            "hdlname": "audio myJump clk",
+            "src": "jumpAudio.sv:4.13-4.16"
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_1_I3": {
+        "audio.myJump.curCount": {
           "hide_name": 0,
-          "bits": [ 12, 57, 58 ],
+          "bits": [ 74, 75, 72, 69, 66, 63, 60, 101, 98, 95, 92, 89, 86, 83, 80, 58, 55 ],
           "attributes": {
-            "force_downto": "00000000000000000000000000000001",
-            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
+            "hdlname": "audio myJump curCount",
+            "src": "jumpAudio.sv:8.14-8.22"
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I1": {
+        "audio.myJump.curCount_SB_DFFSR_Q_10_D": {
           "hide_name": 0,
-          "bits": [ 36, 59, 60, 57 ],
+          "bits": [ 59 ],
           "attributes": {
-            "force_downto": "00000000000000000000000000000001",
-            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I2": {
+        "audio.myJump.curCount_SB_DFFSR_Q_10_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 60, 61, 62 ],
-          "attributes": {
-            "force_downto": "00000000000000000000000000000001",
-            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
-          }
-        },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I3": {
-          "hide_name": 0,
-          "bits": [ 57 ],
+          "bits": [ 61 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I3_SB_CARRY_CO_CI": {
+        "audio.myJump.curCount_SB_DFFSR_Q_11_D": {
           "hide_name": 0,
           "bits": [ 64 ],
           "attributes": {
-            "abc9_carry": "00000000000000000000000000000001",
-            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I3_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
+        "audio.myJump.curCount_SB_DFFSR_Q_11_D_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 62 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_12_D": {
+          "hide_name": 0,
+          "bits": [ 67 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_12_D_SB_LUT4_O_I3": {
           "hide_name": 0,
           "bits": [ 65 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_2_I3_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
+        "audio.myJump.curCount_SB_DFFSR_Q_13_D": {
           "hide_name": 0,
-          "bits": [ 66 ],
+          "bits": [ 70 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_13_D_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 68 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
           }
         },
-        "color_SB_LUT4_O_I1_SB_LUT4_O_I3": {
+        "audio.myJump.curCount_SB_DFFSR_Q_14_D": {
           "hide_name": 0,
-          "bits": [ 54, 55, 56 ],
+          "bits": [ 73 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_14_D_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 71 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_15_D": {
+          "hide_name": 0,
+          "bits": [ 76 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_16_D": {
+          "hide_name": 0,
+          "bits": [ 77 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_1_D": {
+          "hide_name": 0,
+          "bits": [ 57 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_1_D_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 78 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_2_D": {
+          "hide_name": 0,
+          "bits": [ 81 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_2_D_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 79 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_3_D": {
+          "hide_name": 0,
+          "bits": [ 84 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_3_D_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 82 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_4_D": {
+          "hide_name": 0,
+          "bits": [ 87 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_4_D_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 85 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_5_D": {
+          "hide_name": 0,
+          "bits": [ 90 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_5_D_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 88 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_6_D": {
+          "hide_name": 0,
+          "bits": [ 93 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_6_D_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 91 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_7_D": {
+          "hide_name": 0,
+          "bits": [ 96 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_7_D_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 94 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_8_D": {
+          "hide_name": 0,
+          "bits": [ 99 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_8_D_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 97 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_9_D": {
+          "hide_name": 0,
+          "bits": [ 102 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_9_D_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 100 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_D": {
+          "hide_name": 0,
+          "bits": [ 54 ],
+          "attributes": {
+          }
+        },
+        "audio.myJump.curCount_SB_DFFSR_Q_D_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 103 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "jumpAudio.sv:15.14-15.26|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "audio.sound": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "hdlname": "audio sound",
+            "src": "topAudio.sv:12.15-12.20"
+          }
+        },
+        "audio.win": {
+          "hide_name": 0,
+          "bits": [ "0" ],
+          "attributes": {
+            "hdlname": "audio win",
+            "src": "topAudio.sv:9.14-9.17"
+          }
+        },
+        "audioOut": {
+          "hide_name": 0,
+          "bits": [ 9 ],
+          "attributes": {
+            "src": "top.sv:8.18-8.26"
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "top.sv:3.18-3.21"
+          }
+        },
+        "colPos": {
+          "hide_name": 0,
+          "bits": [ 115, 114, 113, 112, 24, 25, 23, 21, 19, 17 ],
+          "attributes": {
+            "src": "top.sv:22.17-22.23"
+          }
+        },
+        "color": {
+          "hide_name": 0,
+          "bits": [ 6, "0", 7, 8, 6, "0" ],
+          "attributes": {
+            "src": "top.sv:7.24-7.29"
+          }
+        },
+        "color_SB_LUT4_O_2_I2": {
+          "hide_name": 0,
+          "bits": [ 107, 109, 108 ],
           "attributes": {
             "force_downto": "00000000000000000000000000000001",
             "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
           }
         },
+        "color_SB_LUT4_O_2_I2_SB_LUT4_O_I2": {
+          "hide_name": 0,
+          "bits": [ 122, 123, 110, 117 ],
+          "attributes": {
+            "force_downto": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
+          }
+        },
+        "color_SB_LUT4_O_2_I2_SB_LUT4_O_I2_SB_LUT4_O_1_I3": {
+          "hide_name": 0,
+          "bits": [ 19, 24, 116 ],
+          "attributes": {
+            "force_downto": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
+          }
+        },
+        "color_SB_LUT4_O_2_I2_SB_LUT4_O_I2_SB_LUT4_O_1_I3_SB_LUT4_I1_I2": {
+          "hide_name": 0,
+          "bits": [ 116, 118, 119 ],
+          "attributes": {
+            "force_downto": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
+          }
+        },
+        "color_SB_LUT4_O_2_I2_SB_LUT4_O_I2_SB_LUT4_O_1_I3_SB_LUT4_I1_O": {
+          "hide_name": 0,
+          "bits": [ 120 ],
+          "attributes": {
+          }
+        },
+        "color_SB_LUT4_O_I2": {
+          "hide_name": 0,
+          "bits": [ 107, 108 ],
+          "attributes": {
+            "force_downto": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I0": {
+          "hide_name": 0,
+          "bits": [ 122 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I0_SB_CARRY_CO_CI": {
+          "hide_name": 0,
+          "bits": [ 124 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I0_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
+          "hide_name": 0,
+          "bits": [ 125 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I0_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
+          "hide_name": 0,
+          "bits": [ 126 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "pattern_gen.sv:18.13-18.25|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I1": {
+          "hide_name": 0,
+          "bits": [ 123 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I1_SB_CARRY_CO_CI": {
+          "hide_name": 0,
+          "bits": [ 127 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I1_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
+          "hide_name": 0,
+          "bits": [ 128 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_1_I1_SB_CARRY_CO_CI_SB_CARRY_CO_CI_SB_CARRY_CO_CI": {
+          "hide_name": 0,
+          "bits": [ 129 ],
+          "attributes": {
+            "abc9_carry": "00000000000000000000000000000001",
+            "src": "pattern_gen.sv:18.29-18.42|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 45, 44, 130, 121 ],
+          "attributes": {
+            "force_downto": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
+          }
+        },
+        "color_SB_LUT4_O_I2_SB_LUT4_O_I3_SB_LUT4_I2_O": {
+          "hide_name": 0,
+          "bits": [ 131 ],
+          "attributes": {
+          }
+        },
+        "jumpBackwardIn": {
+          "hide_name": 0,
+          "bits": [ 11 ],
+          "attributes": {
+            "src": "top.sv:11.17-11.31"
+          }
+        },
+        "jumpForwardIn": {
+          "hide_name": 0,
+          "bits": [ 10 ],
+          "attributes": {
+            "src": "top.sv:10.17-10.30"
+          }
+        },
+        "jumpLeftIn": {
+          "hide_name": 0,
+          "bits": [ 13 ],
+          "attributes": {
+            "src": "top.sv:13.17-13.27"
+          }
+        },
+        "jumpLeftIn_SB_LUT4_I0_O": {
+          "hide_name": 0,
+          "bits": [ 104, 105, 106 ],
+          "attributes": {
+            "force_downto": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
+          }
+        },
+        "jumpLeftIn_SB_LUT4_I0_O_SB_LUT4_I2_O": {
+          "hide_name": 0,
+          "bits": [ 56 ],
+          "attributes": {
+          }
+        },
+        "jumpLeftIn_SB_LUT4_I0_O_SB_LUT4_O_1_I1": {
+          "hide_name": 0,
+          "bits": [ 134, 135, 136 ],
+          "attributes": {
+            "force_downto": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
+          }
+        },
+        "jumpLeftIn_SB_LUT4_I0_O_SB_LUT4_O_I3": {
+          "hide_name": 0,
+          "bits": [ 75, 74, 133 ],
+          "attributes": {
+            "force_downto": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
+          }
+        },
+        "jumpRightIn": {
+          "hide_name": 0,
+          "bits": [ 12 ],
+          "attributes": {
+            "src": "top.sv:12.17-12.28"
+          }
+        },
         "mypll_inst.lock": {
           "hide_name": 0,
-          "bits": [ 69 ],
+          "bits": [ 137 ],
           "attributes": {
             "hdlname": "mypll_inst lock",
             "src": "mypll.sv:42.10-42.14",
@@ -13072,7 +14939,7 @@
         },
         "mypll_inst.outcore_o": {
           "hide_name": 0,
-          "bits": [ 70 ],
+          "bits": [ 138 ],
           "attributes": {
             "hdlname": "mypll_inst outcore_o",
             "src": "mypll.sv:38.12-38.21",
@@ -13110,13 +14977,6 @@
             "src": "top.sv:2.17-2.24"
           }
         },
-        "osc_25_1M": {
-          "hide_name": 0,
-          "bits": [ 3 ],
-          "attributes": {
-            "src": "top.sv:3.18-3.27"
-          }
-        },
         "pattern.clk": {
           "hide_name": 0,
           "bits": [ 3 ],
@@ -13127,7 +14987,7 @@
         },
         "pattern.colPos": {
           "hide_name": 0,
-          "bits": [ 55, 54, 68, 67, 17, 18, 16, 14, 12, 10 ],
+          "bits": [ 115, 114, 113, 112, 24, 25, 23, 21, 19, 17 ],
           "attributes": {
             "hdlname": "pattern colPos",
             "src": "pattern_gen.sv:3.23-3.29"
@@ -13135,7 +14995,7 @@
         },
         "pattern.color": {
           "hide_name": 0,
-          "bits": [ 6, "0", 6, "0", 6, "0" ],
+          "bits": [ 6, "0", 7, 8, 6, "0" ],
           "attributes": {
             "hdlname": "pattern color",
             "src": "pattern_gen.sv:6.24-6.29"
@@ -13143,7 +15003,7 @@
         },
         "pattern.rowPos": {
           "hide_name": 0,
-          "bits": [ 63, 46, 37, 38, 36, 34, 32, 30, 28, 26 ],
+          "bits": [ 132, 53, 44, 45, 43, 41, 39, 37, 35, 33 ],
           "attributes": {
             "hdlname": "pattern rowPos",
             "src": "pattern_gen.sv:4.23-4.29"
@@ -13151,9 +15011,9 @@
         },
         "rowPos": {
           "hide_name": 0,
-          "bits": [ 63, 46, 37, 38, 36, 34, 32, 30, 28, 26 ],
+          "bits": [ 132, 53, 44, 45, 43, 41, 39, 37, 35, 33 ],
           "attributes": {
-            "src": "top.sv:17.17-17.23"
+            "src": "top.sv:23.17-23.23"
           }
         },
         "vga.HSYNC": {
@@ -13182,7 +15042,7 @@
         },
         "vga.colPos": {
           "hide_name": 0,
-          "bits": [ 55, 54, 68, 67, 17, 18, 16, 14, 12, 10 ],
+          "bits": [ 115, 114, 113, 112, 24, 25, 23, 21, 19, 17 ],
           "attributes": {
             "hdlname": "vga colPos",
             "src": "vga.sv:5.24-5.30"
@@ -13190,13 +15050,13 @@
         },
         "vga.colPos_SB_DFFSR_Q_1_D": {
           "hide_name": 0,
-          "bits": [ 73 ],
+          "bits": [ 140 ],
           "attributes": {
           }
         },
         "vga.colPos_SB_DFFSR_Q_1_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 74 ],
+          "bits": [ 141 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:17.23-17.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -13204,13 +15064,13 @@
         },
         "vga.colPos_SB_DFFSR_Q_2_D": {
           "hide_name": 0,
-          "bits": [ 76 ],
+          "bits": [ 143 ],
           "attributes": {
           }
         },
         "vga.colPos_SB_DFFSR_Q_2_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 75 ],
+          "bits": [ 142 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:17.23-17.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -13218,13 +15078,13 @@
         },
         "vga.colPos_SB_DFFSR_Q_3_D": {
           "hide_name": 0,
-          "bits": [ 78 ],
+          "bits": [ 145 ],
           "attributes": {
           }
         },
         "vga.colPos_SB_DFFSR_Q_3_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 77 ],
+          "bits": [ 144 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:17.23-17.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -13232,13 +15092,13 @@
         },
         "vga.colPos_SB_DFFSR_Q_4_D": {
           "hide_name": 0,
-          "bits": [ 80 ],
+          "bits": [ 147 ],
           "attributes": {
           }
         },
         "vga.colPos_SB_DFFSR_Q_4_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 79 ],
+          "bits": [ 146 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:17.23-17.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -13246,13 +15106,13 @@
         },
         "vga.colPos_SB_DFFSR_Q_5_D": {
           "hide_name": 0,
-          "bits": [ 82 ],
+          "bits": [ 149 ],
           "attributes": {
           }
         },
         "vga.colPos_SB_DFFSR_Q_5_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 81 ],
+          "bits": [ 148 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:17.23-17.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -13260,13 +15120,13 @@
         },
         "vga.colPos_SB_DFFSR_Q_6_D": {
           "hide_name": 0,
-          "bits": [ 84 ],
+          "bits": [ 151 ],
           "attributes": {
           }
         },
         "vga.colPos_SB_DFFSR_Q_6_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 83 ],
+          "bits": [ 150 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:17.23-17.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -13274,13 +15134,13 @@
         },
         "vga.colPos_SB_DFFSR_Q_7_D": {
           "hide_name": 0,
-          "bits": [ 86 ],
+          "bits": [ 153 ],
           "attributes": {
           }
         },
         "vga.colPos_SB_DFFSR_Q_7_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 85 ],
+          "bits": [ 152 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:17.23-17.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
@@ -13288,47 +15148,33 @@
         },
         "vga.colPos_SB_DFFSR_Q_8_D": {
           "hide_name": 0,
-          "bits": [ 87 ],
+          "bits": [ 154 ],
           "attributes": {
           }
         },
         "vga.colPos_SB_DFFSR_Q_9_D": {
           "hide_name": 0,
-          "bits": [ 88 ],
+          "bits": [ 155 ],
           "attributes": {
           }
         },
         "vga.colPos_SB_DFFSR_Q_D": {
           "hide_name": 0,
-          "bits": [ 71 ],
+          "bits": [ 139 ],
           "attributes": {
           }
         },
         "vga.colPos_SB_DFFSR_Q_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 89 ],
+          "bits": [ 156 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
             "src": "vga.sv:17.23-17.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
           }
         },
-        "vga.colPos_SB_DFFSR_Q_R": {
-          "hide_name": 0,
-          "bits": [ 72 ],
-          "attributes": {
-          }
-        },
-        "vga.colPos_SB_DFFSR_Q_R_SB_LUT4_O_I2": {
-          "hide_name": 0,
-          "bits": [ 14, 16, 90, 91 ],
-          "attributes": {
-            "force_downto": "00000000000000000000000000000001",
-            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
-          }
-        },
         "vga.rowPos": {
           "hide_name": 0,
-          "bits": [ 63, 46, 37, 38, 36, 34, 32, 30, 28, 26 ],
+          "bits": [ 132, 53, 44, 45, 43, 41, 39, 37, 35, 33 ],
           "attributes": {
             "hdlname": "vga rowPos",
             "src": "vga.sv:6.24-6.30"
@@ -13336,132 +15182,163 @@
         },
         "vga.rowPos_SB_DFFESR_Q_1_D": {
           "hide_name": 0,
-          "bits": [ 94 ],
+          "bits": [ 158 ],
           "attributes": {
           }
         },
         "vga.rowPos_SB_DFFESR_Q_1_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 95 ],
+          "bits": [ 159 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
           }
         },
         "vga.rowPos_SB_DFFESR_Q_2_D": {
           "hide_name": 0,
-          "bits": [ 97 ],
+          "bits": [ 161 ],
           "attributes": {
           }
         },
         "vga.rowPos_SB_DFFESR_Q_2_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 96 ],
+          "bits": [ 160 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
           }
         },
         "vga.rowPos_SB_DFFESR_Q_3_D": {
           "hide_name": 0,
-          "bits": [ 99 ],
+          "bits": [ 163 ],
           "attributes": {
           }
         },
         "vga.rowPos_SB_DFFESR_Q_3_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 98 ],
+          "bits": [ 162 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
           }
         },
         "vga.rowPos_SB_DFFESR_Q_4_D": {
           "hide_name": 0,
-          "bits": [ 101 ],
+          "bits": [ 165 ],
           "attributes": {
           }
         },
         "vga.rowPos_SB_DFFESR_Q_4_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 100 ],
+          "bits": [ 164 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
           }
         },
         "vga.rowPos_SB_DFFESR_Q_5_D": {
           "hide_name": 0,
-          "bits": [ 103 ],
+          "bits": [ 43, 24, 110, 111 ],
           "attributes": {
+            "force_downto": "00000000000000000000000000000001",
+            "src": "C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/cells_map.v:6.21-6.22"
           }
         },
         "vga.rowPos_SB_DFFESR_Q_5_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 102 ],
+          "bits": [ 166 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
           }
         },
         "vga.rowPos_SB_DFFESR_Q_6_D": {
           "hide_name": 0,
-          "bits": [ 105 ],
+          "bits": [ 167 ],
           "attributes": {
           }
         },
         "vga.rowPos_SB_DFFESR_Q_6_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 104 ],
+          "bits": [ 168 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
           }
         },
         "vga.rowPos_SB_DFFESR_Q_7_D": {
           "hide_name": 0,
-          "bits": [ 107 ],
+          "bits": [ 170 ],
           "attributes": {
           }
         },
         "vga.rowPos_SB_DFFESR_Q_7_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 106 ],
+          "bits": [ 169 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
           }
         },
         "vga.rowPos_SB_DFFESR_Q_8_D": {
           "hide_name": 0,
-          "bits": [ 108 ],
+          "bits": [ 171 ],
           "attributes": {
           }
         },
         "vga.rowPos_SB_DFFESR_Q_9_D": {
           "hide_name": 0,
-          "bits": [ 109 ],
+          "bits": [ 172 ],
           "attributes": {
           }
         },
         "vga.rowPos_SB_DFFESR_Q_D": {
           "hide_name": 0,
-          "bits": [ 92 ],
+          "bits": [ 157 ],
           "attributes": {
           }
         },
         "vga.rowPos_SB_DFFESR_Q_D_SB_LUT4_O_I3": {
           "hide_name": 0,
-          "bits": [ 110 ],
+          "bits": [ 173 ],
           "attributes": {
             "abc9_carry": "00000000000000000000000000000001",
-            "src": "vga.sv:12.23-12.33|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+            "src": "pattern_gen.sv:19.42-19.52|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/arith_map.v:62.5-70.4|C:\\Users\\jnsqu\\APIO~1\\packages\\OSS-CA~1\\bin\\../share/yosys/ice40/abc9_model.v:4.9-4.11"
+          }
+        }
+      }
+    },
+    "winAudio": {
+      "attributes": {
+        "blackbox": "00000000000000000000000000000001",
+        "hdlname": "winAudio",
+        "src": "winAudio.sv:7.1-22.10"
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "winSoundOut": {
+          "direction": "output",
+          "bits": [ 3 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "winAudio.sv:8.13-8.16"
           }
         },
-        "vga.rowPos_SB_DFFESR_Q_R": {
+        "winSoundOut": {
           "hide_name": 0,
-          "bits": [ 93 ],
+          "bits": [ 3 ],
           "attributes": {
+            "src": "winAudio.sv:9.14-9.25"
           }
         }
       }
