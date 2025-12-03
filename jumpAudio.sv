@@ -9,7 +9,7 @@ logic [16:0] curCount;
 
 
 always_ff @(posedge clk) begin
-curCount <=curCount + 1;
+	curCount <=curCount + 1;
 end
 
 
