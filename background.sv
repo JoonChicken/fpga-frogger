@@ -1,17 +1,17 @@
 // background.sv file 
 
-module background(){
+module background(
   input on, 
   input [9:0] x, 
   input [9:0] y, 
   output reg [11:0] rgb
-}; 
+); 
 
 // set the RBG color values for the game 
-parameter GREEN = 12'h0F0
-parameter BLACK = 12'h00
-parameter BLUE = 12'h00F
-parameter WHITE = 12'h11
+parameter GREEN = 12'h0F0;
+parameter BLACK = 12'h00;
+parameter BLUE = 12'h00F;
+parameter WHITE = 12'h11;
 
 // pixel locations 
 wire road; 
@@ -36,7 +36,8 @@ always_comb begin
     end else if (grass) begin 
       rgb = GREEN 
     end 
-  end 
+  end
+end 
 
 endmodule 
 
