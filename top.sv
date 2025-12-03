@@ -5,6 +5,12 @@ module top (
     output logic HSYNC,
     output logic VSYNC,
     output logic [5:0] color,
+    output logic audioOut,
+
+    input logic jumpForwardIn,
+    input logic jumpBackwardIn,
+    input logic jumpRightIn,
+    input logic jumpLeftIn,
 );
 
     mypll mypll_inst(
@@ -32,6 +38,17 @@ module top (
         .rowPos(rowPos),
         .display_enable(display_enable),
         .color(color)
+    );
+
+    topAudio audio (
+        .clk(clk),
+        .jumpForward(jumpForwardIn),
+        .jumpBackward(jumpBackwardIn),
+        .jumpRight(jumpRightIn),
+        .jumpLeft(jumpLeftIn),
+        .win(1'b0),
+        .lose(1'b0),
+        .sound(audioOut)
     );
 
 endmodule
