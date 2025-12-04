@@ -106,15 +106,5 @@ module top (
         end
     end
 
-    topAudio audio (
-        .clk(clk),
-        .jumpForward(jumpForwardIn),
-        .jumpBackward(jumpBackwardIn),
-        .jumpRight(jumpRightIn),
-        .jumpLeft(jumpLeftIn),
-        .win(1'b0),
-        .lose(1'b0),
-        .sound(audioOut)
-    );
 
 endmodule

@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:window.sv
-module window (
-========
 module frog_gen (
->>>>>>>> a108d99 (working mechanics with background):frog_gen.sv
     input logic clk,
     input logic [9:0] colPos,
     input logic [9:0] rowPos,
