@@ -5,7 +5,6 @@ module frog_gen (
     input logic [9:0] frog_x,
     input logic [9:0] frog_y,
     input logic [9:0] frog_size,
-    output logic display_enable,
     output logic [5:0] color
 );
 
@@ -20,23 +19,14 @@ module frog_gen (
 
     always_comb begin
         // check if current pixel is within the frog
-        in_frog = (colPos >= frog_x && colPos < frog_x + frog_size &&
-                     rowPos >= frog_y && rowPos < frog_y + frog_size);
-
-        lum = (colPos % 32 == 0) | (rowPos % 32 == 0);
-
-        if (colPos >= 96 && colPos <= 544) begin
-            if (in_frog) begin
-                // draw frog (green = 0b001100 in 6-bit RGB format [RRGGBB])
-                color = 6'b111111;
-                display_enable = 1'b1;
-            end else begin
-                color = (lum << 4) | (lum << 2) | lum;
-                display_enable = 1'b1;
-            end
+        in_frog = (colPos > frog_x && colPos < frog_x + frog_size &&
+                     rowPos > frog_y && rowPos <= frog_y + frog_size);
+        if (in_frog) begin
+            // draw frog 
+            color = 6'b110000;
         end else begin
+            // don't draw anything - let background/window show through
             color = 6'b000000;
-            display_enable = 1'b0;
         end
     end
 
