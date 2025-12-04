@@ -55,7 +55,7 @@ module frog (
 
     logic initialized = 1'b0;
     always_ff @(posedge clk) begin
-        if (reset || !initialized) begin
+        if (reset || collision || !initialized) begin
             next_x <= init_x;
             next_y <= init_y;
             reached_end <= 1'b0;
