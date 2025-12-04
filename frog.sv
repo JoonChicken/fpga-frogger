@@ -13,7 +13,7 @@ module frog (
     
 );
     parameter blocksize = 32;
-    parameter endarea = 15; // y coord where ending area starts);
+    parameter endarea = 15; // y coord where ending area starts
 
     enum logic [1:0] {MENU, PLAYING, DEAD, WIN} statetype;
     enum logic [1:0] {UP, DOWN, LEFT, RIGHT} directiontype;
