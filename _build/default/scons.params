@@ -1,4 +1,4 @@
-timestamp: "03232751607"
+timestamp: "03222000778"
 arch: ICE40
 fpga_info {
   fpga_id: "ice40up5k-sg48"
@@ -22,9 +22,4 @@ apio_env_params {
   env_name: "default"
   board_id: "upduino31"
   top_module: "top"
-}
-target {
-  upload {
-    programmer_cmd: "iceprog -d d:1/5 $SOURCE"
-  }
 }

@@ -12,10 +12,6 @@ module top (
     output logic [5:0] color,
 );
 
-    parameter BLACK = 6'b0;
-
-    logic clk; // 25.1 MHz
-
     mypll mypll_inst(
         .ref_clk_i(osc_12M),
         .rst_n_i(1'b1),
