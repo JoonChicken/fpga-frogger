@@ -45,7 +45,7 @@ module top (
     logic [9:0] next_x;
     logic [9:0] next_y;
     
-    // Car positions - multiple cars per lane
+    // instantiate cars
     logic [9:0] lane0_car0_x, lane0_car1_x, lane0_car2_x;
     logic [9:0] lane1_car0_x, lane1_car1_x, lane1_car2_x;
     logic [9:0] lane2_car0_x, lane2_car1_x, lane2_car2_x;
@@ -71,7 +71,6 @@ module top (
         .next_y(next_y)
     );
 
-    // Cars module 
     cars cars_inst (
         .clk(osc_25_1M),
         .reset(reset),
@@ -112,7 +111,7 @@ module top (
         .color(frogcolor)
     );
     
-    // Cars rendering
+    // cars rendering
     logic [5:0] carcolor;
     cars_gen cars_gen_inst (
         .clk(osc_25_1M),
@@ -164,7 +163,7 @@ module top (
         .color(bgcolor)
     );
 
-    // Collision detection between frog and cars
+    // collision detection between frog and cars
     parameter BLOCKSIZE = 10'd32;
     parameter LANE0_Y = 8 * BLOCKSIZE;   // 256
     parameter LANE1_Y = 9 * BLOCKSIZE;   // 288
