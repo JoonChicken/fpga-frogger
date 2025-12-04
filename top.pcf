@@ -1,5 +1,4 @@
 set_io osc_12M 20
-set_io osc_25_1M 10
 
 set_io button_up 21
 set_io button_down 12

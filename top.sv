@@ -15,14 +15,14 @@ module top (
     mypll mypll_inst(
         .ref_clk_i(osc_12M),
         .rst_n_i(1'b1),
-        .outglobal_o(osc_25_1M)
+        .outglobal_o(clk)
     );
 
     logic [9:0] colPos;
     logic [9:0] rowPos;
 
     vga vga (
-        .clk(osc_25_1M),
+        .clk(clk),
         .HSYNC(HSYNC),
         .VSYNC(VSYNC),
         .colPos(colPos),
