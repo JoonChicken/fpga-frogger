@@ -23,7 +23,7 @@ module topAudio (
 
 		if (jumpForward | jumpBackward | jumpRight | jumpLeft) begin
 			sound = jumpSoundIn;
-			enablejumpSound = 1'b1;
+			enableJumpSound = 1'b1;
 		end else if (win) begin
 			sound = winSoundIn;
 			enableWinSound = 1'b1;

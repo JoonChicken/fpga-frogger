@@ -6,6 +6,11 @@ module vga (
     output logic [9:0] rowPos
 );
 
+    initial begin
+        colPos = 10'b0;
+        rowPos = 10'b0;
+    end
+
     always_ff @(posedge clk) begin
         if (colPos == 799) begin
             colPos <= 0;
