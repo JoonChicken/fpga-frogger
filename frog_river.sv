@@ -50,6 +50,7 @@ logic hit_water;
       end 
 
     end 
+  end 
 
     endmodule 
       
