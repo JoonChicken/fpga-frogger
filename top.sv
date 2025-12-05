@@ -220,7 +220,16 @@ module top (
               next_y < LANE5_Y + BLOCKSIZE && next_y + frog_size > LANE5_Y));
     end
     
-    assign collision = frog_collision;
+
+    // check if we've reached the end
+    logic reached_end;
+    always_comb begin
+        reached_end = next_y < 32;
+    end
+
+    // reset if collision or reached end
+    assign collision = reached_end || frog_collision;
+
 
     // color priority: frog > cars > background
     always_comb begin

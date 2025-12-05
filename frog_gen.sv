@@ -15,7 +15,7 @@ module frog_gen (
     end
 
     localparam [5:0] LIGHT_GREEN = 6'b001100;
-    localparam [5:0] YELLOW      = 6'b110100;
+    localparam [5:0] ORANGE  = 6'b110100;
     localparam [5:0] EYE_WHITE   = 6'b111111;
     localparam [5:0] PUPIL       = 6'b000001;
     
@@ -63,9 +63,9 @@ module frog_gen (
             else if ((local_y >= 6  && local_y <= 20) &&
                      (local_x >= 4  && local_x <= 27)) begin
                 // give the center a slightly darker shade
-                if ((local_x >= 10 && local_x <= 21) &&
+                if ((local_x >= 9 && local_x <= 22) &&
                     (local_y >= 10 && local_y <= 18)) begin
-                    color = YELLOW;
+                    color = ORANGE;
                 end else begin
                     color = LIGHT_GREEN;
                 end
