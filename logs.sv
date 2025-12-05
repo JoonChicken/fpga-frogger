@@ -16,7 +16,7 @@ parameter log_width = 3*10'd32; // each log is 3 blocks wide
 parameter log_height = blocksize; // heigh of the log 
 parameter log_speed = 10'd4;   // how fast log is moving 
 parameter screen_width = 10*10'd32; // screen is 10 blocks wide 
-parameter screen_height = 10*10'd32;; // screen height 
+parameter screen_height = 10*10'd32; // screen height 
 parameter MAX_LOGS = 1; // number of logs per lane 
 
 logic [18:0] counter; 
