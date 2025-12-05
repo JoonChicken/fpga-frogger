@@ -2,9 +2,9 @@ module frog_gen (
     input  logic        clk,
     input  logic [9:0]  colPos,
     input  logic [9:0]  rowPos,
-    input  logic [9:0]  frog_x,     // top-left of 32x32 frog block
+    input  logic [9:0]  frog_x,
     input  logic [9:0]  frog_y,
-    input  logic [9:0]  frog_size,  // usually 32
+    input  logic [9:0]  frog_size,
     output logic [5:0]  color
 );
 
