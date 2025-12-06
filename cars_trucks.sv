@@ -1,4 +1,4 @@
-module cars(
+/*module cars(
   input logic clk, 
   input logic reset, 
   input logic [9:0] car_x, // left most pixel of the car 
