@@ -24,7 +24,7 @@ end
 
 //play sound at certain frequency until timer reaches desired duration
 always_ff @(posedge clk) begin
-	if (timer < 8'd12500000 & timer != 0) begin
+	if (timer < 24'd12500000 & timer != 0) begin
 		timer <= timer + 1;
 		if (freqCount < 28523) begin
 			freqCount <= freqCount + 1;
