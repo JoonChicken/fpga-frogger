@@ -38,6 +38,8 @@ always_ff @(posedge clk) begin
 		end
         
     end else if (timer < 24'd6250000 & timerEnable) begin
+		timer <= timer + 1;
+		
         if (freqCount < 3986) begin
 			freqCount <= freqCount + 1;
 			winSoundOut <= 1;
@@ -50,6 +52,7 @@ always_ff @(posedge clk) begin
 		end
 	    
     end else if (timer < 24'd12500000 & timerEnable) begin
+		timer <= timer + 1;
         if (freqCount < 3551) begin
 			freqCount <= freqCount + 1;
 			winSoundOut <= 1;
