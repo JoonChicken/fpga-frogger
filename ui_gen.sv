@@ -54,15 +54,15 @@ module ui_gen(
     wire [9:0] colPos_subtitlelocal;
     wire [9:0] rowPos_subtitlelocal;
     wire [5:0] charIndex;
-    reg [22*16:1] str = "PRESS ANY KEY TO START";
-    wire [16:1] ascii;
+    reg [22*7:0] str = "PRESS ANY KEY TO START";
+    wire [7:0] ascii;
     wire [7:0] charRowData;
-    wire [2:0] charPixColData;
+    wire [2:0] charPixCol;
 
-    assign charIndex = colPos_subtitlelocal / 8;
-    assign ascii = str[charIndex];
     assign colPos_subtitlelocal = (colPos - X_SUBTITLE_OFFSET) / SUBTITLE_SCALE;
     assign rowPos_subtitlelocal = (rowPos - Y_SUBTITLE_OFFSET) / SUBTITLE_SCALE;
+    assign charIndex = colPos_subtitlelocal / 8;
+    assign ascii = str[charIndex];
 
     text_gen text_gen (
         .char_addr(ascii),
@@ -70,7 +70,7 @@ module ui_gen(
         .bitmap(charRowData)
     );
 
-    assign charPixColData = colPos_subtitlelocal % 8;
+    assign charPixCol = colPos_subtitlelocal % 8;
 
 
     always_comb begin
@@ -744,7 +744,7 @@ module ui_gen(
         end else if (display_title &&
             colPos >= X_SUBTITLE_OFFSET && colPos < X_SUBTITLE_OFFSET + SUBTITLE_WIDTH &&
             rowPos >= Y_SUBTITLE_OFFSET && rowPos < Y_SUBTITLE_OFFSET + SUBTITLE_HEIGHT) begin
-            if (charRowData[charPixColData] == 1'b1) begin
+            if (charRowData[charPixCol] == 1'b1) begin
                 color = RED;
             end else begin
                 color = BLACK;
