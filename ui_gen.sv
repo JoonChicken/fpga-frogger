@@ -86,6 +86,43 @@ module ui_gen(
     assign rowPos_subtitlelocal = (rowPos - Y_SUBTITLE_OFFSET) / SUBTITLE_SCALE;
     assign charIndex = colPos_subtitlelocal / 8;
     assign ascii = str[charIndex];
+    assign charPixCol = 8 - colPos_subtitlelocal % 8;
+
+
+    // Score gen
+    parameter SCORE_LEN = 9;
+    parameter SCORE_SCALE = 2;
+    parameter SCORE_WIDTH = STR_LEN * 8 * SCORE_SCALE;
+    parameter SCORE_HEIGHT = 8 * SCORE_SCALE;
+    parameter X_SCORE_OFFSET = X_OFFSET_LEFT + 5;
+    parameter Y_SCORE_OFFSET = 5;
+    wire [9:0] colPos_scorelocal;
+    wire [9:0] rowPos_scorelocal;
+    wire [5:0] scorecharIndex;
+    wire [7:0] str [0:21];
+        assign str[0]  = "P";
+        assign str[1]  = "R";
+        assign str[2]  = "E";
+        assign str[3]  = "S";
+        assign str[4]  = "S";
+        assign str[5]  = " ";
+        assign str[6]  = "A";
+        assign str[7]  = "N";
+        assign str[8]  = "Y";
+        assign str[9]  = " ";
+        assign str[10] = "K";
+        assign str[11] = "E";
+        assign str[12] = "Y";
+        assign str[13] = " ";
+        assign str[14] = "T";
+        assign str[15] = "O";
+        assign str[16] = " ";
+        assign str[17] = "S";
+        assign str[18] = "T";
+        assign str[19] = "A";
+        assign str[20] = "R";
+        assign str[21] = "T";
+
 
     text_gen text_gen (
         .char_addr(ascii),
@@ -93,10 +130,13 @@ module ui_gen(
         .bitmap(charRowData)
     );
 
-    assign charPixCol = 8 - colPos_subtitlelocal % 8;
-
 
     always_comb begin
+        if (colPos >= X_SUBTITLE_OFFSET && colPos < X_SUBTITLE_OFFSET + SUBTITLE_WIDTH &&
+            rowPos >= Y_SUBTITLE_OFFSET && rowPos < Y_SUBTITLE_OFFSET + SUBTITLE_HEIGHT) begin
+            
+        end
+
         if (display_title &&
             colPos >= X_TITLE_OFFSET && colPos < X_TITLE_OFFSET + TITLE_WIDTH &&
             rowPos >= Y_TITLE_OFFSET && rowPos < Y_TITLE_OFFSET + TITLE_HEIGHT) begin
