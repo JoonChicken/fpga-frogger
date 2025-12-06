@@ -1,4 +1,4 @@
-module logs(
+/*module logs(
   input logic clk, 
   input logic reset, 
   output logic [9:0] log_x_new[0:MAX_LOGS-1] // updated log position array
