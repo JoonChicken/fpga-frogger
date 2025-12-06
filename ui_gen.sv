@@ -1,9 +1,8 @@
 module ui_gen(
-    input  logic       clk,
-    input  logic [9:0] colPos,
-    input  logic [9:0] rowPos,
-
-    input logic display_title,
+    input logic clk,
+    input state,
+    input logic [9:0] colPos,
+    input logic [9:0] rowPos,
 
     output logic [5:0] color
 );
@@ -13,6 +12,26 @@ module ui_gen(
     parameter X_OFFSET_LEFT = 10'd96;
     parameter X_OFFSET_RIGHT = 10'd544;
     parameter BLOCKSIZE = 10'd32;
+
+
+    /*********************************************
+     *
+     *            state interactions     
+     *
+     *********************************************/
+
+    enum logic [1:0] {MENU, PLAYING, DEAD, WIN} statetype;
+    enum logic [1:0] {UI_PRESS, NEXTLEVEL, CRASH, CELEBRATION} soundtype;
+
+    logic display_title;
+    assign display_title = state == MENU;
+
+
+    /*********************************************
+     *
+     *                 TITLE GEN     
+     *
+     *********************************************/
 
     parameter TITLE_SCALE = 7;
     parameter TITLE_WIDTH = 56 * TITLE_SCALE;
@@ -725,12 +744,11 @@ module ui_gen(
         end else if (display_title &&
             colPos >= X_SUBTITLE_OFFSET && colPos < X_SUBTITLE_OFFSET + SUBTITLE_WIDTH &&
             rowPos >= Y_SUBTITLE_OFFSET && rowPos < Y_SUBTITLE_OFFSET + SUBTITLE_HEIGHT) begin
-            color = RED;
-            // if (charRowData[charPixColData] == 1'b1) begin
-            //     color = RED;
-            // end else begin
-            //     color = BLACK;
-            // end
+            if (charRowData[charPixColData] == 1'b1) begin
+                color = RED;
+            end else begin
+                color = BLACK;
+            end
         end else begin
             color = BLACK;
         end

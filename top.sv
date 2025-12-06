@@ -6,6 +6,8 @@ module top (
     input logic button_down,
     input logic button_left,
     input logic button_right,
+
+    input logic button_reset,
     
     output logic HSYNC,
     output logic VSYNC,
@@ -42,12 +44,20 @@ module top (
 
 
     // Game logic and controls ===========================================
-    logic [1:0] state = 2'b01;
+    enum logic [1:0] {MENU, PLAYING, DEAD, WIN} statetype;
+    enum logic [1:0] {UI_PRESS, NEXTLEVEL, CRASH, CELEBRATION} soundtype;
+
+    logic [1:0] state;
     logic [3:0] dpad_input;
     logic collision;
     logic reset;
     logic reached_end;
+    logic [3:0] level;
+    // The below are for playing sounds on level changes
+    logic [1:0] soundselector;
+    logic playsound;
 
+    assign reset = ~button_reset;
     assign dpad_input = {button_right, button_up, button_down, button_left};
     // ====================================================================
     
@@ -73,7 +83,25 @@ module top (
     logic [9:0] lane0_length, lane1_length, lane2_length, lane3_length, lane4_length, lane5_length;
     // =====================================================================
 
-    assign reset = 1'b0;
+
+
+    /*********************************************
+     *
+     *                GAME STATE
+     *
+     *********************************************/
+
+    gamestate gamestate (
+        .clk(osc_25_1M),
+        .reset(reset),
+        .dpad_input(dpad_input),
+        .collision(collision),
+        .reached_end(reached_end),
+        .state(state),
+        .level(level),
+        .soundselector(soundselector),
+        .playsound(playsound)
+    );
 
 
 
@@ -201,13 +229,12 @@ module top (
      *********************************************/
 
     // Text/UI rendering ==================================================
-    parameter display_title = 1'b1;
     logic [5:0] uicolor;
     ui_gen ui_gen (
         .clk(osc_25_1M),
+        .state(state),
         .colPos(colPos),
         .rowPos(rowPos),
-        .display_title(display_title),
         .color(uicolor)
     );
     // ====================================================================

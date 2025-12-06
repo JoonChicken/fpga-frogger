@@ -61,7 +61,7 @@ module frog (
             reached_end <= 1'b0;
             initialized <= 1'b1;
         // playing state
-        end else if (state == 2'b01) begin 
+        end else if (state == PLAYING) begin 
             if (btn_up_tick) begin
                 // move up by decreasing the y coordinate
                 if (next_y >= blocksize) begin
