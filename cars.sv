@@ -39,7 +39,8 @@ module cars (
     parameter X_OFFSET_RIGHT = 10'd544;
     parameter ROAD_WIDTH = X_OFFSET_RIGHT - X_OFFSET_LEFT;
     // constant car offset for all lanes
-    parameter CAR_OFFSET = 10'd150; 
+    parameter CAR_OFFSET = 10'd150;
+
     
     // different cars per lane
     // lane 0 is at the top

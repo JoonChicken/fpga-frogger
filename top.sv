@@ -42,6 +42,7 @@ module top (
     parameter init_y = 448;  // Start at the bottom (480 - frog_size = 448)
     parameter frog_size = 32;
     
+    
     logic [9:0] next_x;
     logic [9:0] next_y;
     
