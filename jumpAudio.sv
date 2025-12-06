@@ -42,6 +42,7 @@ always_ff @(posedge clk) begin
 		end
 	end else begin
 		timer <= 24'b0;
+		timerEnable <= 1'b0;
 	end
 end
 
