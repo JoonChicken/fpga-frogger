@@ -1,4 +1,4 @@
-module VgaScrollingBar (
+/*module VgaScrollingBar (
     input logic clk,         // 25.175 MHz (Pixel Clock)
     input logic reset_n,     // Asynchronous active-low reset
 
