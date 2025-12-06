@@ -287,7 +287,11 @@ module cars_gen (
                     local_x >= curr_length - 16 && local_x <= curr_length - 4) begin
                     color = WINDOW_COL;
                 end
-
+                // headlights
+                if (local_y >= 18 && local_y <=22 &&
+                    (local_x >= curr_length - 5 && local_x <= curr_length - 1) ) begin
+                    color = WINDOW_COL;
+                end
                 // wheels at bottom (two chunky wheels)
                 if (local_y >= 24 && local_y < 32 &&
                    ((local_x >= 9 && local_x <= 14) ||

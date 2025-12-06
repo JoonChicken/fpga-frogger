@@ -66,10 +66,10 @@ module top (
         .init_x(init_x),
         .init_y(init_y),
         .frog_size(frog_size),
+        .reached_end(reached_end),
         .dpad_input(dpad_input),
         .collision(collision),
         .reset(reset),
-        .reached_end(reached_end),
         .next_x(next_x),
         .next_y(next_y),
         .facing(facing)
@@ -225,16 +225,14 @@ module top (
               next_y < LANE5_Y + BLOCKSIZE && next_y + frog_size > LANE5_Y));
     end
     
+    // reset if collision or reached end
+    assign collision = frog_collision;
+    logic reached_end;
 
     // check if we've reached the end
-    logic reached_end;
     always_comb begin
         reached_end = next_y < 32;
     end
-
-    // reset if collision or reached end
-    assign collision = reached_end || frog_collision;
-
 
     // color priority: frog > cars > background
     always_comb begin

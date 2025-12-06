@@ -7,7 +7,6 @@ module background(
   output logic [5:0] color
 );
 
-    // colors (tweak these to match your palette)
     localparam [5:0] RED0 = 6'b010000;
     localparam [5:0] RED1 = 6'b100000;
     localparam [5:0] RED1 = 6'b010001;
@@ -91,6 +90,7 @@ module background(
                 3'b100: color = ENDAREA4;
                 3'b101, 3'b110: color = ENDAREA0;
                 default: color = ENDAREA3;
+
             endcase
         end
     end

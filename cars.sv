@@ -80,6 +80,7 @@ module cars (
     
     // counter initializes for each lane
     // once counter reaches laneX_speed_divider, the car in laneX moves 1 pixel
+    
     always_ff @(posedge clk) begin
         if (reset) begin
             lane0_car0_x <= X_OFFSET_LEFT;

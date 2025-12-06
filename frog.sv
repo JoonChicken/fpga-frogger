@@ -6,8 +6,8 @@ module frog (
     input logic [9:0] frog_size,
     input logic [3:0] dpad_input,  // ordered left, down, up, right
     input logic collision,
+    input logic reached_end,
     input logic reset,
-    output logic reached_end,
     output logic [9:0] next_x,
     output logic [9:0] next_y,
     output logic [1:0] facing
@@ -63,9 +63,9 @@ module frog (
         if (reset || collision || !initialized) begin
             next_x <= init_x;
             next_y <= init_y;
-            reached_end <= 1'b0;
             initialized <= 1'b1;
             facing <= UP;
+
         // playing state
         end else if (state == 2'b01) begin 
             if (btn_up_tick) begin
@@ -89,13 +89,6 @@ module frog (
                     next_x <= next_x + blocksize;
                     facing <= RIGHT;
                 end
-            end
-            
-            // check if we reached the end
-            if (next_y <= endarea) begin
-                reached_end <= 1'b1;
-            end else begin
-                reached_end <= 1'b0;
             end
         end
     end
