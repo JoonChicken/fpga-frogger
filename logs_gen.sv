@@ -52,9 +52,9 @@ module logs_gen(
     parameter LANE5_Y = 6 * BLOCKSIZE;   // 416
 
     // wood colors 
-    localparam [5:0] LOG_BODY = 6'b100010
+    localparam [5:0] LOG_BODY = 6'b100010; 
 
-    logic in_log 
+    logic in_log; 
     logic [9:0] local_x;
     logic [9:0] local_y;
     logic [9:0] curr_length;
@@ -208,9 +208,26 @@ module logs_gen(
             end
         end
 
+        logic [11:0] sprite_addr; 
+        logic [5:0] sprite_color; 
+
+        log_rom log_sprite_rom (
+            .addr(sprite_addr),
+            .data(sprite_color),
+        )
+
+
         if (in_log) begin
-            color = LOG_BODY;
-        end
+            
+            local_x = colPos - log_x;
+            local_y = rowPos - log_y; 
+            color = sprite_color;
+
+            sprite_addr = {local_y[4:0], local_x[4:0]}; 
+            
+        end else begin 
+            color = 6'b000000; 
+        end 
     end
 
 endmodule 
