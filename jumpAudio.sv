@@ -1,4 +1,5 @@
 //Divide 25.1MGHz into usable hertz for sound, play notes (boing? somehow)
+
 module jumpAudio (
 input logic clk,
 input logic enable,
@@ -20,34 +21,26 @@ end
 always_ff @(posedge clk) begin
 	if (enable == 1'b1 & prevEnable == 1'b0) begin
 		timerEnable <= 1'b1;
-	end else if (timer == 24'd12500000) begin
-		timer <= 0;
-		freqCount <= 0;
-	end else if (timerEnable & timer >= 24'd12500000) begin
+	end else if (timer == 24'd12500000)
 		timerEnable <= 0;
-	end
 end
 
 //play sound at certain frequency until timer reaches desired duration
 always_ff @(posedge clk) begin
 	if (timer < 24'd12500000 & timerEnable) begin
-		if (timerEnable) begin
-			timer <= timer + 1;
-			
-			if (freqCount < 14261) begin
-				freqCount <= freqCount + 1;
-				jumpSoundOut <= 1;
-			end else if (freqCount < 28522) begin
-				freqCount <= freqCount + 1;
-				jumpSoundOut <= 0;
-			end else if (freqCount == 28522) begin
-			end else begin
-				freqCount <= 0;
-				jumpSoundOut <=0;
-			end
-		end else if (timer == 24'd12500000) begin
-			timer <= 24'b0;
+		timer <= timer + 1;
+		if (freqCount < 14261) begin
+			freqCount <= freqCount + 1;
+			jumpSoundOut <= 1;
+		end else if (freqCount < 28522) begin
+			freqCount <= freqCount + 1;
+			jumpSoundOut <= 0;
+		end else if (freqCount == 28522) begin
+			freqCount <= 0;
+			jumpSoundOut <=0;
 		end
+	end else if (timer == 24'd12500000) begin
+		timer <= 24'b0;
 	end
 end
 
