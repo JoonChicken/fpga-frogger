@@ -6,8 +6,9 @@
 
 
 module loseAudio (
-input logic clk,
-output logic loseSoundOut
+    input logic enable,
+    input logic clk,
+    output logic loseSoundOut
 );
 
 

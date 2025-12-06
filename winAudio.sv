@@ -5,8 +5,9 @@
 
 
 module winAudio (
-input logic clk,
-output logic winSoundOut
+    input logic enable,
+    input logic clk,
+    output logic winSoundOut
 );
 
 

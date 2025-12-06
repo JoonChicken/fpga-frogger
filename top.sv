@@ -10,6 +10,8 @@ module top (
     output logic HSYNC,
     output logic VSYNC,
     output logic [5:0] color,
+
+    output logic sound
 );
 
     mypll mypll_inst(
@@ -232,6 +234,20 @@ module top (
             color = bgcolor;
         end
     end
+
+
+
+    topAudio topAudio (
+        .clk(osc_25_1M),
+        .jumpForward(button_up),
+        .jumpBackward(button_down),
+        .jumpRight(button_right),
+        .jumpLeft(button_left),
+    
+        // .win,
+        // .lose,
+        .sound(sound)
+    );
 
 
 endmodule

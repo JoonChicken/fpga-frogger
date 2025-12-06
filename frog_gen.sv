@@ -1,4 +1,4 @@
-/*module frog_gen (
+module frog_gen (
     input logic clk,
     input logic [9:0] colPos,
     input logic [9:0] rowPos,

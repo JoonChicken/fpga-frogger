@@ -1,5 +1,5 @@
 // background.sv file 
-/*
+
 module background(
   input logic on, 
   input logic [9:0] colPos, 

@@ -11,7 +11,7 @@ output logic jumpSoundOut
 	logic [23:0] timer;
 
 //validate each enable so only called once per input/call
-always_ff begin
+always_ff @(posedge clk) begin
 	if (enable == 1'b1 & prevEnable == 1'b0) begin
 		timer = timer + 1;
 	end
@@ -32,11 +32,12 @@ always_ff @(posedge clk) begin
 		end else if (freqCount < 57046) begin
 			freqCount <= freqCount + 1;
 			jumpSoundOut <= 0;
-		end else if (freqCount == 57046)
+		end else if (freqCount == 57046) begin
 			freqCount <= 0;
 		end
-	end else
+	end else begin
 		timer <= 24'b0;
+	end
 end
 
 

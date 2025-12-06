@@ -1,4 +1,4 @@
-/*module window (
+module window (
     input logic clk,
     input logic [9:0] colPos,
     input logic [9:0] rowPos,
