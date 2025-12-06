@@ -26,8 +26,8 @@ end
 always_ff @(posedge clk) begin
 	if (timer < 8'd12500000 & timer != 0) begin
 		timer <= timer + 1;
-		if (freqCount == 28523) begin
-			freqCount <= 16'b0;
+		if (freqCount < 28523) begin
+			freqCount <= freqCount + 1;
 			jumpSoundOut <= 1;
 		end else begin
 			freqCount <= freqCount + 1;
