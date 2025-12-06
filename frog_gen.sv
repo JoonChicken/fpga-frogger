@@ -44,8 +44,8 @@ module frog_gen (
         if (in_frog) begin
             local_x = colPos - frog_x;
             local_y = rowPos - frog_y;
-            sprite_addr = {facing, locla_y[4:0], local_x[4:0]};
-            color = rom_color
+            sprite_addr = {facing, local_y[4:0], local_x[4:0]};
+            color = rom_color;
         end else begin
             color = 6'b000000;
         end
