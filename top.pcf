@@ -1,17 +1,10 @@
-set_io osc_12M 20
-set_io osc_25_1M 10
-
-set_io button_up 21
-set_io button_down 12
-set_io button_right 13
-set_io button_left 19
-
-set_io HSYNC 46
-set_io VSYNC 2
-
-set_io color[5] 44
-set_io color[4] 4
-set_io color[3] 3
-set_io color[2] 48
-set_io color[1] 45
-set_io color[0] 47
+set_io clock_in 20
+set_io clock_out 12
+set_io HYSNC 28 
+set_io VSYNC 38 
+set_io RGB[0] 2 
+set_io RGB[1] 46
+set_io RGB[2] 47
+set_io RGB[3] 45
+set_io RGB[4] 48
+set_io RGB[5] 3
