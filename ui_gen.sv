@@ -1,6 +1,6 @@
 module ui_gen(
     input logic clk,
-    input state,
+    input [1:0] state,
     input logic [9:0] colPos,
     input logic [9:0] rowPos,
 
