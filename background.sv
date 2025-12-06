@@ -7,9 +7,9 @@ module background(
   output logic [5:0] color
 ); 
     // set the RBG color values for the game 
-    parameter GREEN = 6'b001101;
+    parameter GREEN = 6'b010101;
     parameter BLACK = 6'b000000;
-    parameter BLUE = 6'b000011;
+    parameter BLUE = 6'b000010;
     parameter WHITE = 6'b111111;
     parameter X_OFFSET_LEFT = 10'd96;
     parameter X_OFFSET_RIGHT = 10'd544;

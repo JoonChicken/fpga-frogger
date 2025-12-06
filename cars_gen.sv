@@ -1,125 +1,291 @@
 module cars_gen (
-    input logic clk,
-    input logic [9:0] colPos,
-    input logic [9:0] rowPos,
+    input  logic       clk,
+    input  logic [9:0] colPos,
+    input  logic [9:0] rowPos,
     
-    input logic [9:0] lane0_car0_x,
-    input logic [9:0] lane0_car1_x,
-    input logic [9:0] lane0_car2_x,
+    input  logic [9:0] lane0_car0_x,
+    input  logic [9:0] lane0_car1_x,
+    input  logic [9:0] lane0_car2_x,
     
-    input logic [9:0] lane1_car0_x,
-    input logic [9:0] lane1_car1_x,
-    input logic [9:0] lane1_car2_x,
+    input  logic [9:0] lane1_car0_x,
+    input  logic [9:0] lane1_car1_x,
+    input  logic [9:0] lane1_car2_x,
 
-    input logic [9:0] lane2_car0_x,
-    input logic [9:0] lane2_car1_x,
-    input logic [9:0] lane2_car2_x,
+    input  logic [9:0] lane2_car0_x,
+    input  logic [9:0] lane2_car1_x,
+    input  logic [9:0] lane2_car2_x,
 
-    input logic [9:0] lane3_car0_x,
-    input logic [9:0] lane3_car1_x,
-    input logic [9:0] lane3_car2_x,
+    input  logic [9:0] lane3_car0_x,
+    input  logic [9:0] lane3_car1_x,
+    input  logic [9:0] lane3_car2_x,
 
-    input logic [9:0] lane4_car0_x,
-    input logic [9:0] lane4_car1_x,
-    input logic [9:0] lane4_car2_x,
+    input  logic [9:0] lane4_car0_x,
+    input  logic [9:0] lane4_car1_x,
+    input  logic [9:0] lane4_car2_x,
 
-    input logic [9:0] lane5_car0_x,
-    input logic [9:0] lane5_car1_x,
-    input logic [9:0] lane5_car2_x,
+    input  logic [9:0] lane5_car0_x,
+    input  logic [9:0] lane5_car1_x,
+    input  logic [9:0] lane5_car2_x,
 
-    // car lengths
-    input logic [9:0] lane0_length,
-    input logic [9:0] lane1_length,
-    input logic [9:0] lane2_length,
-    input logic [9:0] lane3_length,
-    input logic [9:0] lane4_length,
-    input logic [9:0] lane5_length,
+    // car/truck lengths
+    input  logic [9:0] lane0_length,
+    input  logic [9:0] lane1_length,
+    input  logic [9:0] lane2_length,
+    input  logic [9:0] lane3_length,
+    input  logic [9:0] lane4_length,
+    input  logic [9:0] lane5_length,
+
     output logic [5:0] color
 );
 
-    parameter BLOCKSIZE = 10'd32;
-    parameter X_OFFSET_LEFT = 10'd96;
+    parameter BLOCKSIZE      = 10'd32;
+    parameter X_OFFSET_LEFT  = 10'd96;
     parameter X_OFFSET_RIGHT = 10'd544;
     
-    // Lane Y coordinate
+    // Lane Y coordinates
     parameter LANE0_Y = 8 * BLOCKSIZE;   // 256
     parameter LANE1_Y = 9 * BLOCKSIZE;   // 288
     parameter LANE2_Y = 10 * BLOCKSIZE;  // 320
     parameter LANE3_Y = 11 * BLOCKSIZE;  // 352
     parameter LANE4_Y = 12 * BLOCKSIZE;  // 384
     parameter LANE5_Y = 13 * BLOCKSIZE;  // 416
-    
-    logic in_any_car;
-    
+
+    localparam [5:0] CAR_BODY    = 6'b110000; // red
+    localparam [5:0] CAR_ROOF    = 6'b000000; // empty
+    localparam [5:0] TRUCK_BODY  = 6'b001110; // cyan / trailer
+    localparam [5:0] TRUCK_CAB   = 6'b001011; // darker cab
+    localparam [5:0] WINDOW_COL  = 6'b111111; // white window
+    localparam [5:0] WHEEL_COL   = 6'b000001; // black wheel
+
+    localparam [9:0] TRUCK_THRESHOLD = BLOCKSIZE + (BLOCKSIZE >> 1); // 48
+
+    logic       in_car;
+    logic [9:0] local_x;
+    logic [9:0] local_y;
+    logic [9:0] curr_length;
+    logic [5:0] w;
+
     always_comb begin
-        // Check if current pixel is within any car and within road bounds
-        in_any_car = 
-            
-            ((colPos >= lane0_car0_x && colPos < lane0_car0_x + lane0_length &&      
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE0_Y && rowPos < LANE0_Y + BLOCKSIZE) ||
-             (colPos >= lane0_car1_x && colPos < lane0_car1_x + lane0_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE0_Y && rowPos < LANE0_Y + BLOCKSIZE) ||
-             (colPos >= lane0_car2_x && colPos < lane0_car2_x + lane0_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE0_Y && rowPos < LANE0_Y + BLOCKSIZE)) ||
-            
-            ((colPos >= lane1_car0_x && colPos < lane1_car0_x + lane1_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE1_Y && rowPos < LANE1_Y + BLOCKSIZE) ||
-             (colPos >= lane1_car1_x && colPos < lane1_car1_x + lane1_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE1_Y && rowPos < LANE1_Y + BLOCKSIZE) ||
-             (colPos >= lane1_car2_x && colPos < lane1_car2_x + lane1_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE1_Y && rowPos < LANE1_Y + BLOCKSIZE)) ||
-            
-            ((colPos >= lane2_car0_x && colPos < lane2_car0_x + lane2_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE2_Y && rowPos < LANE2_Y + BLOCKSIZE) ||
-             (colPos >= lane2_car1_x && colPos < lane2_car1_x + lane2_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE2_Y && rowPos < LANE2_Y + BLOCKSIZE) ||
-             (colPos >= lane2_car2_x && colPos < lane2_car2_x + lane2_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE2_Y && rowPos < LANE2_Y + BLOCKSIZE)) ||
-            
-            ((colPos >= lane3_car0_x && colPos < lane3_car0_x + lane3_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE3_Y && rowPos < LANE3_Y + BLOCKSIZE) ||
-             (colPos >= lane3_car1_x && colPos < lane3_car1_x + lane3_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE3_Y && rowPos < LANE3_Y + BLOCKSIZE) ||
-             (colPos >= lane3_car2_x && colPos < lane3_car2_x + lane3_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE3_Y && rowPos < LANE3_Y + BLOCKSIZE)) ||
-            
-            ((colPos >= lane4_car0_x && colPos < lane4_car0_x + lane4_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE4_Y && rowPos < LANE4_Y + BLOCKSIZE) ||
-             (colPos >= lane4_car1_x && colPos < lane4_car1_x + lane4_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE4_Y && rowPos < LANE4_Y + BLOCKSIZE) ||
-             (colPos >= lane4_car2_x && colPos < lane4_car2_x + lane4_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE4_Y && rowPos < LANE4_Y + BLOCKSIZE)) ||
-            
-            ((colPos >= lane5_car0_x && colPos < lane5_car0_x + lane5_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE5_Y && rowPos < LANE5_Y + BLOCKSIZE) ||
-             (colPos >= lane5_car1_x && colPos < lane5_car1_x + lane5_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE5_Y && rowPos < LANE5_Y + BLOCKSIZE) ||
-             (colPos >= lane5_car2_x && colPos < lane5_car2_x + lane5_length &&
-              colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT &&
-              rowPos >= LANE5_Y && rowPos < LANE5_Y + BLOCKSIZE));
-        
-        if (in_any_car) begin
-            // car color
-            color = 6'b101010;
-        end else begin
-            color = 6'b000000;
+        color      = 6'b000000;
+        in_car     = 1'b0;
+        local_x    = 10'd0;
+        local_y    = 10'd0;
+        curr_length = 10'd0;
+        w           = 6'd0;
+
+        // Lane 0
+        if (!in_car &&
+            rowPos >= LANE0_Y && rowPos < LANE0_Y + BLOCKSIZE &&
+            colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT) begin
+
+            if (colPos >= lane0_car0_x && colPos < lane0_car0_x + lane0_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane0_car0_x;
+                local_y    = rowPos - LANE0_Y;
+                curr_length = lane0_length;
+            end else if (colPos >= lane0_car1_x && colPos < lane0_car1_x + lane0_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane0_car1_x;
+                local_y    = rowPos - LANE0_Y;
+                curr_length = lane0_length;
+            end else if (colPos >= lane0_car2_x && colPos < lane0_car2_x + lane0_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane0_car2_x;
+                local_y    = rowPos - LANE0_Y;
+                curr_length = lane0_length;
+            end
+        end
+
+        // iterate through all possible cars (6 lanes * 3 = 18 possible)
+        // Lane 1
+        if (!in_car &&
+            rowPos >= LANE1_Y && rowPos < LANE1_Y + BLOCKSIZE &&
+            colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT) begin
+
+            if (colPos >= lane1_car0_x && colPos < lane1_car0_x + lane1_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane1_car0_x;
+                local_y    = rowPos - LANE1_Y;
+                curr_length = lane1_length;
+            end else if (colPos >= lane1_car1_x && colPos < lane1_car1_x + lane1_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane1_car1_x;
+                local_y    = rowPos - LANE1_Y;
+                curr_length = lane1_length;
+            end else if (colPos >= lane1_car2_x && colPos < lane1_car2_x + lane1_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane1_car2_x;
+                local_y    = rowPos - LANE1_Y;
+                curr_length = lane1_length;
+            end
+        end
+
+        // Lane 2
+        if (!in_car &&
+            rowPos >= LANE2_Y && rowPos < LANE2_Y + BLOCKSIZE &&
+            colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT) begin
+
+            if (colPos >= lane2_car0_x && colPos < lane2_car0_x + lane2_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane2_car0_x;
+                local_y    = rowPos - LANE2_Y;
+                curr_length = lane2_length;
+            end else if (colPos >= lane2_car1_x && colPos < lane2_car1_x + lane2_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane2_car1_x;
+                local_y    = rowPos - LANE2_Y;
+                curr_length = lane2_length;
+            end else if (colPos >= lane2_car2_x && colPos < lane2_car2_x + lane2_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane2_car2_x;
+                local_y    = rowPos - LANE2_Y;
+                curr_length = lane2_length;
+            end
+        end
+
+        // Lane 3
+        if (!in_car &&
+            rowPos >= LANE3_Y && rowPos < LANE3_Y + BLOCKSIZE &&
+            colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT) begin
+
+            if (colPos >= lane3_car0_x && colPos < lane3_car0_x + lane3_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane3_car0_x;
+                local_y    = rowPos - LANE3_Y;
+                curr_length = lane3_length;
+            end else if (colPos >= lane3_car1_x && colPos < lane3_car1_x + lane3_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane3_car1_x;
+                local_y    = rowPos - LANE3_Y;
+                curr_length = lane3_length;
+            end else if (colPos >= lane3_car2_x && colPos < lane3_car2_x + lane3_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane3_car2_x;
+                local_y    = rowPos - LANE3_Y;
+                curr_length = lane3_length;
+            end
+        end
+
+        // Lane 4
+        if (!in_car &&
+            rowPos >= LANE4_Y && rowPos < LANE4_Y + BLOCKSIZE &&
+            colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT) begin
+
+            if (colPos >= lane4_car0_x && colPos < lane4_car0_x + lane4_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane4_car0_x;
+                local_y    = rowPos - LANE4_Y;
+                curr_length = lane4_length;
+            end else if (colPos >= lane4_car1_x && colPos < lane4_car1_x + lane4_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane4_car1_x;
+                local_y    = rowPos - LANE4_Y;
+                curr_length = lane4_length;
+            end else if (colPos >= lane4_car2_x && colPos < lane4_car2_x + lane4_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane4_car2_x;
+                local_y    = rowPos - LANE4_Y;
+                curr_length = lane4_length;
+            end
+        end
+
+        // Lane 5
+        if (!in_car &&
+            rowPos >= LANE5_Y && rowPos < LANE5_Y + BLOCKSIZE &&
+            colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT) begin
+
+            if (colPos >= lane5_car0_x && colPos < lane5_car0_x + lane5_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane5_car0_x;
+                local_y    = rowPos - LANE5_Y;
+                curr_length = lane5_length;
+            end else if (colPos >= lane5_car1_x && colPos < lane5_car1_x + lane5_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane5_car1_x;
+                local_y    = rowPos - LANE5_Y;
+                curr_length = lane5_length;
+            end else if (colPos >= lane5_car2_x && colPos < lane5_car2_x + lane5_length) begin
+                in_car     = 1'b1;
+                local_x    = colPos - lane5_car2_x;
+                local_y    = rowPos - LANE5_Y;
+                curr_length = lane5_length;
+            end
+        end
+
+        // draw the current car we are in 
+        if (in_car) begin
+            // truck
+            if (curr_length >= TRUCK_THRESHOLD) begin
+                // local_y: 0..31
+                // bottom band: wheels & lower body
+                if (local_y >= 24 && local_y < 32) begin
+                    color = TRUCK_BODY;
+                    if ((local_x >= 4 && local_x <= 8) ||
+                        (local_x >= curr_length - 9 && local_x <= curr_length - 5)) begin
+                        color = WHEEL_COL;
+                    end
+                end
+                // middle band: trailer/cab with windows
+                else if (local_y >= 10 && local_y < 24) begin
+                    // cab is last BLOCKSIZE pixels
+                    if (local_x >= curr_length - BLOCKSIZE) begin
+                        color = TRUCK_CAB;
+                        // simple cab window
+                        if (local_y >= 12 && local_y <= 16 &&
+                            local_x >= curr_length - BLOCKSIZE + 4 &&
+                            local_x <= curr_length - BLOCKSIZE + 12) begin
+                            color = WINDOW_COL;
+                        end
+                    end else begin
+                        color = TRUCK_BODY; // trailer
+                    end
+                end
+                // top band: roof
+                else begin
+                    color = TRUCK_BODY;
+                end
+            end else begin
+
+                // CAR
+                // top band: roof
+                if (local_y < 8) begin
+                    color = CAR_ROOF;
+                end
+                // middle band: body + windows
+                else if (local_y >= 8 && local_y < 24) begin
+                
+                    // make the roof look rounded
+                    if (local_y == 8  && local_x >= (curr_length>>1)-7 && local_x < (curr_length>>1)+5) color = CAR_BODY;
+                    if (local_y == 9  && local_x >= (curr_length>>1)-9 && local_x < (curr_length>>1)+5) color = CAR_BODY;
+                    if (local_y == 10 && local_x >= (curr_length>>1)-11 && local_x < (curr_length>>1)+9) color = CAR_BODY;
+                    if (local_y == 11 && local_x >= (curr_length>>1)-13 && local_x < (curr_length>>1)+9) color = CAR_BODY;
+                    if (local_y == 12 && local_x >= (curr_length>>1)-13 && local_x < (curr_length>>1)+11) color = CAR_BODY;
+                    if (local_y == 13 && local_x >= (curr_length>>1)-15 && local_x < (curr_length>>1)+13) color = CAR_BODY;
+                    if (local_y == 14 && local_x >= 2 && local_x < curr_length-2)     color = CAR_BODY;
+                    if (local_y == 15 && local_x >= 1 && local_x < curr_length-1)     color = CAR_BODY;
+                    if (local_y == 16 && local_x >= 0 && local_x < curr_length)       color = CAR_BODY;
+                    if (local_y == 17 && local_x >= 0 && local_x < curr_length)       color = CAR_BODY;
+                    if (local_y == 18 && local_x >= 0 && local_x < curr_length)       color = CAR_BODY;
+                    if (local_y == 19 && local_x >= 0 && local_x < curr_length)       color = CAR_BODY;
+                    if (local_y == 20 && local_x >= 0 && local_x < curr_length)       color = CAR_BODY;
+                    if (local_y == 21 && local_x >= 0 && local_x < curr_length)       color = CAR_BODY;
+
+                    // side windows in the middle of the car
+                    if (local_y >= 12 && local_y <= 18 &&
+                        local_x >= ((curr_length >> 2)-1) &&
+                        local_x <= (((curr_length * 3) >> 2))-1) begin
+                        color = WINDOW_COL;
+                    end
+                end
+                // bottom band: body + wheels
+                if (local_y >= 22 && local_y < 27) begin 
+                    color = CAR_BODY;
+                    if ((local_x >= 4 && local_x <= 8) ||
+                        (local_x >= curr_length - 9 && local_x <= curr_length - 5)) begin
+                        color = WHEEL_COL;
+                    end
+                end
+            end
         end
     end
 
