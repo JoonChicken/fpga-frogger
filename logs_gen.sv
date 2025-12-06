@@ -44,12 +44,12 @@ module logs_gen(
 
 
     // coordinates for the river lanes 
-    parameter LANE0_Y = 2  * BLOCKSIZE;   // 256
-    parameter LANE1_Y = 3  * BLOCKSIZE;   // 288
-    parameter LANE2_Y = 4 * BLOCKSIZE;   // 320
-    parameter LANE3_Y = 5 * BLOCKSIZE;   // 352
-    parameter LANE4_Y = 6 * BLOCKSIZE;   // 384
-    parameter LANE5_Y = 7 * BLOCKSIZE;   // 416
+    parameter LANE0_Y = 1  * BLOCKSIZE;   // 256
+    parameter LANE1_Y = 2  * BLOCKSIZE;   // 288
+    parameter LANE2_Y = 3 * BLOCKSIZE;   // 320
+    parameter LANE3_Y = 4 * BLOCKSIZE;   // 352
+    parameter LANE4_Y = 5 * BLOCKSIZE;   // 384
+    parameter LANE5_Y = 6 * BLOCKSIZE;   // 416
 
     // wood colors 
     localparam [5:0] LOG_BODY = 6'b100010
