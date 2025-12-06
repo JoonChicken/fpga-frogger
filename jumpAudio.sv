@@ -1,5 +1,4 @@
 //Divide 25.1MGHz into usable hertz for sound, play notes (boing? somehow)
-
 module jumpAudio (
 input logic clk,
 input logic enable,
@@ -50,3 +49,6 @@ always_ff @(posedge clk) begin
 		timer <= 24'b0;
 	end
 end
+
+
+endmodule 
