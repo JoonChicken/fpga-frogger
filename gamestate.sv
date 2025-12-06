@@ -15,11 +15,11 @@ module gamestate (
     always_ff @(posedge clk) begin
         if (reset) begin
             state <= MENU;
-        end else if (state == MENU) begin
+        end else if (state == MENU && dpad_input != 4'b0000) begin
             state <= PLAYING;
             level <= 4'b0;
         end else if (collision) begin
-            state <= DEAD;
+            state <= MENU;
         end else if (reached_end) begin
             state <= WIN;
         end
