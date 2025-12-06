@@ -1,4 +1,4 @@
-module frog (
+/*module frog (
     input logic clk,
     input logic [1:0] state,
     input logic [9:0] init_x,
