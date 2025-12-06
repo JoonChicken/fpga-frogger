@@ -54,6 +54,21 @@ module top (
     logic [9:0] lane5_car0_x, lane5_car1_x, lane5_car2_x;
     // Car lengths for each lane
     logic [9:0] lane0_length, lane1_length, lane2_length, lane3_length, lane4_length, lane5_length;
+
+
+    // instantiate the river rows 
+    logic [9:0] lane0_log0_x, lane0_log1_x, lane0_log2_x;
+    logic [9:0] lane1_log0_x, lane1_log1_x, lane1_log2_x;
+    logic [9:0] lane2_log0_x, lane2_log1_x, lane2_log2_x;
+    logic [9:0] lane3_log0_x, lane3_log1_x, lane3_log2_x;
+    logic [9:0] lane4_log0_x, lane4_log1_x, lane4_log2_x;
+    logic [9:0] lane5_log0_x, lane5_log1_x, lane5_log2_x;
+
+    // log lengths for each lane 
+    logic [9:0] lane0_loglength, lane1_loglength, lane2_loglength, lane3_loglength, lane4_loglength, lane5_loglength; 
+    
+
+
     
     assign reset = 1'b0;
     
@@ -99,6 +114,37 @@ module top (
         .lane4_length(lane4_length),
         .lane5_length(lane5_length)
     );
+
+    logs logs_inst (
+        .clk(osc_25_1M),
+        .reset(reset),
+        .lane0_log0_x(lane0_log0_x),
+        .lane0_log1_x(lane0_log1_x),
+        .lane0_log2_x(lane0_log2_x),
+        .lane1_log0_x(lane1_log0_x),
+        .lane1_log1_x(lane1_log1_x),
+        .lane1_log2_x(lane1_log2_x),
+        .lane2_log0_x(lane2_log0_x),
+        .lane2_log1_x(lane2_log1_x),
+        .lane2_log2_x(lane2_log2_x),
+        .lane3_log0_x(lane3_log0_x),
+        .lane3_log1_x(lane3_log1_x),
+        .lane3_log2_x(lane3_log2_x),
+        .lane4_log0_x(lane4_log0_x),
+        .lane4_log1_x(lane4_log1_x),
+        .lane4_log2_x(lane4_log2_x),
+        .lane5_log0_x(lane5_log0_x),
+        .lane5_log1_x(lane5_log1_x),
+        .lane5_log2_x(lane5_log2_x),
+        .lane0_loglength(lane0_loglength),
+        .lane1_loglength(lane1_loglength),
+        .lane2_loglength(lane2_loglength),
+        .lane3_loglength(lane3_loglength),
+        .lane4_loglength(lane4_loglength),
+        .lane5_loglength(lane5_loglength)
+    );
+
+    
     
     logic [5:0] frogcolor;  
     frog_gen frog_gen (
@@ -142,6 +188,37 @@ module top (
         .lane4_length(lane4_length),
         .lane5_length(lane5_length),
         .color(carcolor)
+    );
+
+
+    logs_gen logs_gen_inst (
+        .clk(osc_25_1M),
+        .colPos(colPos),
+        .rowPos(rowPos),
+        ..lane0_log0_x(lane0_log0_x),
+        .lane0_log1_x(lane0_log1_x),
+        .lane0_log2_x(lane0_log2_x),
+        .lane1_log0_x(lane1_log0_x),
+        .lane1_log1_x(lane1_log1_x),
+        .lane1_log2_x(lane1_log2_x),
+        .lane2_log0_x(lane2_log0_x),
+        .lane2_log1_x(lane2_log1_x),
+        .lane2_log2_x(lane2_log2_x),
+        .lane3_log0_x(lane3_log0_x),
+        .lane3_log1_x(lane3_log1_x),
+        .lane3_log2_x(lane3_log2_x),
+        .lane4_log0_x(lane4_log0_x),
+        .lane4_log1_x(lane4_log1_x),
+        .lane4_log2_x(lane4_log2_x),
+        .lane5_log0_x(lane5_log0_x),
+        .lane5_log1_x(lane5_log1_x),
+        .lane5_log2_x(lane5_log2_x),
+        .lane0_loglength(lane0_loglength),
+        .lane1_loglength(lane1_loglength),
+        .lane2_loglength(lane2_loglength),
+        .lane3_loglength(lane3_loglength),
+        .lane4_loglength(lane4_loglength),
+        .lane5_loglength(lane5_loglength)
     );
     // grid/window color
     logic [5:0] gridcolor;
@@ -221,6 +298,7 @@ module top (
     end
     
     assign collision = frog_collision;
+    assign collison = frog_inwater; 
 
     // color priority: frog > cars > background
     always_comb begin
