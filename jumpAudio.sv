@@ -16,20 +16,23 @@ output logic jumpSoundOut
 always_ff @(posedge clk) begin
 	prevEnable <= enable;
 	
-	if (enable == 1'b1 & prevEnable == 1'b0) begin
+	if (enable & !prevEnable) begin
 		timerEnable <= 1'b1;
 		timer <= 0;
 		freqCount <= 0;
-	end else if (timerEnable & timer >= 24'd12500000) begin
-		timerEnable <= 0;
+	end
+
+	if (timerEnable == 1'b1) begin
+		timer <= timer + 1;
+		if (timer >= 24'd12500000) begin
+			timerEnable <= 0;
+		end
 	end
 end
 
 //play sound at certain frequency until timer reaches desired duration
 always_ff @(posedge clk) begin
 	if (timerEnable) begin
-		timer <= timer + 1;
-		
 		if (freqCount < 14261) begin
 			freqCount <= freqCount + 1;
 			jumpSoundOut <= 1;
@@ -38,7 +41,7 @@ always_ff @(posedge clk) begin
 			jumpSoundOut <= 0;
 		end else begin
 			freqCount <= 0;
-			jumpSoundOut <=0;
+			jumpSoundOut <= 0;
 		end
 	end
 end
