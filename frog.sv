@@ -9,11 +9,15 @@ module frog (
     input logic reset,
     output logic reached_end,
     output logic [9:0] next_x,
-    output logic [9:0] next_y
+    output logic [9:0] next_y,
+    output logic [1:0] facing
 );
+    
     parameter blocksize = 32;
     parameter endarea = 15;
     enum logic [1:0] {MENU=0, PLAYING=1, DEAD=2, WIN=3} statetype;
+    typedef enum logic [1:0] {UP=2'b00, DOWN=2'b01, LEFT=2'b10, RIGHT=2'b11} face_dir;
+    face_dir facing;
 
     // Debounced button signals
     logic btn_up_tick;
@@ -54,30 +58,36 @@ module frog (
     );
 
     logic initialized = 1'b0;
+    logic new_turn = 1'b0;
     always_ff @(posedge clk) begin
         if (reset || collision || !initialized) begin
             next_x <= init_x;
             next_y <= init_y;
             reached_end <= 1'b0;
             initialized <= 1'b1;
+            facing <= UP;
         // playing state
         end else if (state == 2'b01) begin 
             if (btn_up_tick) begin
                 // move up by decreasing the y coordinate
                 if (next_y >= blocksize) begin
                     next_y <= next_y - blocksize;
+                    facing <= UP;
                 end
             end else if (btn_down_tick) begin
                 if (next_y + frog_size < 480) begin
                     next_y <= next_y + blocksize;
+                    facing <= DOWN;
                 end
             end else if (btn_left_tick) begin
                 if (next_x >= blocksize) begin
                     next_x <= next_x - blocksize;
+                    facing <= LEFT;
                 end
             end else if (btn_right_tick) begin
                 if (next_x + frog_size < 640) begin
                     next_x <= next_x + blocksize;
+                    facing <= RIGHT;
                 end
             end
             

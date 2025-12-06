@@ -57,6 +57,9 @@ module top (
     
     assign reset = 1'b0;
     
+    // turn the frog to the direction the user inputs
+    logic [1:0] facing;
+
     frog frog (
         .clk(osc_25_1M),
         .state(state),
@@ -68,7 +71,8 @@ module top (
         .reset(reset),
         .reached_end(reached_end),
         .next_x(next_x),
-        .next_y(next_y)
+        .next_y(next_y),
+        .facing(facing)
     );
 
     cars cars_inst (
@@ -108,6 +112,7 @@ module top (
         .frog_x(next_x),
         .frog_y(next_y),
         .frog_size(frog_size),
+        .facing(facing),
         .color(frogcolor)
     );
     
