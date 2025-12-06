@@ -12,17 +12,17 @@ output logic jumpSoundOut
 
 	logic timerEnable;
 
-//validate each enable so only called once per input/call
+//start timer loops below if enabled
+always_ff @(posedge clk) begin
+	prevEnable <= enable;
+end
+	
+//rising edge detector
 always_ff @(posedge clk) begin
 	if (enable == 1'b1 & prevEnable == 1'b0) begin
 		timerEnable <= 1'b1;
-	end else if (timer == 24'b0)
+	end else if (timer == 24'd12500000)
 		timerEnable <= 0;
-end
-
-//start timer loop below if enabled
-always_ff @(posedge clk) begin
-	prevEnable <= enable;
 end
 
 //play sound at certain frequency until timer reaches desired duration
@@ -38,7 +38,7 @@ always_ff @(posedge clk) begin
 		end else if (freqCount == 28522) begin
 			freqCount <= 0;
 		end
-	end else begin
+	end else if (timer == 24'd12500000) begin
 		timer <= 24'b0;
 	end
 end
