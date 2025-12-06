@@ -11,7 +11,7 @@ output logic jumpSoundOut
 	logic [23:0] timer;
 
 //validate each enable so only called once per input/call
-always_comb begin
+always_ff begin
 	if (enable == 1'b1 & prevEnable == 1'b0) begin
 		timer = timer + 1;
 	end
