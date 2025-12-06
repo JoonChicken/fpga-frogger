@@ -10,10 +10,15 @@ output logic jumpSoundOut
 	logic [16:0] freqCount;
 	logic [23:0] timer;
 
+	logic timerEnable;
+
 //validate each enable so only called once per input/call
 always_ff @(posedge clk) begin
 	if (enable == 1'b1 & prevEnable == 1'b0) begin
-		timer = timer + 1;
+		timerEnable <= 1'b1;
+	end
+	if (enable == 1'b0) begin
+		timerEnable <= 1'b0;
 	end
 end
 
@@ -24,7 +29,7 @@ end
 
 //play sound at certain frequency until timer reaches desired duration
 always_ff @(posedge clk) begin
-	if (timer < 24'd12500000 & timer != 0) begin
+	if (timer < 24'd12500000 & timerEnable) begin
 		timer <= timer + 1;
 		if (freqCount < 28523) begin
 			freqCount <= freqCount + 1;
