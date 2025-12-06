@@ -1,4 +1,4 @@
-module vga (
+/*module vga (
     input logic clk,
     output logic HSYNC,
     output logic VSYNC,
