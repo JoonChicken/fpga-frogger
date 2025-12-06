@@ -45,16 +45,17 @@ module ui_gen(
     assign rowPos_titlelocal = (rowPos - Y_TITLE_OFFSET) / TITLE_SCALE;
 
 
+    parameter STR_LEN = 22;
     parameter SUBTITLE_SCALE = 2;
-    parameter SUBTITLE_WIDTH = 22 * 8;
-    parameter SUBTITLE_HEIGHT = 8;
-    parameter X_SUBTITLE_OFFSET = X_OFFSET_LEFT + (224 - SUBTITLE_SCALE * 28);
+    parameter SUBTITLE_WIDTH = STR_LEN * 8 * SUBTITLE_SCALE;
+    parameter SUBTITLE_HEIGHT = 8 * SUBTITLE_SCALE;
+    parameter X_SUBTITLE_OFFSET = 640/2 - SUBTITLE_WIDTH / 2;
     parameter Y_SUBTITLE_OFFSET = 240 + 80;
 
     wire [9:0] colPos_subtitlelocal;
     wire [9:0] rowPos_subtitlelocal;
     wire [5:0] charIndex;
-    wire [7:0] str [0:24];
+    wire [7:0] str [0:21];
         assign str[0]  = "P";
         assign str[1]  = "R";
         assign str[2]  = "E";
@@ -67,19 +68,16 @@ module ui_gen(
         assign str[9]  = " ";
         assign str[10] = "K";
         assign str[11] = "E";
-        assign str[12]  = "Y";
-        assign str[13]  = " ";
-        assign str[14]  = "T";
-        assign str[15]  = "O";
-        assign str[16]  = " ";
-        assign str[17]  = "C";
-        assign str[18]  = "O";
-        assign str[19]  = "N";
-        assign str[20]  = "T";
-        assign str[21]  = "I";
-        assign str[22] = "N";
-        assign str[23] = "U";
-        assign str[24] = "E";
+        assign str[12] = "Y";
+        assign str[13] = " ";
+        assign str[14] = "T";
+        assign str[15] = "O";
+        assign str[16] = " ";
+        assign str[17] = "S";
+        assign str[18] = "T";
+        assign str[19] = "A";
+        assign str[20] = "R";
+        assign str[21] = "T";
     wire [7:0] ascii;
     wire [7:0] charRowData;
     wire [2:0] charPixCol;
@@ -95,7 +93,7 @@ module ui_gen(
         .bitmap(charRowData)
     );
 
-    assign charPixCol = colPos_subtitlelocal % 8;
+    assign charPixCol = 8 - colPos_subtitlelocal % 8;
 
 
     always_comb begin
