@@ -1,4 +1,4 @@
-logs_gen(
+/*logs_gen(
   input logic clk,
   input logic reset, 
   input logic [9:0] river_rows [0:NUM_ROWS-1],
