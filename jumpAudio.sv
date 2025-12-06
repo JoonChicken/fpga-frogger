@@ -17,9 +17,6 @@ always_ff @(posedge clk) begin
 	if (enable == 1'b1 & prevEnable == 1'b0) begin
 		timerEnable <= 1'b1;
 	end
-	if (enable == 1'b0) begin
-		timerEnable <= 1'b0;
-	end
 end
 
 //start timer loop below if enabled
