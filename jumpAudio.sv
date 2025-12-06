@@ -16,7 +16,8 @@ output logic jumpSoundOut
 always_ff @(posedge clk) begin
 	if (enable == 1'b1 & prevEnable == 1'b0) begin
 		timerEnable <= 1'b1;
-	end
+	end else if (timer == 24'b0)
+		timerEnable <= 0;
 end
 
 //start timer loop below if enabled
@@ -39,7 +40,6 @@ always_ff @(posedge clk) begin
 		end
 	end else begin
 		timer <= 24'b0;
-		timerEnable <= 1'b0;
 	end
 end
 
