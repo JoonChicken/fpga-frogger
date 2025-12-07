@@ -22,7 +22,7 @@ always_ff @(posedge clk) begin
 end
 
 
-	logic reset = 1'b0;
+logic reset = 1'b0;
 
 
 //debounce inputs (calling debouncer module)

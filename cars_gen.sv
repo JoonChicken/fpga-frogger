@@ -4,15 +4,10 @@ module cars_gen (
     input  logic [9:0] rowPos,
     
     input  logic [9:0] lane0_car0_x,
-    
     input  logic [9:0] lane1_car0_x,
-
     input  logic [9:0] lane2_car0_x,
-
     input  logic [9:0] lane3_car0_x,
-
     input  logic [9:0] lane4_car0_x,
-
     input  logic [9:0] lane5_car0_x,
 
     // car/truck lengths
@@ -58,12 +53,26 @@ module cars_gen (
     logic [9:0] local_y;
     logic [9:0] curr_length;
 
+    logic [4:0] sprite_x;
+    logic [4:0] sprite_y;
+    logic [9:0] car_addr;  
+    logic [5:0] car_pixel;
+
+    car_rom car_rom (
+        .addr(car_addr),
+        .data(car_pixel)
+    );
+
     always_comb begin
         color       = 6'b000000;
         in_car      = 1'b0;
         local_x     = 10'd0;
         local_y     = 10'd0;
         curr_length = 10'd0;
+
+        sprite_x    = 5'd0;
+        sprite_y    = 5'd0;
+        car_addr    = 5'd0;
 
         // Lane 0
         if (!in_car &&
@@ -230,49 +239,10 @@ module cars_gen (
 
             // CAR
             else begin
-                // top band: roof
-                if (local_y < 8) begin
-                    color = CAR_ROOF;
-                end
-                // middle band: body + windows
-                else if (local_y >= 8 && local_y < 24) begin
-                    // make the roof look rounded
-                    if (local_y == 8  && local_x >= (curr_length>>1)-7 && local_x < (curr_length>>1)+5)  color = CAR_BODY;
-                    if (local_y == 9  && local_x >= (curr_length>>1)-9 && local_x < (curr_length>>1)+5)  color = CAR_BODY;
-                    if (local_y == 10 && local_x >= (curr_length>>1)-11 && local_x < (curr_length>>1)+9) color = CAR_BODY;
-                    if (local_y == 11 && local_x >= (curr_length>>1)-13 && local_x < (curr_length>>1)+9) color = CAR_BODY;
-                    if (local_y == 12 && local_x >= (curr_length>>1)-13 && local_x < (curr_length>>1)+11) color = CAR_BODY;
-                    if (local_y == 13 && local_x >= (curr_length>>1)-15 && local_x < (curr_length>>1)+13) color = CAR_BODY;
-                    if (local_y == 14 && local_x >= 2 && local_x < curr_length-2)                        color = CAR_BODY;
-                    if (local_y == 15 && local_x >= 1 && local_x < curr_length-1)                        color = CAR_BODY;
-                    if (local_y == 16 && local_x >= 0 && local_x < curr_length)                          color = CAR_BODY;
-                    if (local_y == 17 && local_x >= 0 && local_x < curr_length)                          color = CAR_BODY;
-                    if (local_y == 18 && local_x >= 0 && local_x < curr_length)                          color = CAR_BODY;
-                    if (local_y == 19 && local_x >= 0 && local_x < curr_length)                          color = CAR_BODY;
-                    if (local_y == 20 && local_x >= 0 && local_x < curr_length)                          color = CAR_BODY;
-                    if (local_y == 21 && local_x >= 0 && local_x < curr_length)                          color = CAR_BODY;
-
-                    // side windows in the middle of the car
-                    if (local_y >= 11 && local_y <= 16 &&
-                        local_x >= ((curr_length >> 2)-2) &&
-                        local_x <= (((curr_length * 3) >> 2))-2) begin
-                        color = WINDOW_COL;
-                    end
-                    // headlights
-                    if (local_y >= 14 && local_y <=18 &&
-                        local_x >=curr_length - 4) begin
-                        color = WINDOW_COL;
-                    end
-                end
-
-                // bottom band: body + wheels
-                if (local_y >= 22 && local_y < 27) begin 
-                    color = CAR_BODY;
-                    if ((local_x >= 4 && local_x <= 8) ||
-                        (local_x >= curr_length - 9 && local_x <= curr_length - 5)) begin
-                        color = WHEEL_COL;
-                    end
-                end
+                sprite_x = local_x[4:0];
+                sprite_y = local_y[4:0];
+                car_addr = {sprite_y, sprite_x};
+                color = car_pixel;
             end
         end
     end

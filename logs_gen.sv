@@ -7,27 +7,21 @@ module logs_gen(
 // three logs for each of the six lanes
     input logic [9:0] lane0_log0_x,
     input logic [9:0] lane0_log1_x,
-    input logic [9:0] lane0_log2_x,
     
     input logic [9:0] lane1_log0_x,
     input logic [9:0] lane1_log1_x,
-    input logic [9:0] lane1_log2_x,
 
     input logic [9:0] lane2_log0_x,
     input logic [9:0] lane2_log1_x,
-    input logic [9:0] lane2_log2_x,
 
     input logic [9:0] lane3_log0_x,
     input logic [9:0] lane3_log1_x,
-    input logic [9:0] lane3_log2_x,
 
     input logic [9:0] lane4_log0_x,
     input logic [9:0] lane4_log1_x,
-    input logic [9:0] lane4_log2_x,
 
     input logic [9:0] lane5_log0_x,
     input logic [9:0] lane5_log1_x,
-    input logic [9:0] lane5_log2_x,
 
     // log lengths and color 
     input logic [9:0] lane0_loglength,
@@ -79,6 +73,7 @@ module logs_gen(
         local_x     = 10'd0;
         local_y     = 10'd0;
         curr_length = 10'd0;
+        
         sprite_addr = 6'd0;
         tile_x       = 5'd0;
         tile_y       = 5'd0;
@@ -86,7 +81,7 @@ module logs_gen(
         num_segments = 5'd0;
         part_sel     = 2'd1;
 
-    // lane 0 or row 2 on the screen 
+    // lane 0
         if (!in_log &&
             rowPos >= LANE0_Y && rowPos < LANE0_Y + BLOCKSIZE &&
             colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT) begin
@@ -101,15 +96,10 @@ module logs_gen(
                 local_x     = colPos - lane0_log1_x;
                 local_y     = rowPos - LANE0_Y;
                 curr_length = lane0_loglength;
-            end else if (colPos >= lane0_log2_x && colPos < lane0_log2_x + lane0_loglength) begin
-                in_log      = 1'b1;
-                local_x     = colPos - lane0_log2_x;
-                local_y     = rowPos - LANE0_Y;
-                curr_length = lane0_loglength;
             end
         end
 
-        // lane 1 or row 3 on the screen 
+        // lane 1
         if (!in_log &&
             rowPos >= LANE1_Y && rowPos < LANE1_Y + BLOCKSIZE &&
             colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT) begin
@@ -124,15 +114,10 @@ module logs_gen(
                 local_x     = colPos - lane1_log1_x;
                 local_y     = rowPos - LANE1_Y;
                 curr_length = lane1_loglength;
-            end else if (colPos >= lane1_log2_x && colPos < lane1_log2_x + lane1_loglength) begin
-                in_log      = 1'b1;
-                local_x     = colPos - lane1_log2_x;
-                local_y     = rowPos - LANE1_Y;
-                curr_length = lane1_loglength;
             end
         end
 
-        // lane 2 or row 4 on the screen 
+        // lane 2
 
         if (!in_log &&
             rowPos >= LANE2_Y && rowPos < LANE2_Y + BLOCKSIZE &&
@@ -148,15 +133,10 @@ module logs_gen(
                 local_x     = colPos - lane2_log1_x;
                 local_y     = rowPos - LANE2_Y;
                 curr_length = lane2_loglength;
-            end else if (colPos >= lane2_log2_x && colPos < lane2_log2_x + lane2_loglength) begin
-                in_log      = 1'b1;
-                local_x     = colPos - lane2_log2_x;
-                local_y     = rowPos - LANE2_Y;
-                curr_length = lane2_loglength;
             end
         end
 
-        // lane 3 or row 5 on the screen 
+        // lane 3
 
         if (!in_log &&
             rowPos >= LANE3_Y && rowPos < LANE3_Y + BLOCKSIZE &&
@@ -172,16 +152,10 @@ module logs_gen(
                 local_x     = colPos - lane3_log1_x;
                 local_y     = rowPos - LANE3_Y;
                 curr_length = lane3_loglength;
-            end else if (colPos >= lane3_log2_x && colPos < lane3_log2_x + lane3_loglength) begin
-                in_log      = 1'b1;
-                local_x     = colPos - lane3_log2_x;
-                local_y     = rowPos - LANE3_Y;
-                curr_length = lane3_loglength;
             end
         end
 
-        // lane 4 or row 6 on the screen 
-
+        // lane 4
         if (!in_log &&
             rowPos >= LANE4_Y && rowPos < LANE4_Y + BLOCKSIZE &&
             colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT) begin
@@ -196,16 +170,10 @@ module logs_gen(
                 local_x     = colPos - lane4_log1_x;
                 local_y     = rowPos - LANE4_Y;
                 curr_length = lane4_loglength;
-            end else if (colPos >= lane4_log2_x && colPos < lane4_log2_x + lane4_loglength) begin
-                in_log      = 1'b1;
-                local_x     = colPos - lane4_log2_x;
-                local_y     = rowPos - LANE4_Y;
-                curr_length = lane4_loglength;
             end
         end
 
-        // lane 5 or row 7 
-
+        // lane 5
         if (!in_log &&
             rowPos >= LANE5_Y && rowPos < LANE5_Y + BLOCKSIZE &&
             colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT) begin
@@ -218,11 +186,6 @@ module logs_gen(
             end else if (colPos >= lane5_log1_x && colPos < lane5_log1_x + lane5_loglength) begin
                 in_log      = 1'b1;
                 local_x     = colPos - lane5_log1_x;
-                local_y     = rowPos - LANE5_Y;
-                curr_length = lane5_loglength;
-            end else if (colPos >= lane5_log2_x && colPos < lane5_log2_x + lane5_loglength) begin
-                in_log      = 1'b1;
-                local_x     = colPos - lane5_log2_x;
                 local_y     = rowPos - LANE5_Y;
                 curr_length = lane5_loglength;
             end

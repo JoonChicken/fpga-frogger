@@ -8,7 +8,6 @@ module background(
 );
 
     localparam [5:0] RED0 = 6'b010000;
-    localparam [5:0] RED1 = 6'b100000;
     localparam [5:0] RED1 = 6'b010001;
 
     localparam [5:0] ENDAREA0 = 6'b001000;
@@ -18,8 +17,9 @@ module background(
     localparam [5:0] ENDAREA4 = 6'b011110;  
 
     localparam [5:0] BLACK = 6'b000000;
-    localparam [5:0] BLUE = 6'b000011;
-    
+    localparam [5:0] BLUE0 = 6'b000010;
+    localparam [5:0] BLUE1 = 6'b000011;
+
     localparam [9:0] X_OFFSET_LEFT = 10'd96;
     localparam [9:0] X_OFFSET_RIGHT = 10'd544;
     localparam [9:0] BLOCKSIZE = 10'd32;
@@ -74,13 +74,12 @@ module background(
         x8pattern[2] = x8tile_x[0] ^ x8tile_y[0];
 
         if (river) begin
-            color = BLUE;
+            color = BLUE1;
         end else if (grass) begin
             case (x4pattern[2:0])
-                3'b000: color = RED2;
                 3'b001, 3'b011: color = RED1;
                 3'b101, 3'b010: color = RED0;
-                default: color = RED2;
+                default: color = BLACK;
             endcase
         end else if (endarea) begin
             case (x4pattern[2:0])

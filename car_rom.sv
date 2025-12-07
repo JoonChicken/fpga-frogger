@@ -1,8 +1,8 @@
 module car_rom (
-    input logic [11:0] addr,
+    input logic [9:0] addr,
     output logic [5:0] data
 );
-    logic [5:0] rom [0:4095];
+    logic [5:0] rom [0:1023];
 
     initial begin
         $readmemh("car.mem", rom);

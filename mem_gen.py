@@ -1,7 +1,11 @@
 palette = {
-    '.': '00',  # background / transparent
-    'H': '24',  # bright highlight ring
-    'B': '10',  # medium bark / ring
+    '.': '00',  # transparent/background
+    'r': '20',  # main red
+    'R': '30',  # highlight red
+    'd': '10',  # dark red shadow
+    'g': '15',  # gray window
+    'y': '14',  # yellow light
+    'b': '00',  # black outline/wheels
 }
 
 def read_sprite(path):
@@ -13,12 +17,11 @@ def read_sprite(path):
     return lines
 
 sprites = [
-    read_sprite('log_left.txt'),
-    read_sprite('log_middle.txt'),
-    read_sprite('log_right.txt'),
+    read_sprite('car.txt'),
+
 ]
 
-with open('log.mem', 'w') as f:
+with open('car.mem', 'w') as f:
     for s in sprites:
         for y in range(32):
             for x in range(32):
