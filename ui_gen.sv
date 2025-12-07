@@ -36,8 +36,14 @@ module ui_gen(
 
     wire [9:0] colPos_local;
     wire [9:0] rowPos_local;
-    assign colPos_local = (colPos - X_TITLE_OFFSET) / TITLE_SCALE;
-    assign rowPos_local = (rowPos - Y_TITLE_OFFSET) / TITLE_SCALE;
+    wire [7:0] ascii;
+    
+    wire [5:0] charIndex;
+    wire [2:0] charPixCol;
+    assign charIndex = colPos_local / 8;
+    assign charPixCol = 8 - colPos_local % 8;
+
+    wire [7:0] charRowData;
 
     text_gen text_gen (
         .char_addr(ascii),
@@ -52,11 +58,28 @@ module ui_gen(
      *
      *********************************************/
 
+    parameter TITLE_LEN = 7;
     parameter TITLE_SCALE = 7;
     parameter TITLE_WIDTH = 56 * TITLE_SCALE;
     parameter TITLE_HEIGHT = 10 * TITLE_SCALE + 20;
     parameter X_TITLE_OFFSET = X_OFFSET_LEFT + (224 - TITLE_SCALE * 28);
     parameter Y_TITLE_OFFSET = 240 - TITLE_SCALE * 5 - 50;
+
+    wire [7:0] titlestr [0:6];
+        assign subtitlestr[0]  = "F";
+        assign subtitlestr[1]  = "R";
+        assign subtitlestr[2]  = "O";
+        assign subtitlestr[3]  = "G";
+        assign subtitlestr[4]  = "G";
+        assign subtitlestr[5]  = "E";
+        assign subtitlestr[6]  = "R";
+
+    wire [9:0] colPos_titlelocal;
+    wire [9:0] rowPos_titlelocal;
+    wire [7:0] titleascii;
+    assign colPos_titlelocal = (colPos - X_TITLE_OFFSET) / TITLE_SCALE;
+    assign rowPos_titlelocal = (rowPos - Y_TITLE_OFFSET) / TITLE_SCALE;
+    assign titleascii = titlestr[charIndex];
 
 
     /*********************************************
@@ -72,41 +95,37 @@ module ui_gen(
     parameter X_SUBTITLE_OFFSET = 640/2 - SUBTITLE_WIDTH / 2;
     parameter Y_SUBTITLE_OFFSET = 240 + 80;
 
+    wire [7:0] subtitlestr [0:21];
+        assign subtitlestr[0]  = "P";
+        assign subtitlestr[1]  = "R";
+        assign subtitlestr[2]  = "E";
+        assign subtitlestr[3]  = "S";
+        assign subtitlestr[4]  = "S";
+        assign subtitlestr[5]  = " ";
+        assign subtitlestr[6]  = "A";
+        assign subtitlestr[7]  = "N";
+        assign subtitlestr[8]  = "Y";
+        assign subtitlestr[9]  = " ";
+        assign subtitlestr[10] = "K";
+        assign subtitlestr[11] = "E";
+        assign subtitlestr[12] = "Y";
+        assign subtitlestr[13] = " ";
+        assign subtitlestr[14] = "T";
+        assign subtitlestr[15] = "O";
+        assign subtitlestr[16] = " ";
+        assign subtitlestr[17] = "S";
+        assign subtitlestr[18] = "T";
+        assign subtitlestr[19] = "A";
+        assign subtitlestr[20] = "R";
+        assign subtitlestr[21] = "T";
+
     wire [9:0] colPos_subtitlelocal;
     wire [9:0] rowPos_subtitlelocal;
-    wire [5:0] charIndex;
-    wire [7:0] str [0:21];
-        assign str[0]  = "P";
-        assign str[1]  = "R";
-        assign str[2]  = "E";
-        assign str[3]  = "S";
-        assign str[4]  = "S";
-        assign str[5]  = " ";
-        assign str[6]  = "A";
-        assign str[7]  = "N";
-        assign str[8]  = "Y";
-        assign str[9]  = " ";
-        assign str[10] = "K";
-        assign str[11] = "E";
-        assign str[12] = "Y";
-        assign str[13] = " ";
-        assign str[14] = "T";
-        assign str[15] = "O";
-        assign str[16] = " ";
-        assign str[17] = "S";
-        assign str[18] = "T";
-        assign str[19] = "A";
-        assign str[20] = "R";
-        assign str[21] = "T";
-    wire [7:0] ascii;
-    wire [7:0] charRowData;
-    wire [2:0] charPixCol;
-
+    wire [7:0] subtitleascii;
     assign colPos_subtitlelocal = (colPos - X_SUBTITLE_OFFSET) / SUBTITLE_SCALE;
     assign rowPos_subtitlelocal = (rowPos - Y_SUBTITLE_OFFSET) / SUBTITLE_SCALE;
-    assign charIndex = colPos_subtitlelocal / 8;
-    assign ascii = str[charIndex];
-    assign charPixCol = 8 - colPos_subtitlelocal % 8;
+    assign subtitleascii = subtitlestr[charIndex];
+
 
 
     /*********************************************
@@ -118,13 +137,11 @@ module ui_gen(
 
     parameter SCORE_LEN = 10;
     parameter SCORE_SCALE = 2;
-    parameter SCORE_WIDTH = SUBTITLE_LEN * 8 * SCORE_SCALE;
+    parameter SCORE_WIDTH = SCORE_LEN * 8 * SCORE_SCALE;
     parameter SCORE_HEIGHT = 8 * SCORE_SCALE;
     parameter X_SCORE_OFFSET = X_OFFSET_LEFT + 5;
     parameter Y_SCORE_OFFSET = 5;
-    wire [9:0] colPos_scorelocal;
-    wire [9:0] rowPos_scorelocal;
-    wire [5:0] scorecharIndex;
+
     wire [7:0] scorestr [0:10];
         assign scorestr[0]  = "S";
         assign scorestr[1]  = "C";
@@ -136,6 +153,13 @@ module ui_gen(
         assign scorestr[7]  = "0";
         assign scorestr[8]  = "0";
         assign scorestr[9]  = "0";
+
+    wire [9:0] colPos_scorelocal;
+    wire [9:0] rowPos_scorelocal;
+    wire [7:0] scoreascii;
+    assign colPos_scorelocal = (colPos - X_SCORE_OFFSET) / SCORE_SCALE;
+    assign rowPos_scorelocal = (rowPos - Y_SCORE_OFFSET) / SCORE_SCALE;
+    assign scoreascii = scorestr[charIndex];
 
     
 
@@ -150,7 +174,9 @@ module ui_gen(
         // ---------------------------------------------------------------------------------- SCORE
         if (colPos >= X_SCORE_OFFSET && colPos < X_SCORE_OFFSET + SCORE_WIDTH &&
             rowPos >= Y_SCORE_OFFSET && rowPos < Y_SCORE_OFFSET + SCORE_HEIGHT) begin
+            colPos_local = colPos_scorelocal;
             rowPos_local = rowPos_scorelocal;
+            ascii = scoreascii;
 
 
             if (charRowData[charPixCol] == 1'b1) begin
@@ -163,7 +189,9 @@ module ui_gen(
         // ---------------------------------------------------------------------------------- TITLE
             if (colPos >= X_TITLE_OFFSET && colPos < X_TITLE_OFFSET + TITLE_WIDTH &&
                 rowPos >= Y_TITLE_OFFSET && rowPos < Y_TITLE_OFFSET + TITLE_HEIGHT) begin
+                colPos_local = colPos_titlelocal;
                 rowPos_local = rowPos_titlelocal;
+                ascii = titleascii;
 
 
 
@@ -175,9 +203,9 @@ module ui_gen(
         // ---------------------------------------------------------------------------------- SUBTITLE
             end else if (colPos >= X_SUBTITLE_OFFSET && colPos < X_SUBTITLE_OFFSET + SUBTITLE_WIDTH &&
                          rowPos >= Y_SUBTITLE_OFFSET && rowPos < Y_SUBTITLE_OFFSET + SUBTITLE_HEIGHT) begin
+                colPos_local = colPos_subtitlelocal;
                 rowPos_local = rowPos_subtitlelocal;
-
-
+                ascii = subtitleascii;
 
                 if (charRowData[charPixCol] == 1'b1) begin
                     color = RED;
