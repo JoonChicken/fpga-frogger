@@ -22,13 +22,13 @@ always_ff @(posedge clk) begin
 	if (timer < 24'd3125000 & timerEnable) begin
 		timer <= timer + 1;
         
-        if (freqCount < 4474) begin
+        if (freqCount < 114091) begin
 			freqCount <= freqCount + 1;
 			winSoundOut <= 1;
-        end else if (freqCount < 8948) begin
+		end else if (freqCount < 228182) begin
 			freqCount <= freqCount + 1;
 			winSoundOut <= 0;
-        end else if (freqCount == 8948) begin
+		end else if (freqCount == 228182) begin
 			freqCount <= 0;
 			winSoundOut <=0;
 		end
@@ -36,26 +36,26 @@ always_ff @(posedge clk) begin
     end else if (timer < 24'd6250000 & timerEnable) begin
 		timer <= timer + 1;
 		
-        if (freqCount < 3986) begin
+        if (freqCount < 128061) begin
 			freqCount <= freqCount + 1;
 			winSoundOut <= 1;
-        end else if (freqCount < 7972) begin
+        end else if (freqCount < 256122) begin
 			freqCount <= freqCount + 1;
 			winSoundOut <= 0;
-        end else if (freqCount == 7972) begin
+        end else if (freqCount == 256122) begin
 			freqCount <= 0;
 			winSoundOut <=0;
 		end
 	    
     end else if (timer < 24'd12500000 & timerEnable) begin
 		timer <= timer + 1;
-        if (freqCount < 3551) begin
+		if (freqCount < 143757) begin
 			freqCount <= freqCount + 1;
 			winSoundOut <= 1;
-        end else if (freqCount < 7102) begin
+		end else if (freqCount < 287514) begin
 			freqCount <= freqCount + 1;
 			winSoundOut <= 0;
-        end else if (freqCount == 7102) begin
+		end else if (freqCount == 287514) begin
 			freqCount <= 0;
 			winSoundOut <=0;
 		end
