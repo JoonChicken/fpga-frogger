@@ -1,7 +1,7 @@
-module winAudio (
+module loseAudio (
     input logic enable,
     input logic clk,
-    output logic winSoundOut
+    output logic loseSoundOut
 );
 
 logic prevEnable;
@@ -24,13 +24,13 @@ always_ff @(posedge clk) begin
         
         if (freqCount < 114091) begin
 			freqCount <= freqCount + 1;
-			winSoundOut <= 1;
+			loseSoundOut <= 1;
 		end else if (freqCount < 228182) begin
 			freqCount <= freqCount + 1;
-			winSoundOut <= 0;
+			loseSoundOut <= 0;
 		end else if (freqCount == 228182) begin
 			freqCount <= 0;
-			winSoundOut <=0;
+			loseSoundOut <=0;
 		end
         
     end else if (timer < 24'd6250000 & timerEnable) begin
@@ -38,26 +38,26 @@ always_ff @(posedge clk) begin
 		
         if (freqCount < 128061) begin
 			freqCount <= freqCount + 1;
-			winSoundOut <= 1;
+			loseSoundOut <= 1;
         end else if (freqCount < 256122) begin
 			freqCount <= freqCount + 1;
-			winSoundOut <= 0;
+			loseSoundOut <= 0;
         end else if (freqCount == 256122) begin
 			freqCount <= 0;
-			winSoundOut <=0;
+			loseSoundOut <=0;
 		end
 	    
     end else if (timer < 24'd12500000 & timerEnable) begin
 		timer <= timer + 1;
 		if (freqCount < 143757) begin
 			freqCount <= freqCount + 1;
-			winSoundOut <= 1;
+			loseSoundOut <= 1;
 		end else if (freqCount < 287514) begin
 			freqCount <= freqCount + 1;
-			winSoundOut <= 0;
+			loseSoundOut <= 0;
 		end else if (freqCount == 287514) begin
 			freqCount <= 0;
-			winSoundOut <=0;
+			loseSoundOut <=0;
 		end
 
 	end else if (timer >= 24'd12500000) begin
