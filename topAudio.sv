@@ -1,6 +1,4 @@
-module topAudio #(
-    parameter HOLD_CYCLES = 12_500_000    // ~0.5s at 25 MHz
-)(
+module topAudio (
     input  logic clk,
     
     input  logic jumpForward,
@@ -23,7 +21,7 @@ module topAudio #(
     sound_t activeSound;
 
     // timer
-    logic [$clog2(HOLD_CYCLES):0] timer;
+    logic [23:0] timer;
     logic timerRunning;
 
     // instantiate sound generators
@@ -34,20 +32,20 @@ module topAudio #(
     //-------------------------------
     // Rising-edge pulses
     //-------------------------------
-    logic jumpAny, jumpAnyPrev;
+    logic anyJump, anyJumpPrev;
     logic winPrev, losePrev;
 
-    assign jumpAny = jumpForward | jumpBackward | jumpRight | jumpLeft;
+    assign anyJump = jumpForward | jumpBackward | jumpRight | jumpLeft;
 
     always_ff @(posedge clk) begin
-        jumpAnyPrev <= jumpAny;
+        anyJumpPrev <= anyJump;
         winPrev     <= win;
         losePrev    <= lose;
     end
 
-    wire jumpPulse = (jumpAny & ~jumpAnyPrev);
-    wire winPulse  = (win      & ~winPrev);
-    wire losePulse = (lose     & ~losePrev);
+    assign jumpPulse = (anyJump & ~anyJumpPrev);
+    assign winPulse  = (win & ~winPrev);
+    assign losePulse = (lose & ~losePrev);
 
     //-------------------------------
     // Timer + latch active sound
@@ -57,17 +55,17 @@ module topAudio #(
         // new request overrides whatever is playing
         if (jumpPulse) begin
             activeSound  <= JUMP;
-            timer        <= HOLD_CYCLES;
+            timer        <= 12500000;
             timerRunning <= 1'b1;
         end 
         else if (winPulse) begin
             activeSound  <= WIN_S;
-            timer        <= HOLD_CYCLES;
+            timer        <= 12500000;
             timerRunning <= 1'b1;
         end
         else if (losePulse) begin
             activeSound  <= LOSE_S;
-            timer        <= HOLD_CYCLES;
+            timer        <= 12500000;
             timerRunning <= 1'b1;
         end
 
