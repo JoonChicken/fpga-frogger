@@ -47,12 +47,12 @@ module top (
     logic [9:0] next_y;
     
     // instantiate cars
-    logic [9:0] lane0_car0_x, lane0_car1_x, lane0_car2_x;
-    logic [9:0] lane1_car0_x, lane1_car1_x, lane1_car2_x;
-    logic [9:0] lane2_car0_x, lane2_car1_x, lane2_car2_x;
-    logic [9:0] lane3_car0_x, lane3_car1_x, lane3_car2_x;
-    logic [9:0] lane4_car0_x, lane4_car1_x, lane4_car2_x;
-    logic [9:0] lane5_car0_x, lane5_car1_x, lane5_car2_x;
+    logic [9:0] lane0_car0_x;
+    logic [9:0] lane1_car0_x;
+    logic [9:0] lane2_car0_x;
+    logic [9:0] lane3_car0_x;
+    logic [9:0] lane4_car0_x;
+    logic [9:0] lane5_car0_x;
     // Car lengths for each lane
     logic [9:0] lane0_length, lane1_length, lane2_length, lane3_length, lane4_length, lane5_length;
 
@@ -119,23 +119,11 @@ module top (
         .clk(osc_25_1M),
         .reset(reset),
         .lane0_car0_x(lane0_car0_x),
-        .lane0_car1_x(lane0_car1_x),
-        .lane0_car2_x(lane0_car2_x),
         .lane1_car0_x(lane1_car0_x),
-        .lane1_car1_x(lane1_car1_x),
-        .lane1_car2_x(lane1_car2_x),
         .lane2_car0_x(lane2_car0_x),
-        .lane2_car1_x(lane2_car1_x),
-        .lane2_car2_x(lane2_car2_x),
         .lane3_car0_x(lane3_car0_x),
-        .lane3_car1_x(lane3_car1_x),
-        .lane3_car2_x(lane3_car2_x),
         .lane4_car0_x(lane4_car0_x),
-        .lane4_car1_x(lane4_car1_x),
-        .lane4_car2_x(lane4_car2_x),
         .lane5_car0_x(lane5_car0_x),
-        .lane5_car1_x(lane5_car1_x),
-        .lane5_car2_x(lane5_car2_x),
         .lane0_length(lane0_length),
         .lane1_length(lane1_length),
         .lane2_length(lane2_length),
@@ -196,23 +184,11 @@ module top (
         .colPos(colPos),
         .rowPos(rowPos),
         .lane0_car0_x(lane0_car0_x),
-        .lane0_car1_x(lane0_car1_x),
-        .lane0_car2_x(lane0_car2_x),
         .lane1_car0_x(lane1_car0_x),
-        .lane1_car1_x(lane1_car1_x),
-        .lane1_car2_x(lane1_car2_x),
         .lane2_car0_x(lane2_car0_x),
-        .lane2_car1_x(lane2_car1_x),
-        .lane2_car2_x(lane2_car2_x),
         .lane3_car0_x(lane3_car0_x),
-        .lane3_car1_x(lane3_car1_x),
-        .lane3_car2_x(lane3_car2_x),
         .lane4_car0_x(lane4_car0_x),
-        .lane4_car1_x(lane4_car1_x),
-        .lane4_car2_x(lane4_car2_x),
         .lane5_car0_x(lane5_car0_x),
-        .lane5_car1_x(lane5_car1_x),
-        .lane5_car2_x(lane5_car2_x),
         .lane0_length(lane0_length),
         .lane1_length(lane1_length),
         .lane2_length(lane2_length),
@@ -265,46 +241,27 @@ module top (
         frog_collision =
             // Lane 0 cars (3 cars)
             ((next_x < lane0_car0_x + lane0_length && next_x + frog_size > lane0_car0_x &&
-              next_y < CAR_LANE0_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE0_Y) ||
-             (next_x < lane0_car1_x + lane0_length && next_x + frog_size > lane0_car1_x &&
-              next_y < CAR_LANE0_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE0_Y) ||
-             (next_x < lane0_car2_x + lane0_length && next_x + frog_size > lane0_car2_x &&
               next_y < CAR_LANE0_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE0_Y)) ||
+
             // Lane 1 cars (3 cars)
             ((next_x < lane1_car0_x + lane1_length && next_x + frog_size > lane1_car0_x &&
-              next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE5_Y) ||
-             (next_x < lane1_car1_x + lane1_length && next_x + frog_size > lane1_car1_x &&
-              next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE5_Y) ||
-             (next_x < lane1_car2_x + lane1_length && next_x + frog_size > lane1_car2_x &&
-              next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE5_Y)) ||
+              next_y < CAR_LANE1_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE1_Y)) ||
+
             // Lane 2 cars (3 cars)
             ((next_x < lane2_car0_x + lane2_length && next_x + frog_size > lane2_car0_x &&
-              next_y < CAR_LANE2_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE2_Y) ||
-             (next_x < lane2_car1_x + lane2_length && next_x + frog_size > lane2_car1_x &&
-              next_y < CAR_LANE2_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE2_Y) ||
-             (next_x < lane2_car2_x + lane2_length && next_x + frog_size > lane2_car2_x &&
               next_y < CAR_LANE2_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE2_Y)) ||
+
             // Lane 3 cars (3 cars)
             ((next_x < lane3_car0_x + lane3_length && next_x + frog_size > lane3_car0_x &&
-              next_y < CAR_LANE3_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE3_Y) ||
-             (next_x < lane3_car1_x + lane3_length && next_x + frog_size > lane3_car1_x &&
-              next_y < CAR_LANE3_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE3_Y) ||
-             (next_x < lane3_car2_x + lane3_length && next_x + frog_size > lane3_car2_x &&
               next_y < CAR_LANE3_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE3_Y)) ||
+  
             // Lane 4 cars (3 cars)
             ((next_x < lane4_car0_x + lane4_length && next_x + frog_size > lane4_car0_x &&
               next_y < CAR_LANE4_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE4_Y) ||
-             (next_x < lane4_car1_x + lane4_length && next_x + frog_size > lane4_car1_x &&
-              next_y < CAR_LANE4_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE4_Y) ||
-             (next_x < lane4_car2_x + lane4_length && next_x + frog_size > lane4_car2_x &&
-              next_y < CAR_LANE4_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE4_Y)) ||
+
             // Lane 5 cars (3 cars)
             ((next_x < lane5_car0_x + lane5_length && next_x + frog_size > lane5_car0_x &&
-              next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE5_Y) ||
-             (next_x < lane5_car1_x + lane5_length && next_x + frog_size > lane5_car1_x &&
-              next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE5_Y) ||
-             (next_x < lane5_car2_x + lane5_length && next_x + frog_size > lane5_car2_x &&
-              next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > LOG_CAR_LANE5_Y));
+              next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE5_Y)));
         if (next_y < 224 && next_y > 32) begin
             log_collision = 
                 // Lane 0 logs (3 logs)
@@ -353,6 +310,8 @@ module top (
     end
     
     // reset if collision or reached end
+    logic off_screen;
+    // assign off_screen = next_x > 544 || next_x < 96;
     assign collision = frog_collision || !log_collision;
 
     logic reached_end;
@@ -360,6 +319,61 @@ module top (
     // check if we've reached the end
     always_comb begin
         reached_end = next_y < 32;
+    end
+
+    always_ff @(posedge clk) begin
+        if (!reset) begin
+    
+            // --- Frog rides lane 0 logs ---
+            if (next_y >= lane0_Y && next_y < lane0_Y + BLOCKSIZE) begin
+                if ((next_x + frog_size > lane0_log0_x && next_x < lane0_log0_x + lane0_loglength) ||
+                    (next_x + frog_size > lane0_log1_x && next_x < lane0_log1_x + lane0_loglength) ||
+                    (next_x + frog_size > lane0_log2_x && next_x < lane0_log2_x + lane0_loglength)) begin
+                    // lane 0 logs move right (or left depending on your game)
+                    frog_x <= frog_x + 1; 
+                end
+            end
+            if (next_y >= lane1_Y && next_y < lane1_Y + BLOCKSIZE) begin
+                if ((next_x + frog_size > lane1_log0_x && next_x < lane1_log0_x + lane1_loglength) ||
+                    (next_x + frog_size > lane1_log1_x && next_x < lane1_log1_x + lane1_loglength) ||
+                    (next_x + frog_size > lane1_log2_x && next_x < lane1_log2_x + lane1_loglength)) begin
+                    frog_x <= frog_x + 1; 
+                end
+            end
+            if (next_y >= lane2_Y && next_y < lane2_Y + BLOCKSIZE) begin
+                if ((next_x + frog_size > lane2_log0_x && next_x < lane2_log0_x + lane2_loglength) ||
+                    (next_x + frog_size > lane2_log1_x && next_x < lane2_log1_x + lane2_loglength) ||
+                    (next_x + frog_size > lane2_log2_x && next_x < lane2_log2_x + lane2_loglength)) begin
+                    // lane 0 logs move right (or left depending on your game)
+                    frog_x <= frog_x + 1; 
+                end
+            end
+            if (next_y >= lane3_Y && next_y < lane3_Y + BLOCKSIZE) begin
+                if ((next_x + frog_size > lane3_log0_x && next_x < lane3_log0_x + lane3_loglength) ||
+                    (next_x + frog_size > lane3_log1_x && next_x < lane3_log1_x + lane3_loglength) ||
+                    (next_x + frog_size > lane3_log2_x && next_x < lane3_log2_x + lane3_loglength)) begin
+                    // lane 0 logs move right (or left depending on your game)
+                    frog_x <= frog_x + 1; 
+                end
+            end
+            if (next_y >= lane4_Y && next_y < lane4_Y + BLOCKSIZE) begin
+                if ((next_x + frog_size > lane4_log0_x && next_x < lane4_log0_x + lane4_loglength) ||
+                    (next_x + frog_size > lane4_log1_x && next_x < lane4_log1_x + lane4_loglength) ||
+                    (next_x + frog_size > lane4_log2_x && next_x < lane4_log2_x + lane4_loglength)) begin
+                    // lane 0 logs move right (or left depending on your game)
+                    frog_x <= frog_x + 1; 
+                end
+            end
+            if (next_x < lane5_log0_x + lane5_loglength && next_x + frog_size > lane5_log0_x &&
+                next_y < LOG_LANE5_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE5_Y) ||
+                (next_x < lane5_log1_x + lane5_loglength && next_x + frog_size > lane5_log1_x &&
+                next_y < LOG_LANE5_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE5_Y) ||
+                (next_x < lane5_log2_x + lane5_loglength && next_x + frog_size > lane5_log2_x &&
+                next_y < LOG_LANE5_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE5_Y) begin
+                    frog_x <= frog_x + 1;
+                end
+            end
+        end
     end
 
     // color priority: frog > cars > background

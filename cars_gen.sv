@@ -4,28 +4,16 @@ module cars_gen (
     input  logic [9:0] rowPos,
     
     input  logic [9:0] lane0_car0_x,
-    input  logic [9:0] lane0_car1_x,
-    input  logic [9:0] lane0_car2_x,
     
     input  logic [9:0] lane1_car0_x,
-    input  logic [9:0] lane1_car1_x,
-    input  logic [9:0] lane1_car2_x,
 
     input  logic [9:0] lane2_car0_x,
-    input  logic [9:0] lane2_car1_x,
-    input  logic [9:0] lane2_car2_x,
 
     input  logic [9:0] lane3_car0_x,
-    input  logic [9:0] lane3_car1_x,
-    input  logic [9:0] lane3_car2_x,
 
     input  logic [9:0] lane4_car0_x,
-    input  logic [9:0] lane4_car1_x,
-    input  logic [9:0] lane4_car2_x,
 
     input  logic [9:0] lane5_car0_x,
-    input  logic [9:0] lane5_car1_x,
-    input  logic [9:0] lane5_car2_x,
 
     // car/truck lengths
     input  logic [9:0] lane0_length,
@@ -87,17 +75,7 @@ module cars_gen (
                 local_x     = colPos - lane0_car0_x;
                 local_y     = rowPos - LANE0_Y;
                 curr_length = lane0_length;
-            end else if (colPos >= lane0_car1_x && colPos < lane0_car1_x + lane0_length) begin
-                in_car      = 1'b1;
-                local_x     = colPos - lane0_car1_x;
-                local_y     = rowPos - LANE0_Y;
-                curr_length = lane0_length;
-            end else if (colPos >= lane0_car2_x && colPos < lane0_car2_x + lane0_length) begin
-                in_car      = 1'b1;
-                local_x     = colPos - lane0_car2_x;
-                local_y     = rowPos - LANE0_Y;
-                curr_length = lane0_length;
-            end
+            end 
         end
 
         // Lane 1
@@ -110,17 +88,7 @@ module cars_gen (
                 local_x     = colPos - lane1_car0_x;
                 local_y     = rowPos - LANE1_Y;
                 curr_length = lane1_length;
-            end else if (colPos >= lane1_car1_x && colPos < lane1_car1_x + lane1_length) begin
-                in_car      = 1'b1;
-                local_x     = colPos - lane1_car1_x;
-                local_y     = rowPos - LANE1_Y;
-                curr_length = lane1_length;
-            end else if (colPos >= lane1_car2_x && colPos < lane1_car2_x + lane1_length) begin
-                in_car      = 1'b1;
-                local_x     = colPos - lane1_car2_x;
-                local_y     = rowPos - LANE1_Y;
-                curr_length = lane1_length;
-            end
+            end 
         end
 
         // Lane 2
@@ -133,17 +101,7 @@ module cars_gen (
                 local_x     = colPos - lane2_car0_x;
                 local_y     = rowPos - LANE2_Y;
                 curr_length = lane2_length;
-            end else if (colPos >= lane2_car1_x && colPos < lane2_car1_x + lane2_length) begin
-                in_car      = 1'b1;
-                local_x     = colPos - lane2_car1_x;
-                local_y     = rowPos - LANE2_Y;
-                curr_length = lane2_length;
-            end else if (colPos >= lane2_car2_x && colPos < lane2_car2_x + lane2_length) begin
-                in_car      = 1'b1;
-                local_x     = colPos - lane2_car2_x;
-                local_y     = rowPos - LANE2_Y;
-                curr_length = lane2_length;
-            end
+            end 
         end
 
         // Lane 3
@@ -156,17 +114,7 @@ module cars_gen (
                 local_x     = colPos - lane3_car0_x;
                 local_y     = rowPos - LANE3_Y;
                 curr_length = lane3_length;
-            end else if (colPos >= lane3_car1_x && colPos < lane3_car1_x + lane3_length) begin
-                in_car      = 1'b1;
-                local_x     = colPos - lane3_car1_x;
-                local_y     = rowPos - LANE3_Y;
-                curr_length = lane3_length;
-            end else if (colPos >= lane3_car2_x && colPos < lane3_car2_x + lane3_length) begin
-                in_car      = 1'b1;
-                local_x     = colPos - lane3_car2_x;
-                local_y     = rowPos - LANE3_Y;
-                curr_length = lane3_length;
-            end
+            end 
         end
 
         // Lane 4
@@ -179,17 +127,7 @@ module cars_gen (
                 local_x     = colPos - lane4_car0_x;
                 local_y     = rowPos - LANE4_Y;
                 curr_length = lane4_length;
-            end else if (colPos >= lane4_car1_x && colPos < lane4_car1_x + lane4_length) begin
-                in_car      = 1'b1;
-                local_x     = colPos - lane4_car1_x;
-                local_y     = rowPos - LANE4_Y;
-                curr_length = lane4_length;
-            end else if (colPos >= lane4_car2_x && colPos < lane4_car2_x + lane4_length) begin
-                in_car      = 1'b1;
-                local_x     = colPos - lane4_car2_x;
-                local_y     = rowPos - LANE4_Y;
-                curr_length = lane4_length;
-            end
+            end 
         end
 
         // Lane 5
@@ -202,17 +140,7 @@ module cars_gen (
                 local_x     = colPos - lane5_car0_x;
                 local_y     = rowPos - LANE5_Y;
                 curr_length = lane5_length;
-            end else if (colPos >= lane5_car1_x && colPos < lane5_car1_x + lane5_length) begin
-                in_car      = 1'b1;
-                local_x     = colPos - lane5_car1_x;
-                local_y     = rowPos - LANE5_Y;
-                curr_length = lane5_length;
-            end else if (colPos >= lane5_car2_x && colPos < lane5_car2_x + lane5_length) begin
-                in_car      = 1'b1;
-                local_x     = colPos - lane5_car2_x;
-                local_y     = rowPos - LANE5_Y;
-                curr_length = lane5_length;
-            end
+            end 
         end
 
         // draw the current car we are in 
