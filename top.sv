@@ -52,6 +52,7 @@ module top (
     logic [9:0] lane2_car0_x;
     logic [9:0] lane3_car0_x;
     logic [9:0] lane4_car0_x;
+    logic [9:0] lane4_car1_x;
     logic [9:0] lane5_car0_x;
     // Car lengths for each lane
     logic [9:0] lane0_length, lane1_length, lane2_length, lane3_length, lane4_length, lane5_length;
@@ -147,6 +148,7 @@ module top (
         .lane2_car0_x(lane2_car0_x),
         .lane3_car0_x(lane3_car0_x),
         .lane4_car0_x(lane4_car0_x),
+        .lane4_car1_x(lane4_car1_x),
         .lane5_car0_x(lane5_car0_x),
         .lane0_length(lane0_length),
         .lane1_length(lane1_length),
@@ -206,6 +208,7 @@ module top (
         .lane2_car0_x(lane2_car0_x),
         .lane3_car0_x(lane3_car0_x),
         .lane4_car0_x(lane4_car0_x),
+        .lane4_car1_x(lane4_car1_x),
         .lane5_car0_x(lane5_car0_x),
         .lane0_length(lane0_length),
         .lane1_length(lane1_length),
@@ -229,7 +232,7 @@ module top (
     // Background color
     logic [5:0] bgcolor;
     background bg (
-        .on(1'b1),  // always enabled - background should always render
+        .on(1'b1),
         .colPos(colPos),
         .rowPos(rowPos),
         .color(bgcolor)
@@ -244,7 +247,7 @@ module top (
     parameter CAR_LANE4_Y = 12 * BLOCKSIZE;  // 384
     parameter CAR_LANE5_Y = 13 * BLOCKSIZE;  // 416
     
-    parameter LOG_LANE0_Y = 1 * BLOCKSIZE;
+    parameter LOG_LANE0_Y = BLOCKSIZE;
     parameter LOG_LANE1_Y = 2 * BLOCKSIZE;
     parameter LOG_LANE2_Y = 3 * BLOCKSIZE;
     parameter LOG_LANE3_Y = 4 * BLOCKSIZE;
@@ -284,9 +287,11 @@ module top (
 
         ((next_x < lane4_car0_x + lane4_length && next_x + frog_size > lane4_car0_x &&
             next_y < CAR_LANE4_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE4_Y) ||
+            (next_x < lane4_car1_x + lane4_length && next_x + frog_size > lane4_car1_x &&
+            next_y < CAR_LANE4_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE4_Y)) ||
 
         ((next_x < lane5_car0_x + lane5_length && next_x + frog_size > lane5_car0_x &&
-            next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE5_Y)));
+            next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE5_Y));
 
         in_lane0_log = 
             ((next_x < lane0_log0_x + lane0_loglength && next_x + frog_size > lane0_log0_x &&
@@ -319,7 +324,7 @@ module top (
             (next_x < lane5_log1_x + lane5_loglength && next_x + frog_size > lane5_log1_x &&
             next_y < LOG_LANE5_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE5_Y));
 
-        in_water = (next_y < 224 && next_y > 32) && !(in_lane0_log || in_lane1_log || in_lane2_log || in_lane3_log || in_lane4_log || in_lane5_log);
+        in_water = (next_y < 224 && next_y >= 32) && !(in_lane0_log || in_lane1_log || in_lane2_log || in_lane3_log || in_lane4_log || in_lane5_log);
 
         // check if off screen
         off_screen = next_x + 32 <= 96 || next_x >= 576;
@@ -327,7 +332,7 @@ module top (
 
     end
     
-    // reset if collision or reached end
+    // go back to starting position if collision
     assign collision = frog_collision || in_water || off_screen;
     
     // color priority

@@ -7,6 +7,7 @@ module cars (
     output logic [9:0] lane2_car0_x,
     output logic [9:0] lane3_car0_x,
     output logic [9:0] lane4_car0_x,
+    output logic [9:0] lane4_car1_x,
     output logic [9:0] lane5_car0_x,
     
     output logic [9:0] lane0_length,
@@ -72,6 +73,7 @@ module cars (
             lane2_car0_x <= X_OFFSET_LEFT;
             lane3_car0_x <= X_OFFSET_LEFT;
             lane4_car0_x <= X_OFFSET_LEFT;
+            lane4_car1_x <= X_OFFSET_LEFT + 2*CAR_OFFSET;
             lane5_car0_x <= X_OFFSET_LEFT;
             
             // reset speed counters
@@ -145,6 +147,11 @@ module cars (
                     lane4_car0_x <= X_OFFSET_LEFT - LANE4_LENGTH;
                 end else begin
                     lane4_car0_x <= lane4_car0_x + 1;
+                end 
+                if (lane4_car1_x >= X_OFFSET_RIGHT) begin
+                    lane4_car1_x <= X_OFFSET_LEFT - LANE4_LENGTH;
+                end else begin
+                    lane4_car1_x <= lane4_car1_x + 1;
                 end
                 
                 

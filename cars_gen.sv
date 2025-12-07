@@ -8,6 +8,7 @@ module cars_gen (
     input  logic [9:0] lane2_car0_x,
     input  logic [9:0] lane3_car0_x,
     input  logic [9:0] lane4_car0_x,
+    input  logic [9:0] lane4_car1_x,
     input  logic [9:0] lane5_car0_x,
 
     // car/truck lengths
@@ -136,7 +137,12 @@ module cars_gen (
                 local_x     = colPos - lane4_car0_x;
                 local_y     = rowPos - LANE4_Y;
                 curr_length = lane4_length;
-            end 
+            end else if (colPos >= lane4_car1_x && colPos < lane4_car1_x + lane4_length) begin
+                in_car      = 1'b1;
+                local_x     = colPos - lane4_car1_x;
+                local_y     = rowPos - LANE4_Y;
+                curr_length = lane4_length; 
+            end
         end
 
         // Lane 5

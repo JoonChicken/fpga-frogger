@@ -1,11 +1,9 @@
 palette = {
-    '.': '00',  # transparent/background
-    'r': '20',  # main red
-    'R': '30',  # highlight red
-    'd': '10',  # dark red shadow
-    'g': '15',  # gray window
-    'y': '14',  # yellow light
-    'b': '00',  # black outline/wheels
+    '.': "00",
+    'R': "30", # main red
+    'D': "20",
+    'G': "2F",
+    'Y': "3C",
 }
 
 def read_sprite(path):
@@ -18,7 +16,6 @@ def read_sprite(path):
 
 sprites = [
     read_sprite('car.txt'),
-
 ]
 
 with open('car.mem', 'w') as f:
