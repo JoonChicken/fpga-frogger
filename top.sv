@@ -59,6 +59,46 @@ module top (
 
     assign reset = ~button_reset;
     assign dpad_input = {button_right, button_up, button_down, button_left};
+    // ===================================================================
+
+
+    // Debouncing buttons ================================================
+    logic btn_up_tick;
+    logic btn_down_tick;
+    logic btn_left_tick;
+    logic btn_right_tick;
+
+    debounce db_up (
+        .clk(osc_25_1M),
+        .reset(reset),
+        .btn_in(button_up),
+        .db_level(),
+        .db_tick(btn_up_tick)
+    );
+
+    debounce db_down (
+        .clk(osc_25_1M),
+        .reset(reset),
+        .btn_in(button_down),
+        .db_level(),
+        .db_tick(btn_down_tick)
+    );
+    
+    debounce db_left (
+        .clk(osc_25_1M),
+        .reset(reset),
+        .btn_in(button_left),
+        .db_level(),
+        .db_tick(btn_left_tick)
+    );
+    
+    debounce db_right (
+        .clk(osc_25_1M),
+        .reset(reset),
+        .btn_in(button_right),
+        .db_level(),
+        .db_tick(btn_right_tick)
+    );
     // ====================================================================
     
 
@@ -118,7 +158,10 @@ module top (
         .init_x(init_x),
         .init_y(init_y),
         .frog_size(frog_size),
-        .dpad_input(dpad_input),
+        .btn_up_tick(btn_up_tick),
+        .btn_down_tick(btn_down_tick),
+        .btn_left_tick(btn_left_tick),
+        .btn_right_tick(btn_right_tick),
         .collision(collision),
         .reset(reset),
         .reached_end(reached_end),
@@ -235,6 +278,8 @@ module top (
         .state(state),
         .colPos(colPos),
         .rowPos(rowPos),
+        .btn_up_tick(btn_up_tick),
+        .btn_down_tick(btn_down_tick),
         .color(uicolor)
     );
     // ====================================================================

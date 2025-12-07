@@ -4,7 +4,10 @@ module frog (
     input logic [9:0] init_x,
     input logic [9:0] init_y,
     input logic [9:0] frog_size,
-    input logic [3:0] dpad_input,  // ordered left, down, up, right
+    input logic btn_up_tick,
+    input logic btn_down_tick,
+    input logic btn_left_tick,
+    input logic btn_right_tick,
     input logic collision,
     input logic reset,
     output logic reached_end,
@@ -15,43 +18,6 @@ module frog (
     parameter endarea = 15;
     enum logic [1:0] {MENU=0, PLAYING=1, DEAD=2, WIN=3} statetype;
 
-    // Debounced button signals
-    logic btn_up_tick;
-    logic btn_down_tick;
-    logic btn_left_tick;
-    logic btn_right_tick;
-
-    debounce db_up (
-        .clk(clk),
-        .reset(reset),
-        .btn_in(dpad_input[2]),
-        .db_level(),
-        .db_tick(btn_up_tick)
-    );
-
-    debounce db_down (
-        .clk(clk),
-        .reset(reset),
-        .btn_in(dpad_input[1]),
-        .db_level(),
-        .db_tick(btn_down_tick)
-    );
-    
-    debounce db_left (
-        .clk(clk),
-        .reset(reset),
-        .btn_in(dpad_input[0]),
-        .db_level(),
-        .db_tick(btn_left_tick)
-    );
-    
-    debounce db_right (
-        .clk(clk),
-        .reset(reset),
-        .btn_in(dpad_input[3]),
-        .db_level(),
-        .db_tick(btn_right_tick)
-    );
 
     logic initialized = 1'b0;
     always_ff @(posedge clk) begin

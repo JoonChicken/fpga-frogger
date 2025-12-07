@@ -3,7 +3,8 @@ module ui_gen(
     input [1:0] state,
     input logic [9:0] colPos,
     input logic [9:0] rowPos,
-
+    input logic btn_up_tick,
+    input logic btn_down_tick,
     output logic [5:0] color
 );
 
@@ -54,6 +55,59 @@ module ui_gen(
 
     /*********************************************
      *
+     *              SCORE GEN   
+     *
+     *********************************************/
+    
+
+    parameter SCORE_LEN = 10;
+    parameter SCORE_SCALE = 2;
+    parameter SCORE_WIDTH = SCORE_LEN * 8 * SCORE_SCALE;
+    parameter SCORE_HEIGHT = 8 * SCORE_SCALE;
+    parameter X_SCORE_OFFSET = X_OFFSET_LEFT + 5;
+    parameter Y_SCORE_OFFSET = 5;
+
+    wire [7:0] scorestr [0:9];
+        assign scorestr[0]  = "S";
+        assign scorestr[1]  = "C";
+        assign scorestr[2]  = "O";
+        assign scorestr[3]  = "R";
+        assign scorestr[4]  = "E";
+        assign scorestr[5]  = ":";
+        assign scorestr[6]  = " ";
+
+    wire [9:0] colPos_scorelocal;
+    wire [9:0] rowPos_scorelocal;
+    wire [7:0] scoreascii;
+    assign colPos_scorelocal = (colPos - X_SCORE_OFFSET) / SCORE_SCALE;
+    assign rowPos_scorelocal = (rowPos - Y_SCORE_OFFSET) / SCORE_SCALE;
+    assign scoreascii = scorestr[charIndex];
+
+    // Actual score tracker
+    wire [9:0] score;
+    wire [9:0] currY;
+
+    always_ff @(posedge clk) begin
+        if (state == MENU) begin
+            currY <= 0;
+            score <= 0;
+        end else if (btn_up_tick) begin
+            currY <= currY + 1;
+            if (currY > score) score <= currY;
+        end else if (btn_down_tick) begin
+            currY <= currY - 1;
+        end
+    end
+
+    always_comb begin
+        scorestr[7] = (score / 100) % 10 + 48;
+        scorestr[8] = (score / 10) % 10 + 48;
+        scorestr[9] = score % 10 + 48;
+    end
+
+
+    /*********************************************
+     *
      *              TITLE GEN   
      *
      *********************************************/
@@ -61,18 +115,18 @@ module ui_gen(
     parameter TITLE_LEN = 7;
     parameter TITLE_SCALE = 7;
     parameter TITLE_WIDTH = 56 * TITLE_SCALE;
-    parameter TITLE_HEIGHT = 10 * TITLE_SCALE + 20;
+    parameter TITLE_HEIGHT = 8 * TITLE_SCALE;
     parameter X_TITLE_OFFSET = X_OFFSET_LEFT + (224 - TITLE_SCALE * 28);
     parameter Y_TITLE_OFFSET = 240 - TITLE_SCALE * 5 - 50;
 
     wire [7:0] titlestr [0:6];
-        assign subtitlestr[0]  = "F";
-        assign subtitlestr[1]  = "R";
-        assign subtitlestr[2]  = "O";
-        assign subtitlestr[3]  = "G";
-        assign subtitlestr[4]  = "G";
-        assign subtitlestr[5]  = "E";
-        assign subtitlestr[6]  = "R";
+        assign titlestr[0]  = "F";
+        assign titlestr[1]  = "R";
+        assign titlestr[2]  = "O";
+        assign titlestr[3]  = "G";
+        assign titlestr[4]  = "G";
+        assign titlestr[5]  = "E";
+        assign titlestr[6]  = "R";
 
     wire [9:0] colPos_titlelocal;
     wire [9:0] rowPos_titlelocal;
@@ -93,7 +147,7 @@ module ui_gen(
     parameter SUBTITLE_WIDTH = SUBTITLE_LEN * 8 * SUBTITLE_SCALE;
     parameter SUBTITLE_HEIGHT = 8 * SUBTITLE_SCALE;
     parameter X_SUBTITLE_OFFSET = 640/2 - SUBTITLE_WIDTH / 2;
-    parameter Y_SUBTITLE_OFFSET = 240 + 80;
+    parameter Y_SUBTITLE_OFFSET = 240 + 90;
 
     wire [7:0] subtitlestr [0:21];
         assign subtitlestr[0]  = "P";
@@ -127,39 +181,16 @@ module ui_gen(
     assign subtitleascii = subtitlestr[charIndex];
 
 
+    // subtitle flashing
+    wire [23:0] flash_timer;
+    wire display_subtitle;
+    wire next_display_subtitle;
 
-    /*********************************************
-     *
-     *              SCORE GEN   
-     *
-     *********************************************/
-    
+    always_ff @(posedge clk) begin
+        flash_timer <= flash_timer + 1;
+        if (flash_timer == 'b0) display_subtitle <= ~display_subtitle;
+    end
 
-    parameter SCORE_LEN = 10;
-    parameter SCORE_SCALE = 2;
-    parameter SCORE_WIDTH = SCORE_LEN * 8 * SCORE_SCALE;
-    parameter SCORE_HEIGHT = 8 * SCORE_SCALE;
-    parameter X_SCORE_OFFSET = X_OFFSET_LEFT + 5;
-    parameter Y_SCORE_OFFSET = 5;
-
-    wire [7:0] scorestr [0:9];
-        assign scorestr[0]  = "S";
-        assign scorestr[1]  = "C";
-        assign scorestr[2]  = "O";
-        assign scorestr[3]  = "R";
-        assign scorestr[4]  = "E";
-        assign scorestr[5]  = ":";
-        assign scorestr[6]  = " ";
-        assign scorestr[7]  = "0";
-        assign scorestr[8]  = "0";
-        assign scorestr[9]  = "0";
-
-    wire [9:0] colPos_scorelocal;
-    wire [9:0] rowPos_scorelocal;
-    wire [7:0] scoreascii;
-    assign colPos_scorelocal = (colPos - X_SCORE_OFFSET) / SCORE_SCALE;
-    assign rowPos_scorelocal = (rowPos - Y_SCORE_OFFSET) / SCORE_SCALE;
-    assign scoreascii = scorestr[charIndex];
 
     
 
@@ -201,8 +232,9 @@ module ui_gen(
                     color = BLACK;
                 end
         // ---------------------------------------------------------------------------------- SUBTITLE
-            end else if (colPos >= X_SUBTITLE_OFFSET && colPos < X_SUBTITLE_OFFSET + SUBTITLE_WIDTH &&
-                         rowPos >= Y_SUBTITLE_OFFSET && rowPos < Y_SUBTITLE_OFFSET + SUBTITLE_HEIGHT) begin
+            end else if (display_subtitle &&
+                colPos >= X_SUBTITLE_OFFSET && colPos < X_SUBTITLE_OFFSET + SUBTITLE_WIDTH &&
+                rowPos >= Y_SUBTITLE_OFFSET && rowPos < Y_SUBTITLE_OFFSET + SUBTITLE_HEIGHT) begin
                 colPos_local = colPos_subtitlelocal;
                 rowPos_local = rowPos_subtitlelocal;
                 ascii = subtitleascii;
