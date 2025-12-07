@@ -8,6 +8,7 @@ module top (
     input logic button_right,
 
     input logic win_button,
+    input logic lose_button,
     
     output logic HSYNC,
     output logic VSYNC,
@@ -247,7 +248,7 @@ module top (
         .jumpLeft(button_left),
     
         .win(win_button),
-        // .lose,
+        .lose(lose_button),
         .sound(sound)
     );
 
