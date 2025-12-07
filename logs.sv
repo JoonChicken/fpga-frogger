@@ -41,7 +41,6 @@ module logs (
     parameter RIVER_WIDTH   = X_OFFSET_RIGHT - X_OFFSET_LEFT;
     parameter LOG_OFFSET    = 10'd150; // spacing between logs in a lane
 
-    // hard-coded log lengths
     parameter LANE0_LENGTH = 10'd64;
     parameter LANE1_LENGTH = 10'd96;
     parameter LANE2_LENGTH = 10'd96;
@@ -56,7 +55,6 @@ module logs (
     parameter LANE3_SPEED_DIVIDER = 24'd190000;
     parameter LANE4_SPEED_DIVIDER = 24'd350000;
     parameter LANE5_SPEED_DIVIDER = 24'd150000;
-
 
     logic [23:0] lane0_speed_counter;
     logic [23:0] lane1_speed_counter;
@@ -154,26 +152,26 @@ module logs (
             if (lane2_speed_counter >= LANE2_SPEED_DIVIDER) begin
                 lane2_speed_counter <= 24'd0;
 
-                if (lane2_log0_x <= X_OFFSET_LEFT - LANE2_LENGTH) lane2_log0_x <= X_OFFSET_RIGHT;
-                else lane2_log0_x <= lane2_log0_x - 1;
+                if (lane2_log0_x >= X_OFFSET_RIGHT) lane2_log0_x <= X_OFFSET_LEFT - LANE2_LENGTH;
+                else lane2_log0_x <= lane2_log0_x + 1;
 
-                if (lane2_log1_x <= X_OFFSET_LEFT - LANE2_LENGTH) lane2_log1_x <= X_OFFSET_RIGHT;
-                else lane2_log1_x <= lane2_log1_x - 1;
+                if (lane2_log1_x >= X_OFFSET_RIGHT) lane2_log1_x <= X_OFFSET_LEFT - LANE2_LENGTH;
+                else lane2_log1_x <= lane2_log1_x + 1;
 
-                lane2_log_speed <= -10'sd1;
+                lane2_log_speed <= 10'd1;
             end
 
           // Lane 3 logs
             if (lane3_speed_counter >= LANE3_SPEED_DIVIDER) begin
                 lane3_speed_counter <= 24'd0;
 
-                if (lane3_log0_x >= X_OFFSET_RIGHT) lane3_log0_x <= X_OFFSET_LEFT - LANE3_LENGTH;
-                else lane3_log0_x <= lane3_log0_x + 1;
+                if (lane3_log0_x <= X_OFFSET_LEFT - LANE3_LENGTH) lane3_log0_x <= X_OFFSET_RIGHT;
+                else lane3_log0_x <= lane3_log0_x - 1;
 
-                if (lane3_log1_x >= X_OFFSET_RIGHT) lane3_log1_x <= X_OFFSET_LEFT - LANE3_LENGTH;
-                else lane3_log1_x <= lane3_log1_x + 1;
+                if (lane3_log1_x <= X_OFFSET_LEFT - LANE3_LENGTH) lane3_log1_x <= X_OFFSET_RIGHT;
+                else lane3_log1_x <= lane3_log1_x - 1;
 
-                lane3_log_speed <= 10'd1;
+                lane3_log_speed <= -10'sd1;
             end
 
           // Lane 4 logs
