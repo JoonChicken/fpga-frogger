@@ -23,7 +23,7 @@ module topAudio (
 
     jumpAudio myJump (.clk(clk), .enable(enableJumpSound), .jumpSoundOut(jumpSoundIn));
     winAudio  myWin  (.clk(clk), .enable(enableWinSound),  .winSoundOut(winSoundIn));
-   // loseAudio myLose (.clk(clk), .enable(enableLoseSound), .loseSoundOut(loseSoundIn));
+    loseAudio myLose (.clk(clk), .enable(enableLoseSound), .loseSoundOut(loseSoundIn));
 
 
     
@@ -83,7 +83,7 @@ module topAudio (
         sound            = 1'b0;
         enableJumpSound  = 1'b0;
         enableWinSound   = 1'b0;
-   //     enableLoseSound  = 1'b0;
+        enableLoseSound  = 1'b0;
 
         case (activeSound)
             jumpState: begin
@@ -94,10 +94,10 @@ module topAudio (
                 sound          = winSoundIn;
                 enableWinSound = 1'b1;
             end
-    //        loseState: begin
-    //            sound           = loseSoundIn;
-   //             enableLoseSound = 1'b1;
-   //         end
+            loseState: begin
+                sound           = loseSoundIn;
+                enableLoseSound = 1'b1;
+            end
             default: ; // none
         endcase
     end
