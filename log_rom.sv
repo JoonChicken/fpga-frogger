@@ -5,7 +5,7 @@ module log_rom (
     logic [5:0] rom [0:3071];
 
     initial begin
-        $readmemh("log.mem", rom);
+        $readmemh("rom/log.mem", rom);
     end
     always_comb begin 
         data = rom[addr];

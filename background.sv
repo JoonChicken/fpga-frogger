@@ -32,11 +32,6 @@ module background(
     logic [7:0] x4tile_x;
     logic [7:0] x4tile_y;
     logic [2:0] x4pattern;
-    
-    // TODO x8 is for water, still unsure if it looks good
-    logic [7:0] x8tile_x;
-    logic [7:0] x8tile_y;
-    logic [2:0] x8pattern;
 
     always_comb begin
         color = BLACK;
@@ -45,15 +40,9 @@ module background(
         x4tile_y = 0;
         x4pattern = 0;
 
-        x8tile_x = 0;
-        x8tile_y = 0;
-        x8pattern = 0;
-
-        // make 8x8 and 4x4 tiles
+        // make 4x4 tiles
         x4tile_x = colPos[9:2];
         x4tile_y = rowPos[9:2];
-        x8tile_x = colPos[9:3];
-        x8tile_y = rowPos[9:3];
 
         river = (colPos >= X_OFFSET_LEFT) && (colPos <= X_OFFSET_RIGHT) &&
                 (rowPos >= 1 * BLOCKSIZE) && (rowPos <= 7 * BLOCKSIZE);
@@ -68,10 +57,6 @@ module background(
         x4pattern[0] = x4tile_x[2] ^ x4tile_y[1];
         x4pattern[1] = x4tile_x[1] ^ x4tile_y[2];
         x4pattern[2] = x4tile_x[0] ^ x4tile_y[0];
-
-        x8pattern[0] = x8tile_x[2] ^ x8tile_y[1];
-        x8pattern[1] = x8tile_x[1] ^ x8tile_y[2];
-        x8pattern[2] = x8tile_x[0] ^ x8tile_y[0];
 
         if (river) begin
             color = BLUE1;

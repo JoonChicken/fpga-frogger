@@ -81,7 +81,7 @@ module logs_gen(
         num_segments = 5'd0;
         part_sel     = 2'd1;
 
-    // lane 0
+        // lane 0
         if (!in_log &&
             rowPos >= LANE0_Y && rowPos < LANE0_Y + BLOCKSIZE &&
             colPos >= X_OFFSET_LEFT && colPos < X_OFFSET_RIGHT) begin
