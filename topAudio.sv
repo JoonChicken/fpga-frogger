@@ -29,7 +29,7 @@ module topAudio #(
     // instantiate sound generators
     jumpAudio myJump (.clk(clk), .enable(enableJumpSound), .jumpSoundOut(jumpSoundIn));
     winAudio  myWin  (.clk(clk), .enable(enableWinSound),  .winSoundOut(winSoundIn));
-    loseAudio myLose (.clk(clk), .enable(enableLoseSound), .loseSoundOut(loseSoundIn));
+   // loseAudio myLose (.clk(clk), .enable(enableLoseSound), .loseSoundOut(loseSoundIn));
 
     //-------------------------------
     // Rising-edge pulses
@@ -90,7 +90,7 @@ module topAudio #(
         sound            = 1'b0;
         enableJumpSound  = 1'b0;
         enableWinSound   = 1'b0;
-        enableLoseSound  = 1'b0;
+   //     enableLoseSound  = 1'b0;
 
         case (activeSound)
             JUMP: begin
@@ -101,10 +101,10 @@ module topAudio #(
                 sound          = winSoundIn;
                 enableWinSound = 1'b1;
             end
-            LOSE_S: begin
-                sound           = loseSoundIn;
-                enableLoseSound = 1'b1;
-            end
+    //        LOSE_S: begin
+    //            sound           = loseSoundIn;
+   //             enableLoseSound = 1'b1;
+   //         end
             default: ; // NONE
         endcase
     end
