@@ -220,8 +220,96 @@ module top (
               next_y < LANE5_Y + BLOCKSIZE && next_y + frog_size > LANE5_Y));
     end
 
+    frog_inwater = 
+    logic frog_collision;
+    logic on_log;
+
+// Check for log collision on water lanes
+on_log = 1'b0;
+
+    // Lane 0 (river)
+    if (next_y >= LANE0_Y && next_y < LANE0_Y + BLOCKSIZE) begin
+        if ((next_x + frog_size > lane0_log0_x && next_x < lane0_log0_x + lane0_loglength) ||
+            (next_x + frog_size > lane0_log1_x && next_x < lane0_log1_x + lane0_loglength) ||
+            (next_x + frog_size > lane0_log2_x && next_x < lane0_log2_x + lane0_loglength))
+            on_log = 1'b1;
+    end
+    
+    // Lane 1 (river)
+    if (next_y >= LANE1_Y && next_y < LANE1_Y + BLOCKSIZE) begin
+        if ((next_x + frog_size > lane1_log0_x && next_x < lane1_log0_x + lane1_loglength) ||
+            (next_x + frog_size > lane1_log1_x && next_x < lane1_log1_x + lane1_loglength) ||
+            (next_x + frog_size > lane1_log2_x && next_x < lane1_log2_x + lane1_loglength))
+            on_log = 1'b1;
+    end
+    
+    // Lane 2 (river)
+    if (next_y >= LANE2_Y && next_y < LANE2_Y + BLOCKSIZE) begin
+        if ((next_x + frog_size > lane2_log0_x && next_x < lane2_log0_x + lane2_loglength) ||
+            (next_x + frog_size > lane2_log1_x && next_x < lane2_log1_x + lane2_loglength) ||
+            (next_x + frog_size > lane2_log2_x && next_x < lane2_log2_x + lane2_loglength))
+            on_log = 1'b1;
+    end
+
+    // Lane 3 (river)
+    if (next_y >= LANE3_Y && next_y < LANE3_Y + BLOCKSIZE) begin
+        if ((next_x + frog_size > lane3_log0_x && next_x < lane3_log0_x + lane3_loglength) ||
+            (next_x + frog_size > lane3_log1_x && next_x < lane3_log1_x + lane3_loglength) ||
+            (next_x + frog_size > lane3_log2_x && next_x < lane3_log2_x + lane3_loglength))
+            on_log = 1'b1;
+    end
+    
+    // Lane 4 (river)
+    if (next_y >= LANE4_Y && next_y < LANE4_Y + BLOCKSIZE) begin
+        if ((next_x + frog_size > lane4_log0_x && next_x < lane4_log0_x + lane4_loglength) ||
+            (next_x + frog_size > lane4_log1_x && next_x < lane4_log1_x + lane4_loglength) ||
+            (next_x + frog_size > lane4_log2_x && next_x < lane4_log2_x + lane4_loglength))
+            on_log = 1'b1;
+    end
+    
+    // Lane 5 (river)
+    if (next_y >= LANE5_Y && next_y < LANE5_Y + BLOCKSIZE) begin
+        if ((next_x + frog_size > lane5_log0_x && next_x < lane5_log0_x + lane5_loglength) ||
+            (next_x + frog_size > lane5_log1_x && next_x < lane5_log1_x + lane5_loglength) ||
+            (next_x + frog_size > lane5_log2_x && next_x < lane5_log2_x + lane5_loglength))
+            on_log = 1'b1;
+    end
+
+    // Combine water collision logic with cars
+    frog_collision = 
+        // Cars (your existing code)
+        ((next_x < lane0_car0_x + lane0_length && next_x + frog_size > lane0_car0_x &&
+          next_y < LANE0_Y + BLOCKSIZE && next_y + frog_size > LANE0_Y) ||
+         (next_x < lane0_car1_x + lane0_length && next_x + frog_size > lane0_car1_x &&
+          next_y < LANE0_Y + BLOCKSIZE && next_y + frog_size > LANE0_Y) ||
+         (next_x < lane0_car2_x + lane0_length && next_x + frog_size > lane0_car2_x &&
+          next_y < LANE0_Y + BLOCKSIZE && next_y + frog_size > LANE0_Y) 
+         // ... repeat for lanes 1-5 cars
+        )
+        // Water lanes: die if in water lane but NOT on log
+        || ((next_y >= LANE0_Y && next_y < LANE5_Y + BLOCKSIZE) && !on_log);
+
     
     assign collision = frog_collision;
+
+        always_ff @(posedge clk) begin
+        if (!reset) begin
+    
+            // --- Frog rides lane 0 logs ---
+            if (next_y >= LANE0_Y && next_y < LANE0_Y + BLOCKSIZE) begin
+                if ((next_x + frog_size > lane0_log0_x && next_x < lane0_log0_x + lane0_loglength) ||
+                    (next_x + frog_size > lane0_log1_x && next_x < lane0_log1_x + lane0_loglength) ||
+                    (next_x + frog_size > lane0_log2_x && next_x < lane0_log2_x + lane0_loglength)) begin
+                    // Lane 0 logs move right (or left depending on your game)
+                    frog_x <= frog_x + 1; 
+                end
+            end
+    
+            // --- Repeat for other river lanes ---
+            // Use +1 or -1 depending on log direction
+        end
+    end
+
 
     // color priority: frog > cars > background
     always_comb begin
