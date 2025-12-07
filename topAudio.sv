@@ -12,29 +12,23 @@ module topAudio (
     output logic sound
 );
 
-    // incoming sound generators
     logic jumpSoundIn, winSoundIn, loseSoundIn;
     logic enableJumpSound, enableWinSound, enableLoseSound;
 
-    // latch which sound is currently playing
-    typedef enum logic [1:0] { NONE, JUMP, WIN_S, LOSE_S } sound_t;
-    sound_t activeSound;
+    typedef enum logic [1:0] {none, jumpState, winState, loseState} soundState;
+    soundState activeSound;
 
-    // timer
     logic [23:0] timer;
     logic timerRunning;
 
-    // instantiate sound generators
     jumpAudio myJump (.clk(clk), .enable(enableJumpSound), .jumpSoundOut(jumpSoundIn));
     winAudio  myWin  (.clk(clk), .enable(enableWinSound),  .winSoundOut(winSoundIn));
    // loseAudio myLose (.clk(clk), .enable(enableLoseSound), .loseSoundOut(loseSoundIn));
 
-    //-------------------------------
-    // Rising-edge pulses
-    //-------------------------------
+
+    
     logic anyJump, anyJumpPrev;
     logic winPrev, losePrev;
-
     assign anyJump = jumpForward | jumpBackward | jumpRight | jumpLeft;
 
     always_ff @(posedge clk) begin
@@ -47,32 +41,33 @@ module topAudio (
     assign winPulse  = (win & ~winPrev);
     assign losePulse = (lose & ~losePrev);
 
+
+    
     //-------------------------------
     // Timer + latch active sound
     //-------------------------------
     always_ff @(posedge clk) begin
         
         // new request overrides whatever is playing
-        if (jumpPulse) begin
-            activeSound  <= JUMP;
+        if (anyJump & ~anyJumpPrev) begin
+            activeSound  <= jumpState;
             timer        <= 12500000;
             timerRunning <= 1'b1;
         end 
-        else if (winPulse) begin
-            activeSound  <= WIN_S;
+        else if (win & ~winPrev) begin
+            activeSound  <= winState;
             timer        <= 12500000;
             timerRunning <= 1'b1;
         end
-        else if (losePulse) begin
-            activeSound  <= LOSE_S;
+        else if (lose & ~losePrev) begin
+            activeSound  <= loseState;
             timer        <= 12500000;
             timerRunning <= 1'b1;
         end
-
-        // countdown
+        
         else if (timerRunning) begin
             if (timer == 0) begin
-                activeSound  <= NONE;
+                activeSound  <= none;
                 timerRunning <= 1'b0;
             end else begin
                 timer <= timer - 1;
@@ -91,19 +86,19 @@ module topAudio (
    //     enableLoseSound  = 1'b0;
 
         case (activeSound)
-            JUMP: begin
+            jumpState: begin
                 sound           = jumpSoundIn;
                 enableJumpSound = 1'b1;
             end
-            WIN_S: begin
+            winState: begin
                 sound          = winSoundIn;
                 enableWinSound = 1'b1;
             end
-    //        LOSE_S: begin
+    //        loseState: begin
     //            sound           = loseSoundIn;
    //             enableLoseSound = 1'b1;
    //         end
-            default: ; // NONE
+            default: ; // none
         endcase
     end
 
