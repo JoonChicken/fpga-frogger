@@ -142,7 +142,7 @@ module ui_gen(
     parameter X_SCORE_OFFSET = X_OFFSET_LEFT + 5;
     parameter Y_SCORE_OFFSET = 5;
 
-    wire [7:0] scorestr [0:10];
+    wire [7:0] scorestr [0:9];
         assign scorestr[0]  = "S";
         assign scorestr[1]  = "C";
         assign scorestr[2]  = "O";
@@ -213,8 +213,16 @@ module ui_gen(
                     color = BLACK;
                 end
 
-            end 
+            end else begin
+                colPos_local = 'b0;
+                rowPos_local = 'b0;
+                ascii = 'b0;
+                color = BLACK;
+            end
         end else begin
+            colPos_local = 'b0;
+            rowPos_local = 'b0;
+            ascii = 'b0;
             color = BLACK;
         end
     end
