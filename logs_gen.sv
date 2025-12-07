@@ -1,5 +1,6 @@
 module logs_gen(
     input logic clk, 
+    
     input logic [9:0] colPos,
     input logic [9:0] rowPos,
 
@@ -52,12 +53,25 @@ module logs_gen(
     parameter LANE5_Y = 6 * BLOCKSIZE;   // 416
 
     // wood colors 
-    localparam [5:0] LOG_BODY = 6'b100010;
+    localparam [5:0] LOG_BODY = 6'b100101; 
 
-    logic in_log;
+    logic in_log; 
     logic [9:0] local_x;
     logic [9:0] local_y;
     logic [9:0] curr_length;
+    logic [11:0] sprite_addr;
+    logic [5:0] sprite_color; 
+
+    logic [4:0] tile_x, tile_y; 
+    logic [4:0] seg_index;
+    logic [4:0] num_segments;
+    logic [1:0] part_sel;     
+
+    log_rom log_sprite_rom (
+        .addr(sprite_addr),
+        .data(sprite_color),
+    );
+
 
     always_comb begin 
         color       = 6'b000000;
@@ -65,6 +79,12 @@ module logs_gen(
         local_x     = 10'd0;
         local_y     = 10'd0;
         curr_length = 10'd0;
+        sprite_addr = 6'd0;
+        tile_x       = 5'd0;
+        tile_y       = 5'd0;
+        seg_index    = 5'd0;
+        num_segments = 5'd0;
+        part_sel     = 2'd1;
 
     // lane 0 or row 2 on the screen 
         if (!in_log &&
@@ -209,9 +229,27 @@ module logs_gen(
         end
 
         if (in_log) begin
-            color = LOG_BODY;
-        end
+            seg_index = local_x[9:5];
+            tile_x    = local_x[4:0];
+            tile_y    = local_y[4:0];
+            num_segments = curr_length[9:5];
+
+            // choose which part of the log to use
+            if (seg_index == 5'd0) begin
+                // back
+                part_sel = 2'd0;
+            end else if (seg_index == (num_segments - 1)) begin
+                // front
+                part_sel = 2'd2;
+            end else begin
+                // middle
+                part_sel = 2'd1;
+            end
+            sprite_addr = {part_sel, tile_y, tile_x};
+            color = sprite_color;
+        end else begin 
+            color = 6'b000000; 
+        end 
     end
 
 endmodule 
-            

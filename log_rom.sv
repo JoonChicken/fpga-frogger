@@ -1,11 +1,11 @@
-module frog_rom (
+module log_rom (
     input logic [11:0] addr,
     output logic [5:0] data
 );
-    logic [5:0] rom [0:4095];
+    logic [5:0] rom [0:3071];
 
     initial begin
-        $readmemh("frog.mem", rom);
+        $readmemh("log.mem", rom);
     end
     always_comb begin 
         data = rom[addr];

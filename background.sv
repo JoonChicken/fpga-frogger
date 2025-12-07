@@ -19,6 +19,7 @@ module background(
 
     localparam [5:0] BLACK = 6'b000000;
     localparam [5:0] BLUE = 6'b000011;
+    
     localparam [9:0] X_OFFSET_LEFT = 10'd96;
     localparam [9:0] X_OFFSET_RIGHT = 10'd544;
     localparam [9:0] BLOCKSIZE = 10'd32;

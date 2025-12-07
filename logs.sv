@@ -43,18 +43,18 @@ module logs (
     // hard-coded log lengths
     parameter LANE0_LENGTH = 10'd64;
     parameter LANE1_LENGTH = 10'd96;
-    parameter LANE2_LENGTH = 10'd64;
+    parameter LANE2_LENGTH = 10'd96;
     parameter LANE3_LENGTH = 10'd96;
     parameter LANE4_LENGTH = 10'd64;
     parameter LANE5_LENGTH = 10'd96;
 
     // speed dividers (higher = slower)
-    parameter LANE0_SPEED_DIVIDER = 24'd150000;
-    parameter LANE1_SPEED_DIVIDER = 24'd200000;
-    parameter LANE2_SPEED_DIVIDER = 24'd150000;
-    parameter LANE3_SPEED_DIVIDER = 24'd200000;
-    parameter LANE4_SPEED_DIVIDER = 24'd150000;
-    parameter LANE5_SPEED_DIVIDER = 24'd200000;
+    parameter LANE0_SPEED_DIVIDER = 24'd200000;
+    parameter LANE1_SPEED_DIVIDER = 24'd100000;
+    parameter LANE2_SPEED_DIVIDER = 24'd275000;
+    parameter LANE3_SPEED_DIVIDER = 24'd190000;
+    parameter LANE4_SPEED_DIVIDER = 24'd350000;
+    parameter LANE5_SPEED_DIVIDER = 24'd150000;
 
 
     logic [23:0] lane0_speed_counter;
@@ -120,21 +120,21 @@ module logs (
             if (lane0_speed_counter >= LANE0_SPEED_DIVIDER) begin
                 lane0_speed_counter <= 24'd0;
 
-                if (lane0_log0_x >= X_OFFSET_RIGHT) lane0_log0_x <= X_OFFSET_LEFT - LANE0_LENGTH;
-                else lane0_log0_x <= lane0_log0_x + 1;
+                if (lane0_log0_x <= X_OFFSET_LEFT - LANE0_LENGTH) lane0_log0_x <= X_OFFSET_RIGHT + 96;
+                else lane0_log0_x <= lane0_log0_x - 1;
 
-                if (lane0_log1_x >= X_OFFSET_RIGHT) lane0_log1_x <= X_OFFSET_LEFT - LANE0_LENGTH;
-                else lane0_log1_x <= lane0_log1_x + 1;
+                if (lane0_log1_x <= X_OFFSET_LEFT - LANE0_LENGTH) lane0_log1_x <= X_OFFSET_RIGHT + 64;
+                else lane0_log1_x <= lane0_log1_x - 1;
 
-                if (lane0_log2_x >= X_OFFSET_RIGHT) lane0_log2_x <= X_OFFSET_LEFT - LANE0_LENGTH;
-                else lane0_log2_x <= lane0_log2_x + 1;
+                if (lane0_log2_x <= X_OFFSET_LEFT - LANE0_LENGTH) lane0_log2_x <= X_OFFSET_RIGHT;
+                else lane0_log2_x <= lane0_log2_x - 1;
             end
           
           // Lane 1 logs
             if (lane1_speed_counter >= LANE1_SPEED_DIVIDER) begin
                 lane1_speed_counter <= 24'd0;
 
-                if (lane1_log0_x >= X_OFFSET_RIGHT) lane1_log0_x <= X_OFFSET_LEFT - LANE1_LENGTH;
+                if (lane1_log0_x <= X_OFFSET_RIGHT) lane1_log0_x <= X_OFFSET_LEFT - LANE1_LENGTH;
                 else lane1_log0_x <= lane1_log0_x + 1;
 
                 if (lane1_log1_x >= X_OFFSET_RIGHT) lane1_log1_x <= X_OFFSET_LEFT - LANE1_LENGTH;
@@ -148,14 +148,14 @@ module logs (
             if (lane2_speed_counter >= LANE2_SPEED_DIVIDER) begin
                 lane2_speed_counter <= 24'd0;
 
-                if (lane2_log0_x >= X_OFFSET_RIGHT) lane2_log0_x <= X_OFFSET_LEFT - LANE2_LENGTH;
-                else lane2_log0_x <= lane2_log0_x + 1;
+                if (lane2_log0_x <= X_OFFSET_LEFT - LANE2_LENGTH) lane2_log0_x <= X_OFFSET_RIGHT;
+                else lane2_log0_x <= lane2_log0_x - 1;
 
-                if (lane2_log1_x >= X_OFFSET_RIGHT) lane2_log1_x <= X_OFFSET_LEFT - LANE2_LENGTH;
-                else lane2_log1_x <= lane2_log1_x + 1;
+                if (lane2_log1_x <= X_OFFSET_LEFT - LANE2_LENGTH) lane2_log1_x <= X_OFFSET_RIGHT;
+                else lane2_log1_x <= lane2_log1_x - 1;
 
-                if (lane2_log2_x >= X_OFFSET_RIGHT) lane2_log2_x <= X_OFFSET_LEFT - LANE2_LENGTH;
-                else lane2_log2_x <= lane2_log2_x + 1;
+                if (lane2_log2_x <= X_OFFSET_LEFT - LANE2_LENGTH) lane2_log2_x <= X_OFFSET_RIGHT;
+                else lane2_log2_x <= lane2_log2_x - 1;
             end
 
           // Lane 3 logs
@@ -176,14 +176,14 @@ module logs (
             if (lane4_speed_counter >= LANE4_SPEED_DIVIDER) begin
                 lane4_speed_counter <= 24'd0;
 
-                if (lane4_log0_x >= X_OFFSET_RIGHT) lane4_log0_x <= X_OFFSET_LEFT - LANE4_LENGTH;
-                else lane4_log0_x <= lane4_log0_x + 1;
+                if (lane4_log0_x <= X_OFFSET_LEFT - LANE4_LENGTH) lane4_log0_x <= X_OFFSET_RIGHT;
+                else lane4_log0_x <= lane4_log0_x - 1;
 
-                if (lane4_log1_x >= X_OFFSET_RIGHT) lane4_log1_x <= X_OFFSET_LEFT - LANE4_LENGTH;
-                else lane4_log1_x <= lane4_log1_x + 1;
+                if (lane4_log1_x <= X_OFFSET_LEFT - LANE4_LENGTH) lane4_log1_x <= X_OFFSET_RIGHT;
+                else lane4_log1_x <= lane4_log1_x - 1;
 
-                if (lane4_log2_x >= X_OFFSET_RIGHT) lane4_log2_x <= X_OFFSET_LEFT - LANE4_LENGTH;
-                else lane4_log2_x <= lane4_log2_x + 1;
+                if (lane4_log2_x <= X_OFFSET_LEFT - LANE4_LENGTH) lane4_log2_x <= X_OFFSET_RIGHT;
+                else lane4_log2_x <= lane4_log2_x - 1;
             end
 
           // Lane 5 logs

@@ -1,10 +1,7 @@
 palette = {
-    '.': '00',
-    'D': '05',
-    'L': '0C',
-    'O': '34',
-    'W': '3F',
-    'P': '01',
+    '.': '00',  # background / transparent
+    'H': '24',  # bright highlight ring
+    'B': '10',  # medium bark / ring
 }
 
 def read_sprite(path):
@@ -16,13 +13,12 @@ def read_sprite(path):
     return lines
 
 sprites = [
-    read_sprite('frog_front.txt'),
-    read_sprite('frog_back.txt'),
-    read_sprite('frog_left.txt'),
-    read_sprite('frog_right.txt'),
+    read_sprite('log_left.txt'),
+    read_sprite('log_middle.txt'),
+    read_sprite('log_right.txt'),
 ]
 
-with open('frog.mem', 'w') as f:
+with open('log.mem', 'w') as f:
     for s in sprites:
         for y in range(32):
             for x in range(32):

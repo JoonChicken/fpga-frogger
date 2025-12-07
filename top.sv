@@ -114,7 +114,7 @@ module top (
         .lane4_loglength(lane4_loglength),
         .lane5_loglength(lane5_loglength)
     );
-    
+
     cars cars_inst (
         .clk(osc_25_1M),
         .reset(reset),
@@ -243,63 +243,118 @@ module top (
 
     // collision detection between frog and cars
     parameter BLOCKSIZE = 10'd32;
-    parameter LANE0_Y = 8 * BLOCKSIZE;   // 256
-    parameter LANE1_Y = 9 * BLOCKSIZE;   // 288
-    parameter LANE2_Y = 10 * BLOCKSIZE;  // 320
-    parameter LANE3_Y = 11 * BLOCKSIZE;  // 352
-    parameter LANE4_Y = 12 * BLOCKSIZE;  // 384
-    parameter LANE5_Y = 13 * BLOCKSIZE;  // 416
+    parameter CAR_LANE0_Y = 8 * BLOCKSIZE;   // 256
+    parameter CAR_LANE1_Y = 9 * BLOCKSIZE;   // 288
+    parameter CAR_LANE2_Y = 10 * BLOCKSIZE;  // 320
+    parameter CAR_LANE3_Y = 11 * BLOCKSIZE;  // 352
+    parameter CAR_LANE4_Y = 12 * BLOCKSIZE;  // 384
+    parameter CAR_LANE5_Y = 13 * BLOCKSIZE;  // 416
+    
+    parameter LOG_LANE0_Y = 1 * BLOCKSIZE;
+    parameter LOG_LANE1_Y = 2 * BLOCKSIZE;
+    parameter LOG_LANE2_Y = 3 * BLOCKSIZE;
+    parameter LOG_LANE3_Y = 4 * BLOCKSIZE;
+    parameter LOG_LANE4_Y = 5 * BLOCKSIZE;
+    parameter LOG_LANE5_Y = 6 * BLOCKSIZE;
     
     logic frog_collision;
+    logic log_collision;
     always_comb begin
         // Check if frog overlaps with any car using car lengths 
-        frog_collision = 
+        log_collision = 1'b1;
+        frog_collision =
             // Lane 0 cars (3 cars)
             ((next_x < lane0_car0_x + lane0_length && next_x + frog_size > lane0_car0_x &&
-              next_y < LANE0_Y + BLOCKSIZE && next_y + frog_size > LANE0_Y) ||
+              next_y < CAR_LANE0_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE0_Y) ||
              (next_x < lane0_car1_x + lane0_length && next_x + frog_size > lane0_car1_x &&
-              next_y < LANE0_Y + BLOCKSIZE && next_y + frog_size > LANE0_Y) ||
+              next_y < CAR_LANE0_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE0_Y) ||
              (next_x < lane0_car2_x + lane0_length && next_x + frog_size > lane0_car2_x &&
-              next_y < LANE0_Y + BLOCKSIZE && next_y + frog_size > LANE0_Y)) ||
+              next_y < CAR_LANE0_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE0_Y)) ||
             // Lane 1 cars (3 cars)
             ((next_x < lane1_car0_x + lane1_length && next_x + frog_size > lane1_car0_x &&
-              next_y < LANE1_Y + BLOCKSIZE && next_y + frog_size > LANE1_Y) ||
+              next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE5_Y) ||
              (next_x < lane1_car1_x + lane1_length && next_x + frog_size > lane1_car1_x &&
-              next_y < LANE1_Y + BLOCKSIZE && next_y + frog_size > LANE1_Y) ||
+              next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE5_Y) ||
              (next_x < lane1_car2_x + lane1_length && next_x + frog_size > lane1_car2_x &&
-              next_y < LANE1_Y + BLOCKSIZE && next_y + frog_size > LANE1_Y)) ||
+              next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE5_Y)) ||
             // Lane 2 cars (3 cars)
             ((next_x < lane2_car0_x + lane2_length && next_x + frog_size > lane2_car0_x &&
-              next_y < LANE2_Y + BLOCKSIZE && next_y + frog_size > LANE2_Y) ||
+              next_y < CAR_LANE2_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE2_Y) ||
              (next_x < lane2_car1_x + lane2_length && next_x + frog_size > lane2_car1_x &&
-              next_y < LANE2_Y + BLOCKSIZE && next_y + frog_size > LANE2_Y) ||
+              next_y < CAR_LANE2_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE2_Y) ||
              (next_x < lane2_car2_x + lane2_length && next_x + frog_size > lane2_car2_x &&
-              next_y < LANE2_Y + BLOCKSIZE && next_y + frog_size > LANE2_Y)) ||
+              next_y < CAR_LANE2_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE2_Y)) ||
             // Lane 3 cars (3 cars)
             ((next_x < lane3_car0_x + lane3_length && next_x + frog_size > lane3_car0_x &&
-              next_y < LANE3_Y + BLOCKSIZE && next_y + frog_size > LANE3_Y) ||
+              next_y < CAR_LANE3_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE3_Y) ||
              (next_x < lane3_car1_x + lane3_length && next_x + frog_size > lane3_car1_x &&
-              next_y < LANE3_Y + BLOCKSIZE && next_y + frog_size > LANE3_Y) ||
+              next_y < CAR_LANE3_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE3_Y) ||
              (next_x < lane3_car2_x + lane3_length && next_x + frog_size > lane3_car2_x &&
-              next_y < LANE3_Y + BLOCKSIZE && next_y + frog_size > LANE3_Y)) ||
+              next_y < CAR_LANE3_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE3_Y)) ||
             // Lane 4 cars (3 cars)
             ((next_x < lane4_car0_x + lane4_length && next_x + frog_size > lane4_car0_x &&
-              next_y < LANE4_Y + BLOCKSIZE && next_y + frog_size > LANE4_Y) ||
+              next_y < CAR_LANE4_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE4_Y) ||
              (next_x < lane4_car1_x + lane4_length && next_x + frog_size > lane4_car1_x &&
-              next_y < LANE4_Y + BLOCKSIZE && next_y + frog_size > LANE4_Y) ||
+              next_y < CAR_LANE4_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE4_Y) ||
              (next_x < lane4_car2_x + lane4_length && next_x + frog_size > lane4_car2_x &&
-              next_y < LANE4_Y + BLOCKSIZE && next_y + frog_size > LANE4_Y)) ||
+              next_y < CAR_LANE4_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE4_Y)) ||
             // Lane 5 cars (3 cars)
             ((next_x < lane5_car0_x + lane5_length && next_x + frog_size > lane5_car0_x &&
-              next_y < LANE5_Y + BLOCKSIZE && next_y + frog_size > LANE5_Y) ||
+              next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE5_Y) ||
              (next_x < lane5_car1_x + lane5_length && next_x + frog_size > lane5_car1_x &&
-              next_y < LANE5_Y + BLOCKSIZE && next_y + frog_size > LANE5_Y) ||
+              next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > CAR_LANE5_Y) ||
              (next_x < lane5_car2_x + lane5_length && next_x + frog_size > lane5_car2_x &&
-              next_y < LANE5_Y + BLOCKSIZE && next_y + frog_size > LANE5_Y));
+              next_y < CAR_LANE5_Y + BLOCKSIZE && next_y + frog_size > LOG_CAR_LANE5_Y));
+        if (next_y < 224 && next_y > 32) begin
+            log_collision = 
+                // Lane 0 logs (3 logs)
+                ((next_x < lane0_log0_x + lane0_loglength && next_x + frog_size > lane0_log0_x &&
+                next_y < LOG_LANE0_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE0_Y) ||
+                (next_x < lane0_log1_x + lane0_loglength && next_x + frog_size > lane0_log1_x &&
+                next_y < LOG_LANE0_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE0_Y) ||
+                (next_x < lane0_log2_x + lane0_loglength && next_x + frog_size > lane0_log2_x &&
+                next_y < LOG_LANE0_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE0_Y)) ||
+                // Lane 1 logs (3 logs)
+                ((next_x < lane1_log0_x + lane1_loglength && next_x + frog_size > lane1_log0_x &&
+                next_y < LOG_LANE1_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE1_Y) ||
+                (next_x < lane1_log1_x + lane1_loglength && next_x + frog_size > lane1_log1_x &&
+                next_y < LOG_LANE1_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE1_Y) ||
+                (next_x < lane1_log2_x + lane1_loglength && next_x + frog_size > lane1_log2_x &&
+                next_y < LOG_LANE1_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE1_Y)) ||
+                // Lane 2 logs (3 logs)
+                ((next_x < lane2_log0_x + lane2_loglength && next_x + frog_size > lane2_log0_x &&
+                next_y < LOG_LANE2_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE2_Y) ||
+                (next_x < lane2_log1_x + lane2_loglength && next_x + frog_size > lane2_log1_x &&
+                next_y < LOG_LANE2_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE2_Y) ||
+                (next_x < lane2_log2_x + lane2_loglength && next_x + frog_size > lane2_log2_x &&
+                next_y < LOG_LANE2_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE2_Y)) ||
+                // Lane 3 logs (3 logs)
+                ((next_x < lane3_log0_x + lane3_loglength && next_x + frog_size > lane3_log0_x &&
+                next_y < LOG_LANE3_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE3_Y) ||
+                (next_x < lane3_log1_x + lane3_loglength && next_x + frog_size > lane3_log1_x &&
+                next_y < LOG_LANE3_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE3_Y) ||
+                (next_x < lane3_log2_x + lane3_loglength && next_x + frog_size > lane3_log2_x &&
+                next_y < LOG_LANE3_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE3_Y)) ||
+                // Lane 4 logs (3 logs)
+                ((next_x < lane4_log0_x + lane4_loglength && next_x + frog_size > lane4_log0_x &&
+                next_y < LOG_LANE4_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE4_Y) ||
+                (next_x < lane4_log1_x + lane4_loglength && next_x + frog_size > lane4_log1_x &&
+                next_y < LOG_LANE4_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE4_Y) ||
+                (next_x < lane4_log2_x + lane4_loglength && next_x + frog_size > lane4_log2_x &&
+                next_y < LOG_LANE4_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE4_Y)) ||
+                // Lane 5 logs (3 logs)
+                ((next_x < lane5_log0_x + lane5_loglength && next_x + frog_size > lane5_log0_x &&
+                next_y < LOG_LANE5_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE5_Y) ||
+                (next_x < lane5_log1_x + lane5_loglength && next_x + frog_size > lane5_log1_x &&
+                next_y < LOG_LANE5_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE5_Y) ||
+                (next_x < lane5_log2_x + lane5_loglength && next_x + frog_size > lane5_log2_x &&
+                next_y < LOG_LANE5_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE5_Y));
+        end
     end
     
     // reset if collision or reached end
-    assign collision = frog_collision;
+    assign collision = frog_collision || !log_collision;
+
     logic reached_end;
 
     // check if we've reached the end
