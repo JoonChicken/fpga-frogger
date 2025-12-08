@@ -6,8 +6,8 @@ module topAudio (
     input  logic jumpRight,
     input  logic jumpLeft,
     
-    input  logic win,
-    input  logic lose,
+    input  logic winIn,
+    input  logic loseIn,
     
     output logic sound
 );
