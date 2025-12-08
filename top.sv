@@ -446,6 +446,7 @@ module top (
     ui_gen ui_gen (
         .clk(osc_25_1M),
         .state(state),
+        .level(level),
         .colPos(colPos),
         .rowPos(rowPos),
         .btn_up_tick(btn_up_tick),

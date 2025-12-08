@@ -1,6 +1,7 @@
 module ui_gen(
     input logic clk,
     input [1:0] state,
+    input logic [3:0] level,
     input logic [9:0] colPos,
     input logic [9:0] rowPos,
     input logic btn_up_tick,
@@ -95,10 +96,10 @@ module ui_gen(
         if (state == MENU) begin
             currY <= 0;
             score <= 0;
-        end else if (btn_up_tick && state == PLAYING) begin
+        end else if (btn_up_tick && (state == PLAYING || state == MENU)) begin
             currY <= currY + 1;
             if (currY > score) score <= currY;
-        end else if (btn_down_tick && state == PLAYING) begin
+        end else if (btn_down_tick && (state == PLAYING || state == MENU)) begin
             currY <= currY - 1;
         end
 
@@ -124,12 +125,12 @@ module ui_gen(
      *
      *********************************************/
 
-    parameter LEVEL_LEN = 4;
+    parameter LEVEL_LEN = 5;
     parameter LEVEL_SCALE = 2;
     parameter LEVEL_WIDTH = LEVEL_LEN * 8 * LEVEL_SCALE;
     parameter LEVEL_HEIGHT = 8 * LEVEL_SCALE;
-    parameter X_LEVEL_OFFSET = X_OFFSET_RIGHT - 5;
-    parameter Y_LEVEL_OFFSET = 240 + 90;
+    parameter X_LEVEL_OFFSET = X_OFFSET_RIGHT - LEVEL_WIDTH - 5;
+    parameter Y_LEVEL_OFFSET = 5;
 
     wire [7:0] levelstr [0:4];
         assign levelstr[0]  = "L";
@@ -143,6 +144,10 @@ module ui_gen(
     assign colPos_levellocal = (colPos - X_LEVEL_OFFSET) / LEVEL_SCALE;
     assign rowPos_levellocal = (rowPos - Y_LEVEL_OFFSET) / LEVEL_SCALE;
     assign levelascii = levelstr[charIndex];
+
+    always_comb begin
+        levelstr[4] = level + 48;
+    end
 
 
 
