@@ -43,6 +43,7 @@ module top (
         .rowPos(rowPos)
     );
 
+
     topAudio topAudio (
         .clk(osc_25_1M),
         .jumpForward(button_up),
@@ -79,6 +80,7 @@ module top (
 
 
 
+    assign reset = ~reset_starter[3];
     // Game logic and controls ===========================================
     enum logic [1:0] {MENU, PLAYING, DEAD, WIN} statetype;
     enum logic [1:0] {UI_PRESS, NEXTLEVEL, CRASH, CELEBRATION} soundtype;
@@ -145,7 +147,13 @@ module top (
         .db_level(),
         .db_tick(btn_right_tick)
     );    
-
+    
+    logic [3:0] reset_starter = 0;
+    always_ff @(posedge osc_25_1M) begin
+        if (!reset_starter[3]) begin
+            reset_starter <= reset_starter + 1;
+        end
+    end
     
     // instantiate cars ======================================================
     logic [9:0] lane0_car0_x;
@@ -167,13 +175,7 @@ module top (
     logic [9:0] lane0_loglength, lane1_loglength, lane2_loglength, lane3_loglength, lane4_loglength, lane5_loglength;
     logic [9:0] lane0_log_speed, lane1_log_speed, lane2_log_speed, lane3_log_speed, lane4_log_speed, lane5_log_speed;
     
-    logic [3:0] reset_starter = 0;
-    always_ff @(posedge osc_25_1M) begin
-        if (!reset_starter[3]) begin
-            reset_starter <= reset_starter + 1;
-        end
-    end
-    assign reset = ~reset_starter[3];
+
 
 
     logic in_lane0_log;
