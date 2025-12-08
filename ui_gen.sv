@@ -63,7 +63,7 @@ module ui_gen(
     parameter SCORE_LEN = 16;
     parameter SCORE_SCALE = 2;
     parameter SCORE_WIDTH = SCORE_LEN * 8 * SCORE_SCALE;
-    parameter SCORE_HEIGHT = 8 * SCORE_SCALE;
+    parameter SCORE_HEIGHT = 7 * SCORE_SCALE;
     parameter X_SCORE_OFFSET = X_OFFSET_LEFT + 5;
     parameter Y_SCORE_OFFSET = 5;
 
@@ -128,7 +128,7 @@ module ui_gen(
     parameter LEVEL_LEN = 5;
     parameter LEVEL_SCALE = 2;
     parameter LEVEL_WIDTH = LEVEL_LEN * 8 * LEVEL_SCALE;
-    parameter LEVEL_HEIGHT = 8 * LEVEL_SCALE;
+    parameter LEVEL_HEIGHT = 7 * LEVEL_SCALE;
     parameter X_LEVEL_OFFSET = X_OFFSET_RIGHT - LEVEL_WIDTH - 5;
     parameter Y_LEVEL_OFFSET = 5;
 
@@ -160,7 +160,7 @@ module ui_gen(
     parameter TITLE_LEN = 7;
     parameter TITLE_SCALE = 7;
     parameter TITLE_WIDTH = 56 * TITLE_SCALE;
-    parameter TITLE_HEIGHT = 8 * TITLE_SCALE;
+    parameter TITLE_HEIGHT = 7 * TITLE_SCALE;
     parameter X_TITLE_OFFSET = X_OFFSET_LEFT + (224 - TITLE_SCALE * 28);
     parameter Y_TITLE_OFFSET = 240 - TITLE_SCALE * 5 - 50;
 
@@ -190,7 +190,7 @@ module ui_gen(
     parameter SUBTITLE_LEN = 22;
     parameter SUBTITLE_SCALE = 2;
     parameter SUBTITLE_WIDTH = SUBTITLE_LEN * 8 * SUBTITLE_SCALE;
-    parameter SUBTITLE_HEIGHT = 8 * SUBTITLE_SCALE;
+    parameter SUBTITLE_HEIGHT = 7 * SUBTITLE_SCALE;
     parameter X_SUBTITLE_OFFSET = 640/2 - SUBTITLE_WIDTH / 2;
     parameter Y_SUBTITLE_OFFSET = 240 + 90;
 
