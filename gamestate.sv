@@ -4,6 +4,8 @@ module gamestate (
     input logic reset,
     input logic collision,
     input logic reached_end,
+    output logic win,
+    output logic lose,
     output logic [1:0] state,
     output logic [3:0] level,
     output logic [1:0] soundselector,
@@ -28,6 +30,7 @@ module gamestate (
                     state <= WIN;
                     soundselector <= CELEBRATION;
                     playsound <= 1'b1;
+                    win <= 1'b1;
                 end else begin
                     level <= level + 1;
                     soundselector <= NEXTLEVEL;
@@ -39,6 +42,7 @@ module gamestate (
                 level <= 4'b0;
                 soundselector <= CRASH;
                 playsound <= 1'b1;
+                lose <= 1'b1;
             end
         end
 
