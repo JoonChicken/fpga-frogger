@@ -44,7 +44,38 @@ module top (
         .colPos(colPos),
         .rowPos(rowPos)
     );
-    // ===================================================================
+
+    topAudio topAudio (
+        .clk(osc_25_1M),
+        .jumpForward(button_up),
+        .jumpBackward(button_down),
+        .jumpRight(button_right),
+        .jumpLeft(button_left),
+    
+        .win(win_button),
+        .lose(lose_button),
+        .sound(sound)
+    );
+
+
+    /*********************************************
+     *
+     *                GAME STATE
+     *
+     *********************************************/
+
+    gamestate gamestate (
+        .clk(osc_25_1M),
+        .reset(reset),
+        .dpad_input(dpad_input),
+        .collision(collision),
+        .reached_end(reached_end),
+        .state(state),
+        .level(level),
+        .soundselector(soundselector),
+        .playsound(playsound)
+    );
+
 
 
     // Game logic and controls ===========================================
@@ -212,6 +243,32 @@ module top (
         .lane5_loglength(lane5_loglength)
     );
 
+    logic [5:0] logcolor;
+    logs_gen logs_gen_inst (
+        .clk(osc_25_1M),
+        .colPos(colPos),
+        .rowPos(rowPos),
+        .lane0_log0_x(lane0_log0_x),
+        .lane0_log1_x(lane0_log1_x),
+        .lane0_log2_x(lane0_log2_x),
+        .lane1_log0_x(lane1_log0_x),
+        .lane1_log1_x(lane1_log1_x),
+        .lane2_log0_x(lane2_log0_x),
+        .lane2_log1_x(lane2_log1_x),
+        .lane3_log0_x(lane3_log0_x),
+        .lane3_log1_x(lane3_log1_x),
+        .lane4_log0_x(lane4_log0_x),
+        .lane4_log1_x(lane4_log1_x),
+        .lane5_log0_x(lane5_log0_x),
+        .lane5_log1_x(lane5_log1_x),
+        .lane0_loglength(lane0_loglength),
+        .lane1_loglength(lane1_loglength),
+        .lane2_loglength(lane2_loglength),
+        .lane3_loglength(lane3_loglength),
+        .lane4_loglength(lane4_loglength),
+        .lane5_loglength(lane5_loglength),
+        .color(logcolor)
+    );
     // Cars logic =========================================================
     cars cars_inst (
         .clk(osc_25_1M),
@@ -243,9 +300,6 @@ module top (
         .facing(facing),
         .color(frogcolor)
     );
-
-    // logs rendering
-    logic [5:0] logcolor;
     
     // cars rendering
     logic [5:0] carcolor;
@@ -388,18 +442,7 @@ module top (
     // go back to starting position if collision
     assign collision = frog_collision || in_water || off_screen;
     
-    // color priority
 
-    assign collision = frog_collision;
-    // ====================================================================
-
-
-
-    /*********************************************
-     *
-     *                  RENDERING   
-     *           (in order of priority)
-     *********************************************/
 
     // Text/UI rendering ==================================================
     logic [5:0] uicolor;
@@ -414,7 +457,11 @@ module top (
     );
 
 
-    
+    /*********************************************
+     *
+     *                  RENDERING   
+     *           (in order of priority)
+     *********************************************/
     // cars rendering =====================================================
     logic [5:0] carcolor;
 
@@ -443,19 +490,6 @@ module top (
     end
     // ====================================================================
 
-
-
-    topAudio topAudio (
-        .clk(osc_25_1M),
-        .jumpForward(button_up),
-        .jumpBackward(button_down),
-        .jumpRight(button_right),
-        .jumpLeft(button_left),
-    
-        .win(win_button),
-        .lose(lose_button),
-        .sound(sound)
-    );
 
 
 endmodule
