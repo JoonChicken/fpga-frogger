@@ -67,7 +67,7 @@ module ui_gen(
     parameter X_SCORE_OFFSET = X_OFFSET_LEFT + 5;
     parameter Y_SCORE_OFFSET = 5;
 
-    wire [7:0] scorestr [0:9];
+    wire [7:0] scorestr [0:16];
         assign scorestr[0]  = "S";
         assign scorestr[1]  = "C";
         assign scorestr[2]  = "O";
@@ -75,6 +75,11 @@ module ui_gen(
         assign scorestr[4]  = "E";
         assign scorestr[5]  = ":";
         assign scorestr[6]  = " ";
+
+        assign scorestr[10]  = "H";
+        assign scorestr[11]  = "I";
+        assign scorestr[12]  = ":";
+        assign scorestr[13]  = " ";
 
     wire [9:0] colPos_scorelocal;
     wire [9:0] rowPos_scorelocal;
@@ -85,6 +90,7 @@ module ui_gen(
 
     // Actual score tracker
     wire [9:0] score;
+    wire [9:0] hiscore;
     wire [9:0] currY;
 
     always_ff @(posedge clk) begin
@@ -97,12 +103,20 @@ module ui_gen(
         end else if (btn_down_tick && state == PLAYING) begin
             currY <= currY - 1;
         end
+
+        if (score > hiscore) begin
+            hiscore <= score;
+        end
     end
 
     always_comb begin
         scorestr[7] = (score / 100) % 10 + 48;
         scorestr[8] = (score / 10) % 10 + 48;
         scorestr[9] = score % 10 + 48;
+
+        scorestr[14] = (hiscore / 100) % 10 + 48;
+        scorestr[15] = (hiscore / 10) % 10 + 48;
+        scorestr[16] = hiscore % 10 + 48;
     end
 
 

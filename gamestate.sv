@@ -28,6 +28,7 @@ module gamestate (
         
         if (reset) begin
             state <= MENU;
+            level <= 0;
         end else if (state == MENU && dpad_input != 4'b0000) begin
             state <= PLAYING;
             level <= 4'b0;
@@ -38,7 +39,11 @@ module gamestate (
         end else if (reached_end) begin
             winOut <= 1'b1;
             soundResetNext <= 1'b1;
-            state <= WIN;
+            if (level == 9) begin
+                level <= level + 1;
+            end else begin
+                state <= WIN;
+            end
         end 
     end
 

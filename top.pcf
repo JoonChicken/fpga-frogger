@@ -18,7 +18,4 @@ set_io color[2] 48
 set_io color[1] 45
 set_io color[0] 47
 
-set_io win_button 6
-set_io lose_button 28
-
 set_io sound 36
