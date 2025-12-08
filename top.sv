@@ -52,8 +52,8 @@ module top (
         .jumpRight(button_right),
         .jumpLeft(button_left),
     
-        .win(win_button),
-        .lose(lose_button),
+        .win(win),
+        .lose(lose),
         .sound(sound)
     );
 
@@ -73,7 +73,9 @@ module top (
         .state(state),
         .level(level),
         .soundselector(soundselector),
-        .playsound(playsound)
+        .playsound(playsound),
+        .win(win),
+        .lose(lose)
     );
 
 
@@ -91,6 +93,8 @@ module top (
     // The below are for playing sounds on level changes
     logic [1:0] soundselector;
     logic playsound;
+    logic win;
+    logic lose;
 
     assign reset = ~button_reset;
     assign dpad_input = {button_right, button_up, button_down, button_left};
