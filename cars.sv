@@ -66,7 +66,7 @@ module cars (
 
 
     // LEVEL INCREMENTER
-    logic [8:0] lanedivmult = 32 / ( 16 * level);
+    logic [8:0] lanedivmult = 32 / ( 14 * level);
 
     
     // counter initializes for each lane
@@ -98,7 +98,7 @@ module cars (
             lane4_speed_counter <= lane4_speed_counter + 1;
             lane5_speed_counter <= lane5_speed_counter + 1;
             
-            if (lane0_speed_counter >= LANE0_SPEED_DIVIDER) begin
+            if (lane0_speed_counter >= LANE0_SPEED_DIVIDER  * lanedivmult) begin
                 lane0_speed_counter <= 24'd0;
                 
                 if (lane0_car0_x >= X_OFFSET_RIGHT) begin
