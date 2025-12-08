@@ -3,7 +3,8 @@ module logs (
     input  logic reset,
 
     output logic [9:0] lane0_log0_x,
-    output logic [9:0] lane0_log1_x,
+    output logic [9:0] lane0_log1_x,    
+    output logic [9:0] lane0_log2_x,
 
     output logic [9:0] lane1_log0_x,
     output logic [9:0] lane1_log1_x,
@@ -74,7 +75,8 @@ module logs (
         if (reset) begin
             // Initialize log positions
             lane0_log0_x <= X_OFFSET_LEFT;
-            lane0_log1_x <= X_OFFSET_LEFT + 2*LOG_OFFSET;
+            lane0_log1_x <= X_OFFSET_LEFT + 1*LOG_OFFSET;
+            lane0_log2_x <= X_OFFSET_LEFT + 2*LOG_OFFSET;
 
             lane1_log0_x <= X_OFFSET_LEFT;
             lane1_log1_x <= X_OFFSET_LEFT + 2*LOG_OFFSET;
@@ -131,6 +133,9 @@ module logs (
 
                 if (lane0_log1_x <= X_OFFSET_LEFT - LANE0_LENGTH) lane0_log1_x <= X_OFFSET_RIGHT;
                 else lane0_log1_x <= lane0_log1_x - 1;
+
+                if (lane0_log2_x <= X_OFFSET_LEFT - LANE0_LENGTH) lane0_log2_x <= X_OFFSET_RIGHT;
+                else lane0_log2_x <= lane0_log2_x - 1;
 
                 lane0_log_speed <= -10'sd1;
             end

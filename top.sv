@@ -58,7 +58,7 @@ module top (
     logic [9:0] lane0_length, lane1_length, lane2_length, lane3_length, lane4_length, lane5_length;
 
     // instantiate logs
-    logic [9:0] lane0_log0_x, lane0_log1_x;
+    logic [9:0] lane0_log0_x, lane0_log1_x, lane0_log2_x;
     logic [9:0] lane1_log0_x, lane1_log1_x;
     logic [9:0] lane2_log0_x, lane2_log1_x;
     logic [9:0] lane3_log0_x, lane3_log1_x;
@@ -116,6 +116,7 @@ module top (
         .reset(reset),
         .lane0_log0_x(lane0_log0_x),
         .lane0_log1_x(lane0_log1_x),
+        .lane0_log2_x(lane0_log2_x),
         .lane1_log0_x(lane1_log0_x),
         .lane1_log1_x(lane1_log1_x),
         .lane2_log0_x(lane2_log0_x),
@@ -178,6 +179,7 @@ module top (
         .rowPos(rowPos),
         .lane0_log0_x(lane0_log0_x),
         .lane0_log1_x(lane0_log1_x),
+        .lane0_log2_x(lane0_log2_x),
         .lane1_log0_x(lane1_log0_x),
         .lane1_log1_x(lane1_log1_x),
         .lane2_log0_x(lane2_log0_x),
@@ -297,6 +299,8 @@ module top (
             ((next_x < lane0_log0_x + lane0_loglength && next_x + frog_size > lane0_log0_x &&
             next_y < LOG_LANE0_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE0_Y) ||
             (next_x < lane0_log1_x + lane0_loglength && next_x + frog_size > lane0_log1_x &&
+            next_y < LOG_LANE0_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE0_Y) || 
+            (next_x < lane0_log2_x + lane0_loglength && next_x + frog_size > lane0_log2_x &&
             next_y < LOG_LANE0_Y + BLOCKSIZE && next_y + frog_size > LOG_LANE0_Y));
         in_lane1_log =
             ((next_x < lane1_log0_x + lane1_loglength && next_x + frog_size > lane1_log0_x &&

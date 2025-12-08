@@ -7,6 +7,7 @@ module logs_gen(
 // three logs for each of the six lanes
     input logic [9:0] lane0_log0_x,
     input logic [9:0] lane0_log1_x,
+    input logic [9:0] lane0_log2_x,
     
     input logic [9:0] lane1_log0_x,
     input logic [9:0] lane1_log1_x,
@@ -94,6 +95,12 @@ module logs_gen(
             end else if (colPos >= lane0_log1_x && colPos < lane0_log1_x + lane0_loglength) begin
                 in_log      = 1'b1;
                 local_x     = colPos - lane0_log1_x;
+                local_y     = rowPos - LANE0_Y;
+                curr_length = lane0_loglength;
+            end
+            if (colPos >= lane0_log2_x && colPos < lane0_log2_x + lane0_loglength) begin
+                in_log      = 1'b1;
+                local_x     = colPos - lane0_log2_x;
                 local_y     = rowPos - LANE0_Y;
                 curr_length = lane0_loglength;
             end
