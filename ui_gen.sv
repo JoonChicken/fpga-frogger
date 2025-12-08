@@ -261,9 +261,9 @@ module ui_gen(
                 color = BLACK;
             end
         // ---------------------------------------------------------------------------------- LEVEL COUNTER
-        end else if (colPos >= X_SCORE_OFFSET && colPos < X_SCORE_OFFSET + SCORE_WIDTH &&
-                     rowPos >= Y_SCORE_OFFSET && rowPos < Y_SCORE_OFFSET + SCORE_HEIGHT) begin
-            colPos_local = colPos_levlelocal;
+        end else if (colPos >= X_LEVEL_OFFSET && colPos < X_LEVEL_OFFSET + LEVEL_WIDTH &&
+                     rowPos >= Y_LEVEL_OFFSET && rowPos < Y_LEVEL_OFFSET + LEVEL_HEIGHT) begin
+            colPos_local = colPos_levellocal;
             rowPos_local = rowPos_levellocal;
             ascii = levelascii;
 
