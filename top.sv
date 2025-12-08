@@ -57,8 +57,8 @@ module top (
         .jumpRight(button_right),
         .jumpLeft(button_left),
     
-        .win(win),
-        .lose(lose),
+        .winIn(win),
+        .loseIn(lose),
         .sound(sound)
     );
 
@@ -79,8 +79,8 @@ module top (
         .level(level),
         .soundselector(soundselector),
         .playsound(playsound),
-        .win(win),
-        .lose(lose)
+        .winOut(win),
+        .loseOut(lose)
     );
 
 

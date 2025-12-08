@@ -6,8 +6,8 @@ module topAudio (
     input  logic jumpRight,
     input  logic jumpLeft,
     
-    input  logic win,
-    input  logic lose,
+    input  logic winIn,
+    input  logic loseIn,
     
     output logic sound
 );
@@ -33,13 +33,13 @@ module topAudio (
 
     always_ff @(posedge clk) begin
         anyJumpPrev <= anyJump;
-        winPrev     <= win;
-        losePrev    <= lose;
+        winPrev     <= winIn;
+        losePrev    <= loseIn;
     end
 
     assign jumpPulse = (anyJump & ~anyJumpPrev);
-    assign winPulse  = (win & ~winPrev);
-    assign losePulse = (lose & ~losePrev);
+    assign winPulse  = (winIn & ~winPrev);
+    assign losePulse = (loseIn & ~losePrev);
 
 
     
@@ -51,15 +51,15 @@ module topAudio (
         // new request overrides whatever is playing
         if (anyJump & ~anyJumpPrev) begin
             activeSound  <= jumpState;
-            timer        <= 4183333;
+            timer        <= 2000000;
             timerRunning <= 1'b1;
         end 
-        else if (win & ~winPrev) begin
+        else if (winIn & ~winPrev) begin
             activeSound  <= winState;
             timer        <= 12500000;
             timerRunning <= 1'b1;
         end
-        else if (lose & ~losePrev) begin
+        else if (loseIn & ~losePrev) begin
             activeSound  <= loseState;
             timer        <= 12500000;
             timerRunning <= 1'b1;
