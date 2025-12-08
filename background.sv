@@ -21,7 +21,7 @@ module background(
     localparam [5:0] ENDAREA0 = 6'b001000;
     localparam [5:0] ENDAREA1 = 6'b001001;
     localparam [5:0] ENDAREA2 = 6'b011000;
-    localparam [5:0] ENDAREA4 = 6'b011110;  
+    localparam [5:0] ENDAREA3 = 6'b011110;  
 
     localparam [5:0] BLACK = 6'b000000;
     localparam [5:0] BLUE0 = 6'b000010;
@@ -79,7 +79,7 @@ module background(
                 3'b001: color = ENDAREA1;
                 3'b010: color = ENDAREA2;
                 3'b011: color = ENDAREA2;
-                3'b100: color = ENDAREA4;
+                3'b100: color = ENDAREA3;
                 3'b101, 3'b110: color = ENDAREA0;
                 default: color = ENDAREA3;
 
