@@ -253,26 +253,12 @@ module ui_gen(
             colPos_local = colPos_scorelocal;
             rowPos_local = rowPos_scorelocal;
             ascii = scoreascii;
-
-
-            if (charRowData[charPixCol] == 1'b1) begin
-                color = RED;
-            end else begin
-                color = BLACK;
-            end
         // ---------------------------------------------------------------------------------- LEVEL COUNTER
         end else if (colPos >= X_LEVEL_OFFSET && colPos < X_LEVEL_OFFSET + LEVEL_WIDTH &&
                      rowPos >= Y_LEVEL_OFFSET && rowPos < Y_LEVEL_OFFSET + LEVEL_HEIGHT) begin
             colPos_local = colPos_levellocal;
             rowPos_local = rowPos_levellocal;
             ascii = levelascii;
-
-
-            if (charRowData[charPixCol] == 1'b1) begin
-                color = RED;
-            end else begin
-                color = BLACK;
-            end
         end else if (display_title) begin
         // ---------------------------------------------------------------------------------- TITLE
             if (colPos >= X_TITLE_OFFSET && colPos < X_TITLE_OFFSET + TITLE_WIDTH &&
@@ -280,14 +266,6 @@ module ui_gen(
                 colPos_local = colPos_titlelocal;
                 rowPos_local = rowPos_titlelocal;
                 ascii = titleascii;
-
-
-
-                if (charRowData[charPixCol] == 1'b1) begin
-                    color = RED;
-                end else begin
-                    color = BLACK;
-                end
         // ---------------------------------------------------------------------------------- SUBTITLE
             end else if (display_subtitle &&
                 colPos >= X_SUBTITLE_OFFSET && colPos < X_SUBTITLE_OFFSET + SUBTITLE_WIDTH &&
@@ -295,12 +273,6 @@ module ui_gen(
                 colPos_local = colPos_subtitlelocal;
                 rowPos_local = rowPos_subtitlelocal;
                 ascii = subtitleascii;
-
-                if (charRowData[charPixCol] == 1'b1) begin
-                    color = RED;
-                end else begin
-                    color = BLACK;
-                end
 
             end else begin
                 colPos_local = 'b0;
@@ -312,6 +284,12 @@ module ui_gen(
             colPos_local = 'b0;
             rowPos_local = 'b0;
             ascii = 'b0;
+            color = BLACK;
+        end
+
+        if (charRowData[charPixCol] == 1'b1) begin
+            color = RED;
+        end else begin
             color = BLACK;
         end
     end
