@@ -4,8 +4,8 @@ module gamestate (
     input logic reset,
     input logic collision,
     input logic reached_end,
-    output logic win,
-    output logic lose,
+    output logic winOut,
+    output logic loseOut,
     output logic [1:0] state,
     output logic [3:0] level,
     output logic [1:0] soundselector,
@@ -20,8 +20,8 @@ module gamestate (
 
     always_ff @(posedge clk) begin
         if (soundResetNext) begin
-            win <= 1'b0;
-            lose <= 1'b0;
+            winOut <= 1'b0;
+            loseOut <= 1'b0;
             soundResetNext <= 0;
         end
     end
@@ -33,11 +33,11 @@ module gamestate (
             state <= PLAYING;
             level <= 4'b0;
         end else if (collision) begin
-            lose <= 1'b1;
+            loseOut <= 1'b1;
             soundResetNext <= 1'b1;
             state <= MENU;
         end else if (reached_end) begin
-            win <= 1'b1;
+            winOut <= 1'b1;
             soundResetNext <= 1'b1;
             state <= WIN;
         end 
