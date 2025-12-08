@@ -59,26 +59,25 @@ module ui_gen(
      *********************************************/
     
 
-    parameter SCORE_LEN = 17;
+    parameter SCORE_LEN = 16;
     parameter SCORE_SCALE = 2;
     parameter SCORE_WIDTH = SCORE_LEN * 8 * SCORE_SCALE;
     parameter SCORE_HEIGHT = 8 * SCORE_SCALE;
     parameter X_SCORE_OFFSET = X_OFFSET_LEFT + 5;
     parameter Y_SCORE_OFFSET = 5;
 
-    wire [7:0] scorestr [0:16];
+    wire [7:0] scorestr [0:15];
         assign scorestr[0]  = "S";
         assign scorestr[1]  = "C";
         assign scorestr[2]  = "O";
         assign scorestr[3]  = "R";
         assign scorestr[4]  = "E";
         assign scorestr[5]  = ":";
-        assign scorestr[6]  = " ";
 
+        assign scorestr[9]  = " ";
         assign scorestr[10]  = "H";
         assign scorestr[11]  = "I";
         assign scorestr[12]  = ":";
-        assign scorestr[13]  = " ";
 
     wire [9:0] colPos_scorelocal;
     wire [9:0] rowPos_scorelocal;
@@ -109,13 +108,13 @@ module ui_gen(
     end
 
     always_comb begin
-        scorestr[7] = (score / 100) % 10 + 48;
-        scorestr[8] = (score / 10) % 10 + 48;
-        scorestr[9] = score % 10 + 48;
+        scorestr[6] = (score / 100) % 10 + 48;
+        scorestr[7] = (score / 10) % 10 + 48;
+        scorestr[8] = score % 10 + 48;
 
-        scorestr[14] = (hiscore / 100) % 10 + 48;
-        scorestr[15] = (hiscore / 10) % 10 + 48;
-        scorestr[16] = hiscore % 10 + 48;
+        scorestr[13] = (hiscore / 100) % 10 + 48;
+        scorestr[14] = (hiscore / 10) % 10 + 48;
+        scorestr[15] = hiscore % 10 + 48;
     end
 
 
@@ -125,19 +124,18 @@ module ui_gen(
      *
      *********************************************/
 
-    parameter LEVEL_LEN = 7;
+    parameter LEVEL_LEN = 4;
     parameter LEVEL_SCALE = 2;
     parameter LEVEL_WIDTH = LEVEL_LEN * 8 * LEVEL_SCALE;
     parameter LEVEL_HEIGHT = 8 * LEVEL_SCALE;
     parameter X_LEVEL_OFFSET = X_OFFSET_RIGHT - 5;
     parameter Y_LEVEL_OFFSET = 240 + 90;
 
-    wire [7:0] levelstr [0:7];
+    wire [7:0] levelstr [0:4];
         assign levelstr[0]  = "L";
         assign levelstr[1]  = "V";
         assign levelstr[2]  = "L";
         assign levelstr[3]  = ":";
-        assign levelstr[4]  = " ";
 
     wire [9:0] colPos_levellocal;
     wire [9:0] rowPos_levellocal;
