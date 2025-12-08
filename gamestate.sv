@@ -40,9 +40,9 @@ module gamestate (
             winOut <= 1'b1;
             soundResetNext <= 1'b1;
             if (level == 9) begin
-                level <= level + 1;
-            end else begin
                 state <= WIN;
+            end else begin
+                level <= level + 1;
             end
         end 
     end
