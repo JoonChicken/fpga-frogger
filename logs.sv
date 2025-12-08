@@ -75,7 +75,7 @@ module logs (
         if (reset) begin
             // Initialize log positions
             lane0_log0_x <= X_OFFSET_LEFT;
-            lane0_log1_x <= X_OFFSET_LEFT + 1*LOG_OFFSET;
+            lane0_log1_x <= X_OFFSET_LEFT + LOG_OFFSET;
             lane0_log2_x <= X_OFFSET_LEFT + 2*LOG_OFFSET;
 
             lane1_log0_x <= X_OFFSET_LEFT;
