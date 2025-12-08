@@ -6,10 +6,15 @@ module top (
     input logic button_down,
     input logic button_left,
     input logic button_right,
+
+    input logic win_button,
+    input logic lose_button,
     
     output logic HSYNC,
     output logic VSYNC,
     output logic [5:0] color,
+
+    output logic sound
 );
 
     mypll mypll_inst(
@@ -351,6 +356,20 @@ module top (
             color = bgcolor;
         end
     end
+
+
+
+    topAudio topAudio (
+        .clk(osc_25_1M),
+        .jumpForward(button_up),
+        .jumpBackward(button_down),
+        .jumpRight(button_right),
+        .jumpLeft(button_left),
+    
+        .win(win_button),
+        .lose(lose_button),
+        .sound(sound)
+    );
 
 
 endmodule
