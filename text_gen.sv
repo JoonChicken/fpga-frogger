@@ -4,12 +4,12 @@ module text_gen (
     output logic [7:0] bitmap         // 8-bit bitmap for the row
 );
 
-    logic [7:0] rom [0:799];  // 256 chars * 8 rows = 2048 entries
+    logic [7:0] rom [0:719];  // 256 chars * 8 rows = 2048 entries
     // 100 chars only in this rom bc no need for not alphanumeric
     
     initial begin
         // Initialize all characters to 0
-        for (int i = 0; i < 799; i++) begin
+        for (int i = 0; i < 719; i++) begin
             rom[i] = 8'b0;
         end
         
