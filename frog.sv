@@ -4,7 +4,10 @@ module frog (
     input logic [9:0] init_x,
     input logic [9:0] init_y,
     input logic [9:0] frog_size,
-    input logic [3:0] dpad_input,  // ordered left, down, up, right
+    input logic btn_up_tick,
+    input logic btn_down_tick,
+    input logic btn_left_tick,
+    input logic btn_right_tick,
     input logic collision,
     input logic reached_end,
     input logic reset,
@@ -30,43 +33,6 @@ module frog (
     typedef enum logic [1:0] {UP=2'b00, DOWN=2'b01, LEFT=2'b10, RIGHT=2'b11} face_dir;
     face_dir facing;
 
-    // Debounced button signals
-    logic btn_up_tick;
-    logic btn_down_tick;
-    logic btn_left_tick;
-    logic btn_right_tick;
-
-    debounce db_up (
-        .clk(clk),
-        .reset(reset),
-        .btn_in(dpad_input[2]),
-        .db_level(),
-        .db_tick(btn_up_tick)
-    );
-
-    debounce db_down (
-        .clk(clk),
-        .reset(reset),
-        .btn_in(dpad_input[1]),
-        .db_level(),
-        .db_tick(btn_down_tick)
-    );
-    
-    debounce db_left (
-        .clk(clk),
-        .reset(reset),
-        .btn_in(dpad_input[0]),
-        .db_level(),
-        .db_tick(btn_left_tick)
-    );
-    
-    debounce db_right (
-        .clk(clk),
-        .reset(reset),
-        .btn_in(dpad_input[3]),
-        .db_level(),
-        .db_tick(btn_right_tick)
-    );
 
     logic initialized = 1'b0;
     logic signed [10:0] new_x;
@@ -81,7 +47,7 @@ module frog (
             facing <= UP;
 
         // playing state
-        end else if (state == 2'b01) begin 
+        end else if (state == PLAYING) begin 
             new_x = $signed(next_x);
             new_y = next_y;
             dx = 0;

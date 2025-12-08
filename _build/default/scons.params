@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 timestamp: "07191257100"
+=======
+timestamp: "06213344004"
+>>>>>>> uicolor
 arch: ICE40
 fpga_info {
   fpga_id: "ice40up5k-sg48"
@@ -10,6 +14,7 @@ fpga_info {
   }
 }
 environment {
+<<<<<<< HEAD
   platform_id: "darwin-arm64"
   is_windows: false
   terminal_mode: FORCE_TERMINAL
@@ -17,6 +22,15 @@ environment {
   debug_level: 0
   yosys_path: "/Users/jzhang/.apio/packages/oss-cad-suite/share/yosys"
   trellis_path: "/Users/jzhang/.apio/packages/oss-cad-suite/share/trellis"
+=======
+  platform_id: "windows-amd64"
+  is_windows: true
+  terminal_mode: FORCE_TERMINAL
+  theme_name: "light"
+  debug_level: 0
+  yosys_path: "C:\\Users\\jnsqu\\.apio\\packages\\oss-cad-suite\\share\\yosys"
+  trellis_path: "C:\\Users\\jnsqu\\.apio\\packages\\oss-cad-suite\\share\\trellis"
+>>>>>>> uicolor
 }
 apio_env_params {
   env_name: "default"
@@ -25,6 +39,10 @@ apio_env_params {
 }
 target {
   upload {
+<<<<<<< HEAD
     programmer_cmd: "iceprog -d d:1/6 $SOURCE"
+=======
+    programmer_cmd: "iceprog -d d:2/28 $SOURCE"
+>>>>>>> uicolor
   }
 }

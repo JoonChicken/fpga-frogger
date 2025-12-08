@@ -9,6 +9,7 @@ module top (
 
     input logic win_button,
     input logic lose_button,
+    input logic button_reset,
     
     output logic HSYNC,
     output logic VSYNC,
@@ -17,6 +18,16 @@ module top (
     output logic sound
 );
 
+    parameter BLACK = 6'b000000;
+
+
+    /*********************************************
+     *
+     *                  SETUP      
+     *
+     *********************************************/
+
+    // VGA Instantiation =================================================
     mypll mypll_inst(
         .ref_clk_i(osc_12M),
         .rst_n_i(1'b1),
@@ -33,23 +44,82 @@ module top (
         .colPos(colPos),
         .rowPos(rowPos)
     );
+    // ===================================================================
 
-    logic [1:0] state = 2'b01;
+
+    // Game logic and controls ===========================================
+    enum logic [1:0] {MENU, PLAYING, DEAD, WIN} statetype;
+    enum logic [1:0] {UI_PRESS, NEXTLEVEL, CRASH, CELEBRATION} soundtype;
+
+    logic [1:0] state;
     logic [3:0] dpad_input;
     logic collision;
     logic reset;
     logic reached_end;
-    
+    logic [3:0] level;
+    // The below are for playing sounds on level changes
+    logic [1:0] soundselector;
+    logic playsound;
+
+    assign reset = ~button_reset;
     assign dpad_input = {button_right, button_up, button_down, button_left};
-    
+    // ===================================================================
+
+
+    // Debouncing buttons ================================================
+    logic btn_up_tick;
+    logic btn_down_tick;
+    logic btn_left_tick;
+    logic btn_right_tick;
+
     // frog positioning parameters
     parameter init_x = 10'd320;
     parameter init_y = 10'd448;  // Start at the bottom (480 - frog_size = 448)
     parameter frog_size = 10'd32;
+
+    debounce db_up (
+        .clk(osc_25_1M),
+        .reset(reset),
+        .btn_in(button_up),
+        .db_level(),
+        .db_tick(btn_up_tick)
+    );
+
+    debounce db_down (
+        .clk(osc_25_1M),
+        .reset(reset),
+        .btn_in(button_down),
+        .db_level(),
+        .db_tick(btn_down_tick)
+    );
     
+    debounce db_left (
+        .clk(osc_25_1M),
+        .reset(reset),
+        .btn_in(button_left),
+        .db_level(),
+        .db_tick(btn_left_tick)
+    );
+    
+    debounce db_right (
+        .clk(osc_25_1M),
+        .reset(reset),
+        .btn_in(button_right),
+        .db_level(),
+        .db_tick(btn_right_tick)
+    );
+    // ====================================================================
+    
+
+    // frog positioning parameters ========================================
+    parameter init_x = 320;
+    parameter init_y = 448;  // Start at the bottom (480 - frog_size = 448)
+    parameter frog_size = 32;
     
     logic [9:0] next_x;
     logic [9:0] next_y;
+    // ====================================================================
+
     
     // instantiate cars
     logic [9:0] lane0_car0_x;
@@ -95,8 +165,10 @@ module top (
         .init_x(init_x),
         .init_y(init_y),
         .frog_size(frog_size),
-        .reached_end(reached_end),
-        .dpad_input(dpad_input),
+        .btn_up_tick(btn_up_tick),
+        .btn_down_tick(btn_down_tick),
+        .btn_left_tick(btn_left_tick),
+        .btn_right_tick(btn_right_tick),
         .collision(collision),
         .reset(reset),
         .lane0_log_speed(lane0_log_speed),
@@ -145,7 +217,10 @@ module top (
         .lane4_loglength(lane4_loglength),
         .lane5_loglength(lane5_loglength)
     );
+    // ====================================================================
 
+
+    // Cars logic =========================================================
     cars cars_inst (
         .clk(osc_25_1M),
         .reset(reset),
@@ -306,8 +381,10 @@ module top (
         .rowPos(rowPos),
         .color(bgcolor)
     );
-
-    // collision detection between frog and cars
+    // =====================================================================
+    
+    
+    // collision detection between frog and cars ==========================
     parameter BLOCKSIZE = 10'd32;
     parameter CAR_LANE0_Y = 8 * BLOCKSIZE;   // 256
     parameter CAR_LANE1_Y = 9 * BLOCKSIZE;   // 288
@@ -407,17 +484,122 @@ module top (
     assign collision = frog_collision || in_water || off_screen;
     
     // color priority
+
+    assign collision = frog_collision;
+    // ====================================================================
+
+
+
+    /*********************************************
+     *
+     *                  RENDERING   
+     *           (in order of priority)
+     *********************************************/
+
+    // Text/UI rendering ==================================================
+    logic [5:0] uicolor;
+    ui_gen ui_gen (
+        .clk(osc_25_1M),
+        .state(state),
+        .colPos(colPos),
+        .rowPos(rowPos),
+        .btn_up_tick(btn_up_tick),
+        .btn_down_tick(btn_down_tick),
+        .color(uicolor)
+    );
+    // ====================================================================
+
+
+    // Frog rendering =====================================================
+    logic [5:0] frogcolor;  
+    frog_gen frog_gen (
+        .clk(osc_25_1M),
+        .colPos(colPos),
+        .rowPos(rowPos),
+        .frog_x(next_x),
+        .frog_y(next_y),
+        .frog_size(frog_size),
+        .color(frogcolor)
+    );
+    // ====================================================================
+
+    
+    // cars rendering =====================================================
+    logic [5:0] carcolor;
+    cars_gen cars_gen_inst (
+        .clk(osc_25_1M),
+        .colPos(colPos),
+        .rowPos(rowPos),
+        .lane0_car0_x(lane0_car0_x),
+        .lane0_car1_x(lane0_car1_x),
+        .lane0_car2_x(lane0_car2_x),
+        .lane1_car0_x(lane1_car0_x),
+        .lane1_car1_x(lane1_car1_x),
+        .lane1_car2_x(lane1_car2_x),
+        .lane2_car0_x(lane2_car0_x),
+        .lane2_car1_x(lane2_car1_x),
+        .lane2_car2_x(lane2_car2_x),
+        .lane3_car0_x(lane3_car0_x),
+        .lane3_car1_x(lane3_car1_x),
+        .lane3_car2_x(lane3_car2_x),
+        .lane4_car0_x(lane4_car0_x),
+        .lane4_car1_x(lane4_car1_x),
+        .lane4_car2_x(lane4_car2_x),
+        .lane5_car0_x(lane5_car0_x),
+        .lane5_car1_x(lane5_car1_x),
+        .lane5_car2_x(lane5_car2_x),
+        .lane0_length(lane0_length),
+        .lane1_length(lane1_length),
+        .lane2_length(lane2_length),
+        .lane3_length(lane3_length),
+        .lane4_length(lane4_length),
+        .lane5_length(lane5_length),
+        .color(carcolor)
+    );
+    // ====================================================================
+
+
+    // grid/window color ==================================================
+    logic [5:0] gridcolor;
+    logic window_display_enable;
+    window window (
+        .clk(osc_25_1M),
+        .colPos(colPos),
+        .rowPos(rowPos),
+        .display_enable(window_display_enable),
+        .color(gridcolor)
+    );
+    // ====================================================================
+
+
+    // Background color ===================================================
+    logic [5:0] bgcolor;
+    background bg (
+        .on(1'b1),  // always enabled - background should always render
+        .colPos(colPos),
+        .rowPos(rowPos),
+        .color(bgcolor)
+    );
+    // ====================================================================
+
+
+
+    // Full render: front to back =========================================
+    // color priority: UI > frog > cars > background
     always_comb begin
-        if (frogcolor != 6'b000000) begin
+        if (uicolor != BLACK) begin
+            color = uicolor;
+        end else if (frogcolor != BLACK) begin
             color = frogcolor;
-        end else if (logcolor != 6'b000000) begin
+        end else if (logcolor != BLACK) begin
             color = logcolor;
-        end else if (carcolor != 6'b000000) begin
+        end else if (carcolor != BLACK) begin
             color = carcolor;
         end else begin
             color = bgcolor;
         end
     end
+    // ====================================================================
 
 
 

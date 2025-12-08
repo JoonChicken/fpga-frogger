@@ -6,6 +6,8 @@ set_io button_down 21
 set_io button_right 13
 set_io button_left 19
 
+set_io button_reset 31
+
 set_io HSYNC 46
 set_io VSYNC 2
 

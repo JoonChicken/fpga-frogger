@@ -1,6 +1,6 @@
 module gamestate (
     input logic clk,
-    input logic start,
+    input logic [3:0] dpad_input,
     input logic reset,
     input logic collision,
     input logic reached_end,
@@ -15,34 +15,14 @@ module gamestate (
     always_ff @(posedge clk) begin
         if (reset) begin
             state <= MENU;
+        end else if (state == MENU && dpad_input != 4'b0000) begin
+            state <= PLAYING;
             level <= 4'b0;
-            soundselector <= UI_PRESS;
-            playsound <= 1'b1;
-        end else if (state == MENU && start) begin
-            state <= PLAYING; 
-            soundselector <= UI_PRESS;
-            playsound <= 1'b1;
-        end else if (state == PLAYING) begin
-            if (reached_end) begin
-                if (level == 4'd15) begin
-                    state <= WIN;
-                    soundselector <= CELEBRATION;
-                    playsound <= 1'b1;
-                end else begin
-                    level <= level + 1;
-                    soundselector <= NEXTLEVEL;
-                    playsound <= 1'b1;
-                end
-            end
-            if (collision) begin
-                state <= DEAD;
-                level <= 4'b0;
-                soundselector <= CRASH;
-                playsound <= 1'b1;
-            end
+        end else if (collision) begin
+            state <= MENU;
+        end else if (reached_end) begin
+            state <= WIN;
         end
-
-        playsound <= 1'b0;
     end
 
 endmodule
