@@ -121,6 +121,35 @@ module ui_gen(
 
     /*********************************************
      *
+     *              LEVEL GEN    
+     *
+     *********************************************/
+
+    parameter LEVEL_LEN = 22;
+    parameter LEVEL_SCALE = 2;
+    parameter LEVEL_WIDTH = LEVEL_LEN * 8 * LEVEL_SCALE;
+    parameter LEVEL_HEIGHT = 8 * LEVEL_SCALE;
+    parameter X_LEVEL_OFFSET = X_OFFSET_RIGHT - 5;
+    parameter Y_LEVEL_OFFSET = 240 + 90;
+
+    wire [7:0] levelstr [0:7];
+        assign levelstr[0]  = "L";
+        assign levelstr[1]  = "V";
+        assign levelstr[2]  = "L";
+        assign levelstr[3]  = ":";
+        assign levelstr[4]  = " ";
+
+    wire [9:0] colPos_levellocal;
+    wire [9:0] rowPos_levellocal;
+    wire [7:0] levelascii;
+    assign colPos_levellocal = (colPos - X_LEVEL_OFFSET) / LEVEL_SCALE;
+    assign rowPos_levellocal = (rowPos - Y_LEVEL_OFFSET) / LEVEL_SCALE;
+    assign levelascii = levelstr[charIndex];
+
+
+
+    /*********************************************
+     *
      *              TITLE GEN   
      *
      *********************************************/

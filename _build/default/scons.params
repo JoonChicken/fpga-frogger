@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-timestamp: "07214412683"
-=======
-timestamp: "07213911719"
->>>>>>> 5bfade64cc68899be76ab35ee2cef128b265a4b2
+timestamp: "07215454363"
 arch: ICE40
 fpga_info {
   fpga_id: "ice40up5k-sg48"
