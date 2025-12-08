@@ -59,7 +59,7 @@ module ui_gen(
      *********************************************/
     
 
-    parameter SCORE_LEN = 10;
+    parameter SCORE_LEN = 17;
     parameter SCORE_SCALE = 2;
     parameter SCORE_WIDTH = SCORE_LEN * 8 * SCORE_SCALE;
     parameter SCORE_HEIGHT = 8 * SCORE_SCALE;
@@ -125,7 +125,7 @@ module ui_gen(
      *
      *********************************************/
 
-    parameter LEVEL_LEN = 22;
+    parameter LEVEL_LEN = 7;
     parameter LEVEL_SCALE = 2;
     parameter LEVEL_WIDTH = LEVEL_LEN * 8 * LEVEL_SCALE;
     parameter LEVEL_HEIGHT = 8 * LEVEL_SCALE;
@@ -257,7 +257,19 @@ module ui_gen(
             end else begin
                 color = BLACK;
             end
+        // ---------------------------------------------------------------------------------- LEVEL COUNTER
+        end else if (colPos >= X_SCORE_OFFSET && colPos < X_SCORE_OFFSET + SCORE_WIDTH &&
+                     rowPos >= Y_SCORE_OFFSET && rowPos < Y_SCORE_OFFSET + SCORE_HEIGHT) begin
+            colPos_local = colPos_levlelocal;
+            rowPos_local = rowPos_levellocal;
+            ascii = levelascii;
 
+
+            if (charRowData[charPixCol] == 1'b1) begin
+                color = RED;
+            end else begin
+                color = BLACK;
+            end
         end else if (display_title) begin
         // ---------------------------------------------------------------------------------- TITLE
             if (colPos >= X_TITLE_OFFSET && colPos < X_TITLE_OFFSET + TITLE_WIDTH &&
