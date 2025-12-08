@@ -26,7 +26,9 @@ module gamestate (
         end else if (reached_end) begin
             win <= 1'b1;
             state <= WIN;
-        end
+        end else 
+            win <= 1'b0;
+            lose <= 1'b0;
     end
 
 endmodule
