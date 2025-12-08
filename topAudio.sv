@@ -8,7 +8,7 @@ module topAudio (
     
     input  logic winIn,
     input  logic loseIn,
-    input logic [1:0] state;
+    input logic [1:0] state,
     
     output logic sound
 );
