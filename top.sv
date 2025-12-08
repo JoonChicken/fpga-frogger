@@ -7,8 +7,6 @@ module top (
     input logic button_left,
     input logic button_right,
 
-    input logic win_button,
-    input logic lose_button,
     input logic button_reset,
     
     output logic HSYNC,
