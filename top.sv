@@ -31,6 +31,13 @@ module top (
         .rst_n_i(1'b1),
         .outglobal_o(osc_25_1M)
     );
+    logic [3:0] reset_starter = 0;
+    always_ff @(posedge osc_25_1M) begin
+        if (!reset_starter[3]) begin
+            reset_starter <= reset_starter + 1;
+        end
+    end
+    assign reset = ~reset_starter[3];
 
     logic [9:0] colPos;
     logic [9:0] rowPos;
@@ -104,11 +111,16 @@ module top (
     logic btn_left_tick;
     logic btn_right_tick;
 
-    // frog positioning parameters
+    // frog positioning parameters ========================================
     parameter init_x = 10'd320;
-    parameter init_y = 10'd448;  // Start at the bottom (480 - frog_size = 448)
-    parameter frog_size = 10'd32;
+    parameter init_y = 10'd448;
+    parameter frog_size = 10'd32; 
+    logic [9:0] next_x;
+    logic [9:0] next_y;
+    // turn the frog to the direction the user inputs
+    logic [1:0] facing;
 
+    // debouncing buttons ================================================
     debounce db_up (
         .clk(osc_25_1M),
         .reset(reset),
@@ -141,15 +153,8 @@ module top (
         .db_tick(btn_right_tick)
     );    
 
-    // frog positioning parameters ========================================
-    parameter init_x = 320;
-    parameter init_y = 448;  // Start at the bottom (480 - frog_size = 448)
-    parameter frog_size = 32;
     
-    logic [9:0] next_x;
-    logic [9:0] next_y;
-    
-    // instantiate cars
+    // instantiate cars ======================================================
     logic [9:0] lane0_car0_x;
     logic [9:0] lane1_car0_x;
     logic [9:0] lane2_car0_x;
@@ -157,10 +162,9 @@ module top (
     logic [9:0] lane4_car0_x;
     logic [9:0] lane4_car1_x;
     logic [9:0] lane5_car0_x;
-    // Car lengths for each lane
     logic [9:0] lane0_length, lane1_length, lane2_length, lane3_length, lane4_length, lane5_length;
 
-    // instantiate logs
+    // instantiate logs ======================================================
     logic [9:0] lane0_log0_x, lane0_log1_x, lane0_log2_x;
     logic [9:0] lane1_log0_x, lane1_log1_x;
     logic [9:0] lane2_log0_x, lane2_log1_x;
@@ -177,8 +181,7 @@ module top (
         end
     end
     assign reset = ~reset_starter[3];
-    // turn the frog to the direction the user inputs
-    logic [1:0] facing;
+
 
     logic in_lane0_log;
     logic in_lane1_log;
@@ -246,7 +249,8 @@ module top (
         .lane5_loglength(lane5_loglength)
     );
 
-    logic [5:0] logcolor;
+
+
     logs_gen logs_gen_inst (
         .clk(osc_25_1M),
         .colPos(colPos),
@@ -292,7 +296,7 @@ module top (
     );
     
     
-    logic [5:0] frogcolor;  
+   
     frog_gen frog_gen (
         .clk(osc_25_1M),
         .colPos(colPos),
@@ -305,7 +309,6 @@ module top (
     );
     
     // cars rendering
-    logic [5:0] carcolor;
     cars_gen cars_gen_inst (
         .clk(osc_25_1M),
         .colPos(colPos),
@@ -325,8 +328,7 @@ module top (
         .lane5_length(lane5_length),
         .color(carcolor)
     );
-    //grid/window color
-    logic [5:0] gridcolor;
+
     logic window_display_enable;
     window window (
         .clk(osc_25_1M),
@@ -336,7 +338,7 @@ module top (
         .color(gridcolor)
     );
     // Background color
-    logic [5:0] bgcolor;
+
     background bg (
         .on(1'b1),
         .colPos(colPos),
@@ -367,12 +369,11 @@ module top (
     logic off_screen;
     logic reached_end;
 
-    logic signed [3:0] log_dx; // for every one
 
+    // frog collision detection between logs and cars ==========================
     always_comb begin
         // Check if frog overlaps with any car using car lengths 
         in_water = 1'b0;
-        log_dx = 1'b0;
         in_lane0_log = 1'b0;
         in_lane1_log = 1'b0;
         in_lane2_log = 1'b0;
@@ -465,15 +466,11 @@ module top (
      *                  RENDERING   
      *           (in order of priority)
      *********************************************/
-    // cars rendering =====================================================
+
+    logic [5:0] logcolor;
+    logic [5:0] frogcolor; 
     logic [5:0] carcolor;
-
-
-    // grid/window color ==================================================
     logic [5:0] gridcolor;
-    logic window_display_enable;
-
-    // Background color ===================================================
     logic [5:0] bgcolor;
 
     // Full render: front to back =========================================
@@ -491,8 +488,6 @@ module top (
             color = bgcolor;
         end
     end
-    // ====================================================================
-
 
 
 endmodule

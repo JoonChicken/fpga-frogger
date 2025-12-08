@@ -27,7 +27,6 @@ module ui_gen(
     logic display_title;
     assign display_title = state == MENU;
 
-
     /*********************************************
      *
      *              GEN SETUP     
