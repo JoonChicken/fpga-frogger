@@ -33,6 +33,13 @@ module top (
         .rst_n_i(1'b1),
         .outglobal_o(osc_25_1M)
     );
+    logic [3:0] reset_starter = 0;
+    always_ff @(posedge osc_25_1M) begin
+        if (!reset_starter[3]) begin
+            reset_starter <= reset_starter + 1;
+        end
+    end
+    assign reset = ~reset_starter[3];
 
     logic [9:0] colPos;
     logic [9:0] rowPos;
