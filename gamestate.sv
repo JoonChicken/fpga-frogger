@@ -14,6 +14,18 @@ module gamestate (
     enum logic [1:0] {MENU, PLAYING, DEAD, WIN} statetype;
     enum logic [1:0] {UI_PRESS, NEXTLEVEL, CRASH, CELEBRATION} soundtype;
 
+    logic prevWin;
+    logic prevLose;
+    logic soundResetNext;
+
+    always_ff @(posedge clk) begin
+        if (soundResetNext) begin
+            win <= 1'b0;
+            lose <= 1'b0;
+            soundResetNext <= 0;
+        end
+    end
+    
     always_ff @(posedge clk) begin
         if (reset) begin
             state <= MENU;
@@ -22,13 +34,13 @@ module gamestate (
             level <= 4'b0;
         end else if (collision) begin
             lose <= 1'b1;
+            soundResetNext <= 1'b1;
             state <= MENU;
         end else if (reached_end) begin
             win <= 1'b1;
+            soundResetNext <= 1'b1;
             state <= WIN;
-        end else 
-            win <= 1'b0;
-            lose <= 1'b0;
+        end 
     end
 
 endmodule
