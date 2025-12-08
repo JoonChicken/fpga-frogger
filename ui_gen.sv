@@ -60,25 +60,23 @@ module ui_gen(
      *********************************************/
     
 
-    parameter SCORE_LEN = 16;
+    parameter SCORE_LEN = 14;
     parameter SCORE_SCALE = 2;
     parameter SCORE_WIDTH = SCORE_LEN * 8 * SCORE_SCALE;
     parameter SCORE_HEIGHT = 7 * SCORE_SCALE;
     parameter X_SCORE_OFFSET = X_OFFSET_LEFT + 5;
     parameter Y_SCORE_OFFSET = 5;
 
-    wire [7:0] scorestr [0:15];
-        assign scorestr[0]  = "S";
-        assign scorestr[1]  = "C";
-        assign scorestr[2]  = "O";
-        assign scorestr[3]  = "R";
-        assign scorestr[4]  = "E";
-        assign scorestr[5]  = ":";
+    wire [7:0] scorestr [0:13];
+        assign scorestr[0]  = "P";
+        assign scorestr[1]  = "T";
+        assign scorestr[2]  = "S";
+        assign scorestr[3]  = ":";
 
-        assign scorestr[9]  = " ";
-        assign scorestr[10]  = "H";
-        assign scorestr[11]  = "I";
-        assign scorestr[12]  = ":";
+        assign scorestr[7]  = " ";
+        assign scorestr[8]  = "H";
+        assign scorestr[9]  = "I";
+        assign scorestr[10]  = ":";
 
     wire [9:0] colPos_scorelocal;
     wire [9:0] rowPos_scorelocal;
@@ -109,13 +107,13 @@ module ui_gen(
     end
 
     always_comb begin
-        scorestr[6] = (score / 100) % 10 + 48;
-        scorestr[7] = (score / 10) % 10 + 48;
-        scorestr[8] = score % 10 + 48;
+        scorestr[4] = (score / 100) % 10 + 48;
+        scorestr[5] = (score / 10) % 10 + 48;
+        scorestr[6] = score % 10 + 48;
 
-        scorestr[13] = (hiscore / 100) % 10 + 48;
-        scorestr[14] = (hiscore / 10) % 10 + 48;
-        scorestr[15] = hiscore % 10 + 48;
+        scorestr[11] = (hiscore / 100) % 10 + 48;
+        scorestr[12] = (hiscore / 10) % 10 + 48;
+        scorestr[13] = hiscore % 10 + 48;
     end
 
 
