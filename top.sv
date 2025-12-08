@@ -56,6 +56,7 @@ module top (
         .jumpBackward(button_down),
         .jumpRight(button_right),
         .jumpLeft(button_left),
+        .state(state),
     
         .winIn(win),
         .loseIn(lose),

@@ -8,13 +8,15 @@ module topAudio (
     
     input  logic winIn,
     input  logic loseIn,
+    input logic [1:0] state;
     
     output logic sound
 );
 
     logic jumpSoundIn, winSoundIn, loseSoundIn;
     logic enableJumpSound, enableWinSound, enableLoseSound;
-
+   
+    enum logic [1:0] {MENU, PLAYING, DEAD, WIN} statetype; 
     typedef enum logic [1:0] {none, jumpState, winState, loseState} soundState;
     soundState activeSound;
 
@@ -37,7 +39,7 @@ module topAudio (
         losePrev    <= loseIn;
     end
 
-    assign jumpPulse = (anyJump & ~anyJumpPrev);
+    assign jumpPulse = (anyJump & ~anyJumpPrev & state == PLAYING);
     assign winPulse  = (winIn & ~winPrev);
     assign losePulse = (loseIn & ~losePrev);
 
