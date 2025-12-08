@@ -17,16 +17,15 @@ module gamestate (
     logic prevWin;
     logic prevLose;
     logic soundResetNext;
-
+    
     always_ff @(posedge clk) begin
+        
         if (soundResetNext) begin
             winOut <= 1'b0;
             loseOut <= 1'b0;
             soundResetNext <= 0;
         end
-    end
-    
-    always_ff @(posedge clk) begin
+        
         if (reset) begin
             state <= MENU;
         end else if (state == MENU && dpad_input != 4'b0000) begin
