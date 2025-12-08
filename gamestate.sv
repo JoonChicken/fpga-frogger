@@ -21,8 +21,10 @@ module gamestate (
             state <= PLAYING;
             level <= 4'b0;
         end else if (collision) begin
+            lose <= 1'b1;
             state <= MENU;
         end else if (reached_end) begin
+            win <= 1'b1;
             state <= WIN;
         end
     end
