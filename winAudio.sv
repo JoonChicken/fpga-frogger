@@ -7,7 +7,7 @@ module winAudio (
 logic prevEnable;
 logic [16:0] freqCount;
 logic [23:0] timer;
-
+logic timerEnable;
 
     //play sound at certain frequency until timer reaches desired duration
 always_ff @(posedge clk) begin
