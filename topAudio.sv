@@ -33,13 +33,13 @@ module topAudio (
 
     always_ff @(posedge clk) begin
         anyJumpPrev <= anyJump;
-        winPrev     <= win;
-        losePrev    <= lose;
+        winPrev     <= winIn;
+        losePrev    <= loseIn;
     end
 
     assign jumpPulse = (anyJump & ~anyJumpPrev);
-    assign winPulse  = (win & ~winPrev);
-    assign losePulse = (lose & ~losePrev);
+    assign winPulse  = (winIn & ~winPrev);
+    assign losePulse = (loseIn & ~losePrev);
 
 
     
@@ -54,12 +54,12 @@ module topAudio (
             timer        <= 2000000;
             timerRunning <= 1'b1;
         end 
-        else if (win & ~winPrev) begin
+        else if (winIn & ~winPrev) begin
             activeSound  <= winState;
             timer        <= 12500000;
             timerRunning <= 1'b1;
         end
-        else if (lose & ~losePrev) begin
+        else if (loseIn & ~losePrev) begin
             activeSound  <= loseState;
             timer        <= 12500000;
             timerRunning <= 1'b1;
