@@ -1,8 +1,8 @@
 set_io osc_12M 20
 set_io osc_25_1M 10
 
-set_io button_up 21
-set_io button_down 12
+set_io button_up 12
+set_io button_down 21
 set_io button_right 13
 set_io button_left 19
 
@@ -15,5 +15,8 @@ set_io color[3] 3
 set_io color[2] 48
 set_io color[1] 45
 set_io color[0] 47
+
+set_io win_button 6
+set_io lose_button 28
 
 set_io sound 36

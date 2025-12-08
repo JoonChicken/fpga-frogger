@@ -1,0 +1,13 @@
+module log_rom (
+    input logic [11:0] addr,
+    output logic [5:0] data
+);
+    logic [5:0] rom [0:3071];
+
+    initial begin
+        $readmemh("rom/log.mem", rom);
+    end
+    always_comb begin 
+        data = rom[addr];
+    end
+endmodule

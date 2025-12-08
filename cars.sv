@@ -2,29 +2,13 @@ module cars (
     input logic clk,
     input logic reset,
 
-    output logic [9:0] lane0_car0_x,
-    output logic [9:0] lane0_car1_x,
-    output logic [9:0] lane0_car2_x,
-    
-    output logic [9:0] lane1_car0_x,
-    output logic [9:0] lane1_car1_x,
-    output logic [9:0] lane1_car2_x,
-    
+    output logic [9:0] lane0_car0_x, 
+    output logic [9:0] lane1_car0_x, 
     output logic [9:0] lane2_car0_x,
-    output logic [9:0] lane2_car1_x,
-    output logic [9:0] lane2_car2_x,
-    
     output logic [9:0] lane3_car0_x,
-    output logic [9:0] lane3_car1_x,
-    output logic [9:0] lane3_car2_x,
-    
     output logic [9:0] lane4_car0_x,
     output logic [9:0] lane4_car1_x,
-    output logic [9:0] lane4_car2_x,
-    
     output logic [9:0] lane5_car0_x,
-    output logic [9:0] lane5_car1_x,
-    output logic [9:0] lane5_car2_x,
     
     output logic [9:0] lane0_length,
     output logic [9:0] lane1_length,
@@ -39,7 +23,8 @@ module cars (
     parameter X_OFFSET_RIGHT = 10'd544;
     parameter ROAD_WIDTH = X_OFFSET_RIGHT - X_OFFSET_LEFT;
     // constant car offset for all lanes
-    parameter CAR_OFFSET = 10'd150; 
+    parameter CAR_OFFSET = 10'd150;
+
     
     // different cars per lane
     // lane 0 is at the top
@@ -80,31 +65,16 @@ module cars (
     
     // counter initializes for each lane
     // once counter reaches laneX_speed_divider, the car in laneX moves 1 pixel
+    
     always_ff @(posedge clk) begin
         if (reset) begin
             lane0_car0_x <= X_OFFSET_LEFT;
-            lane0_car1_x <= X_OFFSET_LEFT + CAR_OFFSET;
-            lane0_car2_x <= X_OFFSET_LEFT + 2 * CAR_OFFSET;
-            
-            lane1_car0_x <= X_OFFSET_LEFT + CAR_OFFSET / 2;
-            lane1_car1_x <= X_OFFSET_LEFT + CAR_OFFSET / 2 + CAR_OFFSET;
-            lane1_car2_x <= X_OFFSET_LEFT + CAR_OFFSET / 2 + 2 * CAR_OFFSET;
-            
+            lane1_car0_x <= X_OFFSET_LEFT;
             lane2_car0_x <= X_OFFSET_LEFT;
-            lane2_car1_x <= X_OFFSET_LEFT + CAR_OFFSET;
-            lane2_car2_x <= X_OFFSET_LEFT + 2 * CAR_OFFSET;
-            
-            lane3_car0_x <= X_OFFSET_LEFT + CAR_OFFSET / 3;
-            lane3_car1_x <= X_OFFSET_LEFT + CAR_OFFSET / 3 + CAR_OFFSET;
-            lane3_car2_x <= X_OFFSET_LEFT + CAR_OFFSET / 3 + 2 * CAR_OFFSET;
-            
-            lane4_car0_x <= X_OFFSET_LEFT + CAR_OFFSET / 4;
-            lane4_car1_x <= X_OFFSET_LEFT + CAR_OFFSET / 4 + CAR_OFFSET;
-            lane4_car2_x <= X_OFFSET_LEFT + CAR_OFFSET / 4 + 2 * CAR_OFFSET;
-            
-            lane5_car0_x <= X_OFFSET_LEFT + CAR_OFFSET / 2;
-            lane5_car1_x <= X_OFFSET_LEFT + CAR_OFFSET / 2 + CAR_OFFSET;
-            lane5_car2_x <= X_OFFSET_LEFT + CAR_OFFSET / 2 + 2 * CAR_OFFSET;
+            lane3_car0_x <= X_OFFSET_LEFT;
+            lane4_car0_x <= X_OFFSET_LEFT;
+            lane4_car1_x <= X_OFFSET_LEFT + 2*CAR_OFFSET;
+            lane5_car0_x <= X_OFFSET_LEFT;
             
             // reset speed counters
             lane0_speed_counter <= 24'd0;
@@ -131,17 +101,7 @@ module cars (
                     lane0_car0_x <= lane0_car0_x + 1;
                 end
                 
-                if (lane0_car1_x >= X_OFFSET_RIGHT) begin
-                    lane0_car1_x <= X_OFFSET_LEFT - LANE0_LENGTH;
-                end else begin
-                    lane0_car1_x <= lane0_car1_x + 1;
-                end
                 
-                if (lane0_car2_x >= X_OFFSET_RIGHT) begin
-                    lane0_car2_x <= X_OFFSET_LEFT - LANE0_LENGTH;
-                end else begin
-                    lane0_car2_x <= lane0_car2_x + 1;
-                end
             end
             
             if (lane1_speed_counter >= LANE1_SPEED_DIVIDER) begin
@@ -153,17 +113,7 @@ module cars (
                     lane1_car0_x <= lane1_car0_x + 1;
                 end
                 
-                if (lane1_car1_x >= X_OFFSET_RIGHT) begin
-                    lane1_car1_x <= X_OFFSET_LEFT - LANE1_LENGTH;
-                end else begin
-                    lane1_car1_x <= lane1_car1_x + 1;
-                end
                 
-                if (lane1_car2_x >= X_OFFSET_RIGHT) begin
-                    lane1_car2_x <= X_OFFSET_LEFT - LANE1_LENGTH;
-                end else begin
-                    lane1_car2_x <= lane1_car2_x + 1;
-                end
             end
             
             if (lane2_speed_counter >= LANE2_SPEED_DIVIDER) begin
@@ -175,17 +125,7 @@ module cars (
                     lane2_car0_x <= lane2_car0_x + 1;
                 end
                 
-                if (lane2_car1_x >= X_OFFSET_RIGHT) begin
-                    lane2_car1_x <= X_OFFSET_LEFT - LANE2_LENGTH;
-                end else begin
-                    lane2_car1_x <= lane2_car1_x + 1;
-                end
                 
-                if (lane2_car2_x >= X_OFFSET_RIGHT) begin
-                    lane2_car2_x <= X_OFFSET_LEFT - LANE2_LENGTH;
-                end else begin
-                    lane2_car2_x <= lane2_car2_x + 1;
-                end
             end
             
             if (lane3_speed_counter >= LANE3_SPEED_DIVIDER) begin
@@ -197,17 +137,7 @@ module cars (
                     lane3_car0_x <= lane3_car0_x + 1;
                 end
                 
-                if (lane3_car1_x >= X_OFFSET_RIGHT) begin
-                    lane3_car1_x <= X_OFFSET_LEFT - LANE3_LENGTH;
-                end else begin
-                    lane3_car1_x <= lane3_car1_x + 1;
-                end
-                
-                if (lane3_car2_x >= X_OFFSET_RIGHT) begin
-                    lane3_car2_x <= X_OFFSET_LEFT - LANE3_LENGTH;
-                end else begin
-                    lane3_car2_x <= lane3_car2_x + 1;
-                end
+               
             end
             
             if (lane4_speed_counter >= LANE4_SPEED_DIVIDER) begin
@@ -217,19 +147,14 @@ module cars (
                     lane4_car0_x <= X_OFFSET_LEFT - LANE4_LENGTH;
                 end else begin
                     lane4_car0_x <= lane4_car0_x + 1;
-                end
-                
+                end 
                 if (lane4_car1_x >= X_OFFSET_RIGHT) begin
                     lane4_car1_x <= X_OFFSET_LEFT - LANE4_LENGTH;
                 end else begin
                     lane4_car1_x <= lane4_car1_x + 1;
                 end
                 
-                if (lane4_car2_x >= X_OFFSET_RIGHT) begin
-                    lane4_car2_x <= X_OFFSET_LEFT - LANE4_LENGTH;
-                end else begin
-                    lane4_car2_x <= lane4_car2_x + 1;
-                end
+                
             end
             
             if (lane5_speed_counter >= LANE5_SPEED_DIVIDER) begin
@@ -240,18 +165,7 @@ module cars (
                 end else begin
                     lane5_car0_x <= lane5_car0_x + 1;
                 end
-                
-                if (lane5_car1_x >= X_OFFSET_RIGHT) begin
-                    lane5_car1_x <= X_OFFSET_LEFT - LANE5_LENGTH;
-                end else begin
-                    lane5_car1_x <= lane5_car1_x + 1;
-                end
-                
-                if (lane5_car2_x >= X_OFFSET_RIGHT) begin
-                    lane5_car2_x <= X_OFFSET_LEFT - LANE5_LENGTH;
-                end else begin
-                    lane5_car2_x <= lane5_car2_x + 1;
-                end
+                 
             end
         end
     end
