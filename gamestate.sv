@@ -4,6 +4,8 @@ module gamestate (
     input logic reset,
     input logic collision,
     input logic reached_end,
+    output logic win,
+    output logic lose,
     output logic [1:0] state,
     output logic [3:0] level,
     output logic [1:0] soundselector,

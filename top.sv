@@ -63,8 +63,6 @@ module top (
 
     assign reset = ~button_reset;
     assign dpad_input = {button_right, button_up, button_down, button_left};
-    // ===================================================================
-
 
     // Debouncing buttons ================================================
     logic btn_up_tick;
@@ -107,9 +105,7 @@ module top (
         .btn_in(button_right),
         .db_level(),
         .db_tick(btn_right_tick)
-    );
-    // ====================================================================
-    
+    );    
 
     // frog positioning parameters ========================================
     parameter init_x = 320;
@@ -118,8 +114,6 @@ module top (
     
     logic [9:0] next_x;
     logic [9:0] next_y;
-    // ====================================================================
-
     
     // instantiate cars
     logic [9:0] lane0_car0_x;
@@ -217,8 +211,6 @@ module top (
         .lane4_loglength(lane4_loglength),
         .lane5_loglength(lane5_loglength)
     );
-    // ====================================================================
-
 
     // Cars logic =========================================================
     cars cars_inst (
@@ -238,36 +230,6 @@ module top (
         .lane4_length(lane4_length),
         .lane5_length(lane5_length)
     );
-
-    logs logs_inst (
-        .clk(osc_25_1M),
-        .reset(reset),
-        .lane0_log0_x(lane0_log0_x),
-        .lane0_log1_x(lane0_log1_x),
-        .lane0_log2_x(lane0_log2_x),
-        .lane1_log0_x(lane1_log0_x),
-        .lane1_log1_x(lane1_log1_x),
-        .lane1_log2_x(lane1_log2_x),
-        .lane2_log0_x(lane2_log0_x),
-        .lane2_log1_x(lane2_log1_x),
-        .lane2_log2_x(lane2_log2_x),
-        .lane3_log0_x(lane3_log0_x),
-        .lane3_log1_x(lane3_log1_x),
-        .lane3_log2_x(lane3_log2_x),
-        .lane4_log0_x(lane4_log0_x),
-        .lane4_log1_x(lane4_log1_x),
-        .lane4_log2_x(lane4_log2_x),
-        .lane5_log0_x(lane5_log0_x),
-        .lane5_log1_x(lane5_log1_x),
-        .lane5_log2_x(lane5_log2_x),
-        .lane0_loglength(lane0_loglength),
-        .lane1_loglength(lane1_loglength),
-        .lane2_loglength(lane2_loglength),
-        .lane3_loglength(lane3_loglength),
-        .lane4_loglength(lane4_loglength),
-        .lane5_loglength(lane5_loglength)
-    );
-
     
     
     logic [5:0] frogcolor;  
@@ -284,31 +246,6 @@ module top (
 
     // logs rendering
     logic [5:0] logcolor;
-    logs_gen logs_gen_inst (
-        .clk(osc_25_1M),
-        .colPos(colPos),
-        .rowPos(rowPos),
-        .lane0_log0_x(lane0_log0_x),
-        .lane0_log1_x(lane0_log1_x),
-        .lane0_log2_x(lane0_log2_x),
-        .lane1_log0_x(lane1_log0_x),
-        .lane1_log1_x(lane1_log1_x),
-        .lane2_log0_x(lane2_log0_x),
-        .lane2_log1_x(lane2_log1_x),
-        .lane3_log0_x(lane3_log0_x),
-        .lane3_log1_x(lane3_log1_x),
-        .lane4_log0_x(lane4_log0_x),
-        .lane4_log1_x(lane4_log1_x),
-        .lane5_log0_x(lane5_log0_x),
-        .lane5_log1_x(lane5_log1_x),
-        .lane0_loglength(lane0_loglength),
-        .lane1_loglength(lane1_loglength),
-        .lane2_loglength(lane2_loglength),
-        .lane3_loglength(lane3_loglength),
-        .lane4_loglength(lane4_loglength),
-        .lane5_loglength(lane5_loglength),
-        .color(logcolor)
-    );
     
     // cars rendering
     logic [5:0] carcolor;
@@ -331,38 +268,7 @@ module top (
         .lane5_length(lane5_length),
         .color(carcolor)
     );
-
-
-    logs_gen logs_gen_inst (
-        .clk(osc_25_1M),
-        .colPos(colPos),
-        .rowPos(rowPos),
-        ..lane0_log0_x(lane0_log0_x),
-        .lane0_log1_x(lane0_log1_x),
-        .lane0_log2_x(lane0_log2_x),
-        .lane1_log0_x(lane1_log0_x),
-        .lane1_log1_x(lane1_log1_x),
-        .lane1_log2_x(lane1_log2_x),
-        .lane2_log0_x(lane2_log0_x),
-        .lane2_log1_x(lane2_log1_x),
-        .lane2_log2_x(lane2_log2_x),
-        .lane3_log0_x(lane3_log0_x),
-        .lane3_log1_x(lane3_log1_x),
-        .lane3_log2_x(lane3_log2_x),
-        .lane4_log0_x(lane4_log0_x),
-        .lane4_log1_x(lane4_log1_x),
-        .lane4_log2_x(lane4_log2_x),
-        .lane5_log0_x(lane5_log0_x),
-        .lane5_log1_x(lane5_log1_x),
-        .lane5_log2_x(lane5_log2_x),
-        .lane0_loglength(lane0_loglength),
-        .lane1_loglength(lane1_loglength),
-        .lane2_loglength(lane2_loglength),
-        .lane3_loglength(lane3_loglength),
-        .lane4_loglength(lane4_loglength),
-        .lane5_loglength(lane5_loglength)
-    );
-    // grid/window color
+    //grid/window color
     logic [5:0] gridcolor;
     logic window_display_enable;
     window window (
@@ -372,7 +278,6 @@ module top (
         .display_enable(window_display_enable),
         .color(gridcolor)
     );
-
     // Background color
     logic [5:0] bgcolor;
     background bg (
@@ -507,82 +412,19 @@ module top (
         .btn_down_tick(btn_down_tick),
         .color(uicolor)
     );
-    // ====================================================================
 
-
-    // Frog rendering =====================================================
-    logic [5:0] frogcolor;  
-    frog_gen frog_gen (
-        .clk(osc_25_1M),
-        .colPos(colPos),
-        .rowPos(rowPos),
-        .frog_x(next_x),
-        .frog_y(next_y),
-        .frog_size(frog_size),
-        .color(frogcolor)
-    );
-    // ====================================================================
 
     
     // cars rendering =====================================================
     logic [5:0] carcolor;
-    cars_gen cars_gen_inst (
-        .clk(osc_25_1M),
-        .colPos(colPos),
-        .rowPos(rowPos),
-        .lane0_car0_x(lane0_car0_x),
-        .lane0_car1_x(lane0_car1_x),
-        .lane0_car2_x(lane0_car2_x),
-        .lane1_car0_x(lane1_car0_x),
-        .lane1_car1_x(lane1_car1_x),
-        .lane1_car2_x(lane1_car2_x),
-        .lane2_car0_x(lane2_car0_x),
-        .lane2_car1_x(lane2_car1_x),
-        .lane2_car2_x(lane2_car2_x),
-        .lane3_car0_x(lane3_car0_x),
-        .lane3_car1_x(lane3_car1_x),
-        .lane3_car2_x(lane3_car2_x),
-        .lane4_car0_x(lane4_car0_x),
-        .lane4_car1_x(lane4_car1_x),
-        .lane4_car2_x(lane4_car2_x),
-        .lane5_car0_x(lane5_car0_x),
-        .lane5_car1_x(lane5_car1_x),
-        .lane5_car2_x(lane5_car2_x),
-        .lane0_length(lane0_length),
-        .lane1_length(lane1_length),
-        .lane2_length(lane2_length),
-        .lane3_length(lane3_length),
-        .lane4_length(lane4_length),
-        .lane5_length(lane5_length),
-        .color(carcolor)
-    );
-    // ====================================================================
 
 
     // grid/window color ==================================================
     logic [5:0] gridcolor;
     logic window_display_enable;
-    window window (
-        .clk(osc_25_1M),
-        .colPos(colPos),
-        .rowPos(rowPos),
-        .display_enable(window_display_enable),
-        .color(gridcolor)
-    );
-    // ====================================================================
-
 
     // Background color ===================================================
     logic [5:0] bgcolor;
-    background bg (
-        .on(1'b1),  // always enabled - background should always render
-        .colPos(colPos),
-        .rowPos(rowPos),
-        .color(bgcolor)
-    );
-    // ====================================================================
-
-
 
     // Full render: front to back =========================================
     // color priority: UI > frog > cars > background
