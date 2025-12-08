@@ -266,7 +266,9 @@ module text_gen (
 
     end
     
+    assign newchar_addr = char_addr - 32;
+
     // Read from ROM
-    assign bitmap = rom[{char_addr -32, row_addr}];
+    assign bitmap = rom[{newchar_addr, row_addr}];
 
 endmodule
