@@ -91,10 +91,10 @@ module ui_gen(
         if (state == MENU) begin
             currY <= 0;
             score <= 0;
-        end else if (btn_up_tick) begin
+        end else if (btn_up_tick && state == PLAYING) begin
             currY <= currY + 1;
             if (currY > score) score <= currY;
-        end else if (btn_down_tick) begin
+        end else if (btn_down_tick && state == PLAYING) begin
             currY <= currY - 1;
         end
     end
