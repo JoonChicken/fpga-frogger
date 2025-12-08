@@ -51,7 +51,7 @@ module topAudio (
         // new request overrides whatever is playing
         if (anyJump & ~anyJumpPrev) begin
             activeSound  <= jumpState;
-            timer        <= 4183333;
+            timer        <= 2000000;
             timerRunning <= 1'b1;
         end 
         else if (win & ~winPrev) begin
