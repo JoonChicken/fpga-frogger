@@ -39,9 +39,9 @@ module frog (
     logic [9:0] new_y;
     logic signed [9:0] dx;
 
-    // add reached_end position so that it resets when we get to the end 
+
     always_ff @(posedge clk) begin
-        if (reset || collision || !initialized || reached_end) begin
+        if (reset || collision || !initialized) begin
             next_x <= init_x;
             next_y <= init_y;
             initialized <= 1'b1;
