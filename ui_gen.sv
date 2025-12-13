@@ -94,6 +94,8 @@ module ui_gen(
         if (state == MENU) begin
             currY <= 0;
             score <= 0;
+            // added initialization of hiscore here 
+            hiscore <= 0; 
         end else if (btn_up_tick && (state == PLAYING || state == MENU)) begin
             currY <= currY + 1;
             if (currY > score) score <= currY;
