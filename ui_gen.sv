@@ -96,21 +96,12 @@ module ui_gen(
             score <= 0;
             // added initialization of hiscore here 
             hiscore <= 0; 
-        end 
-        else if (state == PLAYING)begin 
-            if (reached_end) begin 
-                currY <= currY+1; 
-                if (currY + 1 > score) begin 
-                    score <= currY + 1; 
-                end 
-            end 
-        end 
-    //     else if (btn_up_tick && (state == PLAYING || state == MENU)) begin
-    //         currY <= currY + 1;
-    //         if (currY > score) score <= currY;
-    //     end else if (btn_down_tick && (state == PLAYING || state == MENU)) begin
-    //         currY <= currY - 1;
-    //     end
+        end else if (btn_up_tick && (state == PLAYING || state == MENU)) begin
+            currY <= currY + 1;
+            if (currY > score) score <= currY;
+        end else if (btn_down_tick && (state == PLAYING || state == MENU)) begin
+            currY <= currY - 1;
+        end
 
 // updates hiscore 
         if (score > hiscore) begin
