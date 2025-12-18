@@ -44,10 +44,7 @@ module topAudio (
     assign losePulse = (loseIn & ~losePrev);
 
 
-    
-    //-------------------------------
-    // Timer + latch active sound
-    //-------------------------------
+
     always_ff @(posedge clk) begin
         
         // new request overrides whatever is playing
@@ -77,9 +74,7 @@ module topAudio (
         end
     end
 
-    //-------------------------------
-    // Output routing
-    //-------------------------------
+ 
     always_comb begin
         // default
         sound            = 1'b0;
