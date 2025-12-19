@@ -35,8 +35,8 @@ module cars_gen (
     parameter LANE5_Y = 13 * BLOCKSIZE;   // 416
 
     localparam [5:0] CAR_BODY    = 6'b110000; // red
-    localparam [5:0] CAR_ROOF    = 6'b000000; // empty/roof
-    localparam [5:0] TRUCK_BODY  = 6'b001110; // cyan / trailer
+    localparam [5:0] CAR_ROOF    = 6'b000000; // empty
+    localparam [5:0] TRUCK_BODY  = 6'b001110; // cyan
     localparam [5:0] TRUCK_CAB   = 6'b001011; // darker cab
 
     localparam [5:0] RV_BODY     = 6'b101011; // light grey/white
@@ -162,8 +162,7 @@ module cars_gen (
         if (in_car) begin
             // TRUCK
             if (curr_length > RV_THRESHOLD) begin
-                // local_y: 0...31
-                // bottom band: wheels & lower body
+                // wheels & lower body
                 if (local_y >= 24 && local_y < 32) begin
                     color = TRUCK_BODY;
                     if ((local_x >= 4 && local_x <= 8) ||
@@ -171,22 +170,22 @@ module cars_gen (
                         color = WHEEL_COL;
                     end
                 end
-                // middle band: trailer/cab with windows
+                // trailer/cab with windows
                 else if (local_y >= 10 && local_y < 24) begin
                     // cab is last BLOCKSIZE pixels
                     if (local_x >= curr_length - BLOCKSIZE) begin
                         color = TRUCK_CAB;
-                        // simple cab window
+                        // cab window
                         if (local_y >= 12 && local_y <= 16 &&
                             local_x >= curr_length - BLOCKSIZE + 4 &&
                             local_x <= curr_length - BLOCKSIZE + 12) begin
                             color = WINDOW_COL;
                         end
                     end else begin
-                        color = TRUCK_BODY; // trailer
+                        color = TRUCK_BODY;
                     end
                 end
-                // top band: roof
+                // roof
                 else begin
                     color = TRUCK_BODY;
                 end
@@ -197,7 +196,7 @@ module cars_gen (
                 // start with RV body
                 color = RV_BODY;
 
-                // roof highlight (top band)
+                // roof highlight
                 if (local_y < 4 &&
                     local_x >= 4 && local_x < curr_length - 4) begin
                     color = RV_ROOF;
@@ -235,7 +234,7 @@ module cars_gen (
                     (local_x >= curr_length - 5 && local_x <= curr_length - 1) ) begin
                     color = WINDOW_COL;
                 end
-                // wheels at bottom (two chunky wheels)
+                // wheels at bottom
                 if (local_y >= 24 && local_y < 32 &&
                    ((local_x >= 9 && local_x <= 14) ||
                     (local_x >= curr_length - 18 && local_x <= curr_length - 12))) begin

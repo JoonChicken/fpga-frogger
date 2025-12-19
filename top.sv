@@ -175,9 +175,6 @@ module top (
     logic [9:0] lane0_loglength, lane1_loglength, lane2_loglength, lane3_loglength, lane4_loglength, lane5_loglength;
     logic [9:0] lane0_log_speed, lane1_log_speed, lane2_log_speed, lane3_log_speed, lane4_log_speed, lane5_log_speed;
     
-
-
-
     logic in_lane0_log;
     logic in_lane1_log;
     logic in_lane2_log;
@@ -484,6 +481,5 @@ module top (
             color = bgcolor;
         end
     end
-
 
 endmodule

@@ -9,12 +9,6 @@ module frog_gen (
     output logic [5:0]  color
 );
 
-    // TODO animations
-    logic [10:0] offset = 11'b0;
-    always_ff @(posedge clk) begin
-        offset <= offset + 4;
-    end
-
     localparam [5:0] LIGHT_GREEN = 6'b001100;
     localparam [5:0] DARK_GREEN  = 6'b000101;
     localparam [5:0] ORANGE      = 6'b110100;
@@ -31,6 +25,7 @@ module frog_gen (
         .addr(sprite_addr),
         .data(rom_color)
     );
+
     always_comb begin
         color   = 6'b000000; 
         in_frog = 1'b0;
@@ -40,7 +35,8 @@ module frog_gen (
 
         in_frog = (colPos >= frog_x && colPos < frog_x + frog_size &&
                    rowPos >= frog_y && rowPos < frog_y + frog_size);
-
+        
+        // if in frog, get sprite address
         if (in_frog) begin
             local_x = colPos - frog_x;
             local_y = rowPos - frog_y;

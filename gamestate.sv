@@ -26,6 +26,7 @@ module gamestate (
             soundResetNext <= 0;
         end
         
+        // set the game state
         if (reset) begin
             state <= MENU;
             level <= 0;

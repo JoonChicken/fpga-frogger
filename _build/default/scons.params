@@ -1,4 +1,4 @@
-timestamp: "07232818247"
+timestamp: "18045421214"
 arch: ICE40
 fpga_info {
   fpga_id: "ice40up5k-sg48"
@@ -9,10 +9,15 @@ fpga_info {
     pack: "sg48"
   }
 }
+verbosity {
+  all: true
+  synth: false
+  pnr: false
+}
 environment {
   platform_id: "darwin-arm64"
   is_windows: false
-  terminal_mode: FORCE_TERMINAL
+  terminal_mode: FORCE_PIPE
   theme_name: "light"
   debug_level: 0
   yosys_path: "/Users/jzhang/.apio/packages/oss-cad-suite/share/yosys"
@@ -22,9 +27,4 @@ apio_env_params {
   env_name: "default"
   board_id: "upduino31"
   top_module: "top"
-}
-target {
-  upload {
-    programmer_cmd: "iceprog -d d:1/4 $SOURCE"
-  }
 }

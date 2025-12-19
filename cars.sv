@@ -48,6 +48,7 @@ module cars (
     parameter LANE5_LENGTH = 10'd96;  // 3 blocks
     parameter LANE5_SPEED_DIVIDER = 24'd120000;
     
+    // car speeds and lengths
     logic [23:0] lane0_speed_counter;
     logic [23:0] lane1_speed_counter;
     logic [23:0] lane2_speed_counter;
@@ -55,7 +56,6 @@ module cars (
     logic [23:0] lane4_speed_counter;
     logic [23:0] lane5_speed_counter;
     
-    // assign car lengths
     assign lane0_length = LANE0_LENGTH;
     assign lane1_length = LANE1_LENGTH;
     assign lane2_length = LANE2_LENGTH;
@@ -84,7 +84,7 @@ module cars (
             lane4_speed_counter <= 24'd0;
             lane5_speed_counter <= 24'd0;
         end else begin
-            // Update speed counters
+            // update speed counters
             lane0_speed_counter <= lane0_speed_counter + 1;
             lane1_speed_counter <= lane1_speed_counter + 1;
             lane2_speed_counter <= lane2_speed_counter + 1;
@@ -92,6 +92,7 @@ module cars (
             lane4_speed_counter <= lane4_speed_counter + 1;
             lane5_speed_counter <= lane5_speed_counter + 1;
             
+            // car movement for each lane
             if (lane0_speed_counter >= LANE0_SPEED_DIVIDER) begin
                 lane0_speed_counter <= 24'd0;
                 

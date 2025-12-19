@@ -8,9 +8,11 @@ module debounce(
     output wire db_tick
     );
 
+    // debounce timespan in clock cycles
     localparam N = 20; 
 
     reg [N-1:0] q_reg, q_next;
+    // 2 bit register to compare the current and previous button inputs
     reg [1:0] dff;
     
     always @(posedge clk or posedge reset) begin
@@ -19,16 +21,18 @@ module debounce(
             dff <= 0;
         end else begin
             q_reg <= q_next;
-            dff <= {dff[0], btn_in}; // Shift in the new raw value
+            // shift in raw button input
+            dff <= {dff[0], btn_in}; 
         end
     end
 
     always @(*) begin
         q_next = q_reg;
         
-        // if the inputs (state change detection) are different
+        // if the inputs are different, restart the debounce counter
         if ((dff[0] ^ dff[1]) == 1'b1) begin
-             q_next = {N{1'b1}}; // Reset counter to max
+             q_next = {N{1'b1}};
+        // otherwise count down to 0
         end else if (q_reg > 0) begin
              q_next = q_reg - 1;
         end
@@ -38,10 +42,11 @@ module debounce(
         if (reset)
             db_level <= 0;
         else if (q_reg == 0)
-            db_level <= dff[1]; // Lock in the stable value
+            // lock in the clean input
+            db_level <= dff[1]; 
     end
 
-    // detect edge of clean signal
+    // detect edge of clean input
     reg db_level_delayed;
     always @(posedge clk) begin
         db_level_delayed <= db_level;

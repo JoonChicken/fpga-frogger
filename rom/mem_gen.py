@@ -1,6 +1,7 @@
+# change as needed
 palette = {
     '.': "00",
-    'R': "30", # main red
+    'R': "30",
     'D': "20",
     'G': "2F",
     'Y': "3C",

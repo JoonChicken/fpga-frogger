@@ -33,7 +33,7 @@ module logs_gen(
     input logic [9:0] lane5_loglength,
     output logic [5:0] color
 ); 
-
+    
     parameter BLOCKSIZE = 10'd32;
     parameter X_OFFSET_LEFT  = 10'd96;
     parameter X_OFFSET_RIGHT = 10'd544;

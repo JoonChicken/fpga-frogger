@@ -11,6 +11,8 @@ module frog (
     input logic collision,
     input logic reached_end,
     input logic reset,
+
+    // log speeds and collision detection for movement with logs
     input logic signed [9:0] lane0_log_speed,
     input logic signed [9:0] lane1_log_speed,
     input logic signed [9:0] lane2_log_speed,
@@ -33,13 +35,13 @@ module frog (
     typedef enum logic [1:0] {UP=2'b00, DOWN=2'b01, LEFT=2'b10, RIGHT=2'b11} face_dir;
     face_dir facing;
 
-
     logic initialized = 1'b0;
     logic signed [10:0] new_x;
     logic [9:0] new_y;
     logic signed [9:0] dx;
 
     always_ff @(posedge clk) begin
+        // collision detection or reset brings frog back to initial position
         if (reset || collision || !initialized) begin
             next_x <= init_x;
             next_y <= init_y;
@@ -75,8 +77,9 @@ module frog (
                 end
             end
             
+            // update position based on log speeds
             dx = '0;
-            if (in_lane0_log)      dx = lane0_log_speed;
+            if      (in_lane0_log) dx = lane0_log_speed;
             else if (in_lane1_log) dx = lane1_log_speed;
             else if (in_lane2_log) dx = lane2_log_speed;
             else if (in_lane3_log) dx = lane3_log_speed;
