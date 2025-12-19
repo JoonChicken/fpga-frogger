@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-timestamp: "18045421214"
-=======
-timestamp: "07231100729"
->>>>>>> 700b0acc0f29fcb7d21a170e11b7c6767f907b8e
+timestamp: "18204624334"
 arch: ICE40
 fpga_info {
   fpga_id: "ice40up5k-sg48"
@@ -14,18 +10,14 @@ fpga_info {
   }
 }
 verbosity {
-<<<<<<< HEAD
-  all: true
-=======
   all: false
->>>>>>> 700b0acc0f29fcb7d21a170e11b7c6767f907b8e
   synth: false
   pnr: false
 }
 environment {
   platform_id: "darwin-arm64"
   is_windows: false
-  terminal_mode: FORCE_PIPE
+  terminal_mode: FORCE_TERMINAL
   theme_name: "light"
   debug_level: 0
   yosys_path: "/Users/jzhang/.apio/packages/oss-cad-suite/share/yosys"
