@@ -1,6 +1,7 @@
 module logs (
-    input  logic clk,
-    input  logic reset,
+    input logic clk,
+    input logic reset,
+    input logic [3:0] level,
 
     output logic [9:0] lane0_log0_x,
     output logic [9:0] lane0_log1_x,    
@@ -70,6 +71,10 @@ module logs (
     assign lane3_loglength = LANE3_LENGTH;
     assign lane4_loglength = LANE4_LENGTH;
     assign lane5_loglength = LANE5_LENGTH;
+
+
+    
+
 
     always_ff @(posedge clk) begin
         if (reset) begin

@@ -40,6 +40,7 @@ module frog (
     logic [9:0] new_y;
     logic signed [9:0] dx;
 
+
     always_ff @(posedge clk) begin
         // collision detection or reset brings frog back to initial position
         if (reset || collision || !initialized) begin

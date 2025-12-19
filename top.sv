@@ -214,6 +214,7 @@ module top (
     logs logs_inst (   
         .clk(osc_25_1M),
         .reset(reset),
+        .level(level),
         .lane0_log0_x(lane0_log0_x),
         .lane0_log1_x(lane0_log1_x),
         .lane0_log2_x(lane0_log2_x),
@@ -272,6 +273,7 @@ module top (
     cars cars_inst (
         .clk(osc_25_1M),
         .reset(reset),
+        .level(level),
         .lane0_car0_x(lane0_car0_x),
         .lane1_car0_x(lane1_car0_x),
         .lane2_car0_x(lane2_car0_x),

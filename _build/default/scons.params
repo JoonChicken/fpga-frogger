@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 timestamp: "18045421214"
+=======
+timestamp: "07231100729"
+>>>>>>> 700b0acc0f29fcb7d21a170e11b7c6767f907b8e
 arch: ICE40
 fpga_info {
   fpga_id: "ice40up5k-sg48"
@@ -10,7 +14,11 @@ fpga_info {
   }
 }
 verbosity {
+<<<<<<< HEAD
   all: true
+=======
+  all: false
+>>>>>>> 700b0acc0f29fcb7d21a170e11b7c6767f907b8e
   synth: false
   pnr: false
 }
