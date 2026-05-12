@@ -1,12 +1,18 @@
 # FPGA Frogger
 
-A Frogger clone running on an iCE40 UltraPlus FPGA on an [UPduino 3.0](https://github.com/tinyvision-ai-inc/upduino-v3.0), created as a final project for ES4: Intro to Digital Logic at Tufts University
+A Frogger-like game programmed in SystemVerilog, running on an iCE40 UltraPlus FPGA on an [UPduino 3.0](https://github.com/tinyvision-ai-inc/upduino-v3.0). Created as a final project for ES4: Intro to Digital Logic at Tufts University
 
 **Authors:** Lauren Girouard, Joon Heo, Ethan Wienkamp, Justin Zhang
 
 
 https://github.com/user-attachments/assets/e709b563-01ee-4b05-866b-fdf667104567
 
+---
+
+## Limitations
+
+* This is not a faithful Frogger clone! We did not implement the lily pads and alligators in the water section as we were focused on the core gameplay for this project, and we purposefully removed the five lily pads at the end zone and the "escorting the lady frog" mechanic in the original because they weren't that fun to begin with. As it stands, our gameplay is more similar to that of Crossy Road than the original Frogger.
+* Frog and vehicle hitboxes may be too large
 
 ---
 
