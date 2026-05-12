@@ -4,6 +4,8 @@ A Frogger clone running on an iCE40 UltraPlus FPGA on an [UPduino 3.0](https://g
 
 **Authors:** Lauren Girouard, Joon Heo, Ethan Wienkamp, Justin Zhang
 
+[![video demo](https://img.youtube.com/vi/VHwO5VswEU4/maxresdefault.jpg)](https://youtu.be/VHwO5VswEU4)
+
 ---
 
 ## Setup
